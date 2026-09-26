@@ -1,0 +1,25 @@
+{
+  "counts": {
+    "Customers": 50040,
+    "Inventory": 3000,
+    "Menu_Categories": 10,
+    "Menu_Items": 150,
+    "Order_Items": 1000000,
+    "Orders": 100080,
+    "Pricing_History": 300,
+    "Promotions": 20,
+    "Ratings": 100000,
+    "Restaurants": 20,
+    "Wastage": 50000
+  },
+  "generator_fixture_assertions": "relationships, time bounds, economics, operational balances, scenarios, declared defects",
+  "scenario_measurements": {
+    "harmful_promo_june_margin_pkr": -249290.0,
+    "hidden_item_units": 154,
+    "high_waste_ratio": 0.7013579447037512,
+    "loss_item_margin_pkr": -14202850.0,
+    "loss_item_units": 125766,
+    "rating_burst_count": 41
+  },
+  "status": "PASS"
+}

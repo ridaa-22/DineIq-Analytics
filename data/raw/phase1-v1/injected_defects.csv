@@ -1,0 +1,526 @@
+Entity,Record_ID,Field,Rule,Original_Value,Injected_Value
+Customers,1084,Customer_Name,MISSING_NAME,Charles Chambers,
+Customers,1455,Customer_Name,MISSING_NAME,Corey Colon,
+Customers,1756,Customer_Name,MISSING_NAME,Christine Dunn,
+Customers,1986,*,DUPLICATE_ROW,1,2
+Customers,2008,Customer_Name,MISSING_NAME,Ronnie Sanchez,
+Customers,2290,Customer_Name,MISSING_NAME,Ralph Rodriguez,
+Customers,2356,Customer_Name,MISSING_NAME,Carrie Williams,
+Customers,3011,Customer_Name,MISSING_NAME,Martin Cox,
+Customers,3224,Customer_Name,MISSING_NAME,Michelle Schwartz,
+Customers,3535,Customer_Name,MISSING_NAME,Hector Wilson,
+Customers,3661,Customer_Name,MISSING_NAME,Gary Gill,
+Customers,3818,Customer_Name,MISSING_NAME,Joanna Flores,
+Customers,5003,Customer_Name,MISSING_NAME,Janet Suarez,
+Customers,5260,Customer_Name,MISSING_NAME,Donna Robles,
+Customers,5628,*,DUPLICATE_ROW,1,2
+Customers,5663,Customer_Name,MISSING_NAME,Ariel Montes,
+Customers,5930,Customer_Name,MISSING_NAME,Kaylee Gross,
+Customers,6221,Customer_Name,MISSING_NAME,Kimberly Schneider,
+Customers,6523,Customer_Name,MISSING_NAME,Ricardo Cooper,
+Customers,6552,*,DUPLICATE_ROW,1,2
+Customers,6684,Customer_Name,MISSING_NAME,Travis Brown,
+Customers,6729,*,DUPLICATE_ROW,1,2
+Customers,7773,*,DUPLICATE_ROW,1,2
+Customers,7849,Customer_Name,MISSING_NAME,Eric Coffey,
+Customers,8092,*,DUPLICATE_ROW,1,2
+Customers,8141,Customer_Name,MISSING_NAME,Brenda Evans,
+Customers,8364,Customer_Name,MISSING_NAME,Katherine Cox,
+Customers,8807,Customer_Name,MISSING_NAME,Diana Cox,
+Customers,8820,Customer_Name,MISSING_NAME,Diana Black,
+Customers,8912,Customer_Name,MISSING_NAME,Jacob Randall,
+Customers,9078,*,DUPLICATE_ROW,1,2
+Customers,9229,*,DUPLICATE_ROW,1,2
+Customers,9399,Customer_Name,MISSING_NAME,Michael Jones,
+Customers,9528,*,DUPLICATE_ROW,1,2
+Customers,9609,Customer_Name,MISSING_NAME,Robert Davis,
+Customers,9931,Customer_Name,MISSING_NAME,Richard Thomas,
+Customers,9973,*,DUPLICATE_ROW,1,2
+Customers,10190,*,DUPLICATE_ROW,1,2
+Customers,10511,Customer_Name,MISSING_NAME,Thomas Suarez,
+Customers,10753,Customer_Name,MISSING_NAME,Kevin Carter,
+Customers,10777,Customer_Name,MISSING_NAME,Brittany Shaw,
+Customers,11029,Customer_Name,MISSING_NAME,Anthony Lyons,
+Customers,11041,Customer_Name,MISSING_NAME,Timothy White,
+Customers,11254,Customer_Name,MISSING_NAME,Dorothy Thompson,
+Customers,11734,Customer_Name,MISSING_NAME,Robert Armstrong,
+Customers,12039,*,DUPLICATE_ROW,1,2
+Customers,12818,Customer_Name,MISSING_NAME,Alicia Rivera,
+Customers,12879,*,DUPLICATE_ROW,1,2
+Customers,13164,Customer_Name,MISSING_NAME,Larry Holland,
+Customers,13184,Customer_Name,MISSING_NAME,Miguel Kline,
+Customers,13273,*,DUPLICATE_ROW,1,2
+Customers,13968,Customer_Name,MISSING_NAME,Kristin Davis,
+Customers,14103,Customer_Name,MISSING_NAME,Alicia Gutierrez,
+Customers,14163,*,DUPLICATE_ROW,1,2
+Customers,14223,Customer_Name,MISSING_NAME,Donna Davenport,
+Customers,14356,Customer_Name,MISSING_NAME,Robert Mcmillan,
+Customers,14541,*,DUPLICATE_ROW,1,2
+Customers,17330,Customer_Name,MISSING_NAME,Caitlyn Tate,
+Customers,17863,Customer_Name,MISSING_NAME,Susan Little,
+Customers,17886,Customer_Name,MISSING_NAME,Brittany Lee,
+Customers,17942,Customer_Name,MISSING_NAME,Gerald Bartlett,
+Customers,18136,Customer_Name,MISSING_NAME,Christopher Jones,
+Customers,18719,Customer_Name,MISSING_NAME,Jason Rogers,
+Customers,18882,Customer_Name,MISSING_NAME,Hannah Collins,
+Customers,19063,*,DUPLICATE_ROW,1,2
+Customers,19232,Customer_Name,MISSING_NAME,Beth Morgan,
+Customers,19528,*,DUPLICATE_ROW,1,2
+Customers,19553,Customer_Name,MISSING_NAME,Robert Brown,
+Customers,19792,Customer_Name,MISSING_NAME,Susan Arellano,
+Customers,19906,Customer_Name,MISSING_NAME,Gary Walker,
+Customers,19985,Customer_Name,MISSING_NAME,Patrick Wilson,
+Customers,19988,*,DUPLICATE_ROW,1,2
+Customers,20651,Customer_Name,MISSING_NAME,Robert King,
+Customers,20653,Customer_Name,MISSING_NAME,Beth York,
+Customers,21357,Customer_Name,MISSING_NAME,Timothy Maldonado,
+Customers,21506,Customer_Name,MISSING_NAME,Laura Gardner,
+Customers,21738,Customer_Name,MISSING_NAME,Marilyn Shelton,
+Customers,21796,Customer_Name,MISSING_NAME,Stacy Hines,
+Customers,21847,Customer_Name,MISSING_NAME,Joseph Mullen,
+Customers,21957,Customer_Name,MISSING_NAME,Jessica Price,
+Customers,22574,Customer_Name,MISSING_NAME,Mercedes Davis,
+Customers,22697,*,DUPLICATE_ROW,1,2
+Customers,22843,Customer_Name,MISSING_NAME,Casey Powell,
+Customers,22886,Customer_Name,MISSING_NAME,Brady Richardson,
+Customers,23519,*,DUPLICATE_ROW,1,2
+Customers,23528,Customer_Name,MISSING_NAME,Edward Ho,
+Customers,23883,Customer_Name,MISSING_NAME,Kenneth Morse,
+Customers,24005,Customer_Name,MISSING_NAME,Lisa Hernandez,
+Customers,24146,*,DUPLICATE_ROW,1,2
+Customers,24606,Customer_Name,MISSING_NAME,Jaclyn Rodriguez,
+Customers,24670,Customer_Name,MISSING_NAME,Courtney Lewis,
+Customers,25023,Customer_Name,MISSING_NAME,Erik Miller,
+Customers,25197,Customer_Name,MISSING_NAME,Jessica Pace,
+Customers,25886,Customer_Name,MISSING_NAME,Tiffany Holland,
+Customers,25975,Customer_Name,MISSING_NAME,Amanda Burns,
+Customers,26258,Customer_Name,MISSING_NAME,Nathan Smith,
+Customers,26274,Customer_Name,MISSING_NAME,Richard Jones,
+Customers,27076,Customer_Name,MISSING_NAME,David Riley,
+Customers,27193,Customer_Name,MISSING_NAME,Stephanie Mcclain,
+Customers,27316,*,DUPLICATE_ROW,1,2
+Customers,27412,Customer_Name,MISSING_NAME,Stephen Crawford,
+Customers,27859,Customer_Name,MISSING_NAME,Kristina Lopez,
+Customers,28097,Customer_Name,MISSING_NAME,Mary Gomez,
+Customers,28156,Customer_Name,MISSING_NAME,Devin Scott,
+Customers,28381,*,DUPLICATE_ROW,1,2
+Customers,29307,*,DUPLICATE_ROW,1,2
+Customers,30306,Customer_Name,MISSING_NAME,Ethan Wright,
+Customers,31544,Customer_Name,MISSING_NAME,John Young,
+Customers,32076,Customer_Name,MISSING_NAME,Jeremy Johnson,
+Customers,32666,Customer_Name,MISSING_NAME,Daniel Myers,
+Customers,32780,Customer_Name,MISSING_NAME,Michele Marshall,
+Customers,32958,*,DUPLICATE_ROW,1,2
+Customers,33332,*,DUPLICATE_ROW,1,2
+Customers,33667,Customer_Name,MISSING_NAME,Shelly Johnson,
+Customers,34200,Customer_Name,MISSING_NAME,Jeremy Simmons,
+Customers,34249,Customer_Name,MISSING_NAME,Michael Oliver,
+Customers,34520,*,DUPLICATE_ROW,1,2
+Customers,34563,*,DUPLICATE_ROW,1,2
+Customers,35326,Customer_Name,MISSING_NAME,Jonathan Miller,
+Customers,35414,Customer_Name,MISSING_NAME,Michael Brown,
+Customers,35573,Customer_Name,MISSING_NAME,Sarah Henry,
+Customers,36165,Customer_Name,MISSING_NAME,Larry Cook,
+Customers,36634,*,DUPLICATE_ROW,1,2
+Customers,36800,Customer_Name,MISSING_NAME,Melissa Gregory,
+Customers,37832,Customer_Name,MISSING_NAME,Charles Brown,
+Customers,38907,*,DUPLICATE_ROW,1,2
+Customers,39092,Customer_Name,MISSING_NAME,Brandon Kline,
+Customers,39208,Customer_Name,MISSING_NAME,Sheena Mays,
+Customers,39752,Customer_Name,MISSING_NAME,Yolanda Allen,
+Customers,39946,Customer_Name,MISSING_NAME,Karen Anderson,
+Customers,39961,Customer_Name,MISSING_NAME,James Moore,
+Customers,40000,Customer_Name,MISSING_NAME,Tracy Tran,
+Customers,41237,Customer_Name,MISSING_NAME,Samantha Hardy,
+Customers,42065,*,DUPLICATE_ROW,1,2
+Customers,42414,Customer_Name,MISSING_NAME,Kenneth Heath,
+Customers,42789,*,DUPLICATE_ROW,1,2
+Customers,43118,Customer_Name,MISSING_NAME,Adam Meadows,
+Customers,43150,Customer_Name,MISSING_NAME,Jamie Garcia,
+Customers,43447,*,DUPLICATE_ROW,1,2
+Customers,43506,Customer_Name,MISSING_NAME,Gina Walker,
+Customers,43517,Customer_Name,MISSING_NAME,Adam Dennis,
+Customers,44933,Customer_Name,MISSING_NAME,Desiree Johnson,
+Customers,45426,*,DUPLICATE_ROW,1,2
+Customers,45648,Customer_Name,MISSING_NAME,Peter Mcclain,
+Customers,45723,*,DUPLICATE_ROW,1,2
+Customers,46411,Customer_Name,MISSING_NAME,Rodney Clarke,
+Customers,46486,*,DUPLICATE_ROW,1,2
+Customers,46784,Customer_Name,MISSING_NAME,Michael Abbott,
+Customers,47824,Customer_Name,MISSING_NAME,Angela Jones,
+Customers,48412,Customer_Name,MISSING_NAME,Rachel Dominguez,
+Customers,48780,Customer_Name,MISSING_NAME,Elaine Avila,
+Customers,48816,Customer_Name,MISSING_NAME,Crystal Shepard,
+Customers,48870,Customer_Name,MISSING_NAME,Crystal Ellis,
+Customers,48924,Customer_Name,MISSING_NAME,Kristi Floyd,
+Customers,49164,*,DUPLICATE_ROW,1,2
+Customers,49290,Customer_Name,MISSING_NAME,Marcus Adams,
+Customers,49737,*,DUPLICATE_ROW,1,2
+Customers,49795,Customer_Name,MISSING_NAME,Joseph Peck,
+Customers,49942,*,DUPLICATE_ROW,1,2
+Customers,49954,Customer_Name,MISSING_NAME,Dennis Ramos,
+Menu_Items,38,Base_Price,INVALID_BASE_PRICE,303.24,-1.00
+Menu_Items,61,Base_Price,INVALID_BASE_PRICE,674.30,-1.00
+Menu_Items,69,Base_Price,INVALID_BASE_PRICE,446.48,-1.00
+Menu_Items,77,Base_Price,INVALID_BASE_PRICE,1297.40,-1.00
+Menu_Items,110,Base_Price,INVALID_BASE_PRICE,462.14,-1.00
+Order_Items,8777,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,9378,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,19579,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,19891,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,33211,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,33950,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,36880,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,51786,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,60265,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,61151,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,61933,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,79413,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,86529,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,90419,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,91994,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,92360,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,96526,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,100293,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,119260,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,127157,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,129471,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,132456,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,144831,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,155111,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,165478,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,169360,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,173337,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,180162,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,180595,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,186325,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,186836,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,195657,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,218642,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,221306,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,225039,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,226549,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,232916,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,240976,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,243533,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,244977,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,259290,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,259637,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,259758,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,274904,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,282190,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,285851,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,291049,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,295460,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,320100,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,321098,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,325954,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,327269,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,335005,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,343899,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,370788,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,375679,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,376533,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,380682,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,381150,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,381686,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,394687,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,402419,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,409907,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,414404,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,426067,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,432227,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,434293,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,443706,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,446783,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,465893,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,467209,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,473709,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,478287,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,479848,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,480408,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,482331,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,501246,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,507892,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,508003,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,509263,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,522831,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,523435,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,526858,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,530000,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,534780,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,537600,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,538968,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,542615,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,545486,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,549238,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,553940,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,554484,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,560793,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,576988,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,585656,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,605736,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,607118,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,620360,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,634064,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,636031,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,654794,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,664183,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,665042,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,666517,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,686494,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,690343,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,694316,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,703312,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,705123,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,708283,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,710866,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,719656,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,725309,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,734531,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,742371,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,754054,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,775295,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,776727,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,776788,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,778128,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,784245,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,787853,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,795909,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,799832,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,803497,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,816595,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,839663,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,854867,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,857918,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,861205,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,882142,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,893241,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,902551,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,903687,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,910574,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,915668,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,930473,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,932552,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,938394,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,940927,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,953286,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,954034,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,955635,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,958143,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,965814,Quantity,NEGATIVE_QUANTITY,2,-1
+Order_Items,976215,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,980178,Quantity,NEGATIVE_QUANTITY,3,-1
+Order_Items,981801,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,982520,Quantity,NEGATIVE_QUANTITY,1,-1
+Order_Items,982741,Quantity,NEGATIVE_QUANTITY,2,-1
+Orders,1820,*,DUPLICATE_ROW,1,2
+Orders,2021,*,DUPLICATE_ROW,1,2
+Orders,2600,*,DUPLICATE_ROW,1,2
+Orders,3038,*,DUPLICATE_ROW,1,2
+Orders,4868,*,DUPLICATE_ROW,1,2
+Orders,6613,*,DUPLICATE_ROW,1,2
+Orders,6944,*,DUPLICATE_ROW,1,2
+Orders,8042,Order_DateTime,MISSING_DATE,2025-11-05T20:57:00+05:00,
+Orders,8622,Order_DateTime,MISSING_DATE,2025-04-05T11:48:00+05:00,
+Orders,9898,*,DUPLICATE_ROW,1,2
+Orders,13026,*,DUPLICATE_ROW,1,2
+Orders,13168,Order_DateTime,MISSING_DATE,2025-06-10T00:54:00+05:00,
+Orders,13253,*,DUPLICATE_ROW,1,2
+Orders,13421,Order_DateTime,MISSING_DATE,2025-06-01T19:01:00+05:00,
+Orders,13659,*,DUPLICATE_ROW,1,2
+Orders,16939,Order_DateTime,MISSING_DATE,2025-01-25T00:04:00+05:00,
+Orders,17099,Order_DateTime,MISSING_DATE,2025-02-24T13:22:00+05:00,
+Orders,17177,*,DUPLICATE_ROW,1,2
+Orders,17462,*,DUPLICATE_ROW,1,2
+Orders,18688,*,DUPLICATE_ROW,1,2
+Orders,18871,Order_DateTime,MISSING_DATE,2025-01-01T16:17:00+05:00,
+Orders,19790,Order_DateTime,MISSING_DATE,2025-03-28T07:10:00+05:00,
+Orders,19831,Order_DateTime,MISSING_DATE,2025-11-08T13:34:00+05:00,
+Orders,21193,*,DUPLICATE_ROW,1,2
+Orders,21449,*,DUPLICATE_ROW,1,2
+Orders,23097,*,DUPLICATE_ROW,1,2
+Orders,23248,*,DUPLICATE_ROW,1,2
+Orders,23571,*,DUPLICATE_ROW,1,2
+Orders,24273,*,DUPLICATE_ROW,1,2
+Orders,24710,*,DUPLICATE_ROW,1,2
+Orders,25713,*,DUPLICATE_ROW,1,2
+Orders,26552,*,DUPLICATE_ROW,1,2
+Orders,27134,Order_DateTime,MISSING_DATE,2025-11-28T03:43:00+05:00,
+Orders,27531,*,DUPLICATE_ROW,1,2
+Orders,27769,Order_DateTime,MISSING_DATE,2025-02-21T10:00:00+05:00,
+Orders,28700,*,DUPLICATE_ROW,1,2
+Orders,28781,*,DUPLICATE_ROW,1,2
+Orders,28794,*,DUPLICATE_ROW,1,2
+Orders,29628,Order_DateTime,MISSING_DATE,2025-04-10T19:50:00+05:00,
+Orders,30658,*,DUPLICATE_ROW,1,2
+Orders,32389,Order_DateTime,MISSING_DATE,2025-07-13T20:57:00+05:00,
+Orders,34746,*,DUPLICATE_ROW,1,2
+Orders,35746,*,DUPLICATE_ROW,1,2
+Orders,36389,*,DUPLICATE_ROW,1,2
+Orders,38871,Order_DateTime,MISSING_DATE,2025-03-25T13:45:00+05:00,
+Orders,40483,Order_DateTime,MISSING_DATE,2025-02-23T19:55:00+05:00,
+Orders,40699,*,DUPLICATE_ROW,1,2
+Orders,42073,*,DUPLICATE_ROW,1,2
+Orders,42398,*,DUPLICATE_ROW,1,2
+Orders,42407,Order_DateTime,MISSING_DATE,2025-05-15T19:22:00+05:00,
+Orders,42864,*,DUPLICATE_ROW,1,2
+Orders,43475,*,DUPLICATE_ROW,1,2
+Orders,44540,*,DUPLICATE_ROW,1,2
+Orders,46464,*,DUPLICATE_ROW,1,2
+Orders,47711,*,DUPLICATE_ROW,1,2
+Orders,49126,*,DUPLICATE_ROW,1,2
+Orders,49936,*,DUPLICATE_ROW,1,2
+Orders,50176,*,DUPLICATE_ROW,1,2
+Orders,50447,*,DUPLICATE_ROW,1,2
+Orders,53125,*,DUPLICATE_ROW,1,2
+Orders,55073,Order_DateTime,MISSING_DATE,2025-03-01T15:02:00+05:00,
+Orders,55444,*,DUPLICATE_ROW,1,2
+Orders,56440,*,DUPLICATE_ROW,1,2
+Orders,57884,*,DUPLICATE_ROW,1,2
+Orders,58548,*,DUPLICATE_ROW,1,2
+Orders,59275,*,DUPLICATE_ROW,1,2
+Orders,59991,*,DUPLICATE_ROW,1,2
+Orders,61393,*,DUPLICATE_ROW,1,2
+Orders,62380,Order_DateTime,MISSING_DATE,2025-12-12T04:52:00+05:00,
+Orders,62529,*,DUPLICATE_ROW,1,2
+Orders,63348,*,DUPLICATE_ROW,1,2
+Orders,65175,*,DUPLICATE_ROW,1,2
+Orders,66138,*,DUPLICATE_ROW,1,2
+Orders,68920,*,DUPLICATE_ROW,1,2
+Orders,71946,*,DUPLICATE_ROW,1,2
+Orders,72682,Order_DateTime,MISSING_DATE,2025-06-17T13:05:00+05:00,
+Orders,72723,*,DUPLICATE_ROW,1,2
+Orders,75813,*,DUPLICATE_ROW,1,2
+Orders,76525,*,DUPLICATE_ROW,1,2
+Orders,76918,Order_DateTime,MISSING_DATE,2025-12-10T12:48:00+05:00,
+Orders,77384,*,DUPLICATE_ROW,1,2
+Orders,77785,*,DUPLICATE_ROW,1,2
+Orders,78551,Order_DateTime,MISSING_DATE,2025-08-07T12:47:00+05:00,
+Orders,79025,*,DUPLICATE_ROW,1,2
+Orders,79610,*,DUPLICATE_ROW,1,2
+Orders,79658,Order_DateTime,MISSING_DATE,2025-06-11T13:24:00+05:00,
+Orders,80601,*,DUPLICATE_ROW,1,2
+Orders,83103,Order_DateTime,MISSING_DATE,2025-02-16T12:07:00+05:00,
+Orders,84118,*,DUPLICATE_ROW,1,2
+Orders,85053,*,DUPLICATE_ROW,1,2
+Orders,85687,Order_DateTime,MISSING_DATE,2025-10-29T13:02:00+05:00,
+Orders,86050,*,DUPLICATE_ROW,1,2
+Orders,87532,*,DUPLICATE_ROW,1,2
+Orders,87879,*,DUPLICATE_ROW,1,2
+Orders,88207,*,DUPLICATE_ROW,1,2
+Orders,88698,*,DUPLICATE_ROW,1,2
+Orders,89410,Order_DateTime,MISSING_DATE,2025-02-27T12:27:00+05:00,
+Orders,89552,*,DUPLICATE_ROW,1,2
+Orders,89945,*,DUPLICATE_ROW,1,2
+Orders,91034,*,DUPLICATE_ROW,1,2
+Orders,93873,Order_DateTime,MISSING_DATE,2025-01-28T12:26:00+05:00,
+Orders,94930,*,DUPLICATE_ROW,1,2
+Orders,94931,Order_DateTime,MISSING_DATE,2025-11-08T13:20:00+05:00,
+Orders,95693,Order_DateTime,MISSING_DATE,2025-03-07T13:30:00+05:00,
+Orders,96247,Order_DateTime,MISSING_DATE,2025-06-07T19:31:00+05:00,
+Orders,96990,*,DUPLICATE_ROW,1,2
+Orders,97182,*,DUPLICATE_ROW,1,2
+Orders,98064,*,DUPLICATE_ROW,1,2
+Orders,98193,*,DUPLICATE_ROW,1,2
+Orders,98291,Order_DateTime,MISSING_DATE,2025-12-02T13:21:00+05:00,
+Ratings,310,Stars,INVALID_STARS,4,8
+Ratings,4257,Stars,INVALID_STARS,1,8
+Ratings,4932,Stars,INVALID_STARS,5,8
+Ratings,5376,Stars,INVALID_STARS,4,8
+Ratings,6206,Stars,INVALID_STARS,4,8
+Ratings,6719,Stars,INVALID_STARS,5,8
+Ratings,12242,Stars,INVALID_STARS,1,8
+Ratings,13337,Stars,INVALID_STARS,3,8
+Ratings,14111,Stars,INVALID_STARS,4,8
+Ratings,15795,Stars,INVALID_STARS,5,8
+Ratings,18473,Stars,INVALID_STARS,2,8
+Ratings,20090,Stars,INVALID_STARS,3,8
+Ratings,23521,Stars,INVALID_STARS,3,8
+Ratings,24192,Stars,INVALID_STARS,1,8
+Ratings,24873,Stars,INVALID_STARS,4,8
+Ratings,27235,Stars,INVALID_STARS,5,8
+Ratings,27458,Stars,INVALID_STARS,4,8
+Ratings,28055,Stars,INVALID_STARS,2,8
+Ratings,29132,Stars,INVALID_STARS,4,8
+Ratings,30456,Stars,INVALID_STARS,5,8
+Ratings,32643,Stars,INVALID_STARS,5,8
+Ratings,36524,Stars,INVALID_STARS,3,8
+Ratings,37907,Stars,INVALID_STARS,3,8
+Ratings,38491,Stars,INVALID_STARS,5,8
+Ratings,39907,Stars,INVALID_STARS,3,8
+Ratings,40089,Stars,INVALID_STARS,4,8
+Ratings,41155,Stars,INVALID_STARS,3,8
+Ratings,41881,Stars,INVALID_STARS,4,8
+Ratings,43780,Stars,INVALID_STARS,4,8
+Ratings,43983,Stars,INVALID_STARS,5,8
+Ratings,44340,Stars,INVALID_STARS,5,8
+Ratings,46035,Stars,INVALID_STARS,5,8
+Ratings,48690,Stars,INVALID_STARS,4,8
+Ratings,49658,Stars,INVALID_STARS,4,8
+Ratings,50837,Stars,INVALID_STARS,5,8
+Ratings,51425,Stars,INVALID_STARS,5,8
+Ratings,53595,Stars,INVALID_STARS,4,8
+Ratings,54711,Stars,INVALID_STARS,4,8
+Ratings,58658,Stars,INVALID_STARS,1,8
+Ratings,61075,Stars,INVALID_STARS,5,8
+Ratings,64594,Stars,INVALID_STARS,4,8
+Ratings,65541,Stars,INVALID_STARS,4,8
+Ratings,66734,Stars,INVALID_STARS,5,8
+Ratings,68424,Stars,INVALID_STARS,4,8
+Ratings,76535,Stars,INVALID_STARS,5,8
+Ratings,80068,Stars,INVALID_STARS,5,8
+Ratings,82319,Stars,INVALID_STARS,3,8
+Ratings,83105,Stars,INVALID_STARS,5,8
+Ratings,85313,Stars,INVALID_STARS,4,8
+Ratings,86851,Stars,INVALID_STARS,4,8
+Ratings,87220,Stars,INVALID_STARS,4,8
+Ratings,89848,Stars,INVALID_STARS,5,8
+Ratings,91729,Stars,INVALID_STARS,5,8
+Ratings,93027,Stars,INVALID_STARS,5,8
+Ratings,93316,Stars,INVALID_STARS,3,8
+Ratings,94457,Stars,INVALID_STARS,5,8
+Ratings,95464,Stars,INVALID_STARS,4,8
+Ratings,96974,Stars,INVALID_STARS,4,8
+Ratings,97508,Stars,INVALID_STARS,3,8
+Ratings,97751,Stars,INVALID_STARS,3,8
+Wastage,581,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,1010,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,1096,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,2645,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,3717,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,4263,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,4839,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,5128,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,10192,Quantity_Wasted,NEGATIVE_WASTAGE,8,-5
+Wastage,11748,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,11751,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,11767,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,12571,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,13709,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,15182,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,15870,Quantity_Wasted,NEGATIVE_WASTAGE,6,-5
+Wastage,17888,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,17955,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,21168,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,21872,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,24940,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,33043,Quantity_Wasted,NEGATIVE_WASTAGE,4,-5
+Wastage,34216,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,34326,Quantity_Wasted,NEGATIVE_WASTAGE,15,-5
+Wastage,34684,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,36575,Quantity_Wasted,NEGATIVE_WASTAGE,5,-5
+Wastage,36873,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,38246,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,38684,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,39498,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,40035,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,40877,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,41374,Quantity_Wasted,NEGATIVE_WASTAGE,5,-5
+Wastage,42630,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,42981,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,44367,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,45613,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,46094,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,46536,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5
+Wastage,46613,Quantity_Wasted,NEGATIVE_WASTAGE,1,-5

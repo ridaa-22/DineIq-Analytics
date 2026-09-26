@@ -1,0 +1,56 @@
+{
+  "csv_files_compared": 12,
+  "files": {
+    "Customers.csv": {
+      "bytes": 2481311,
+      "sha256": "21ac15e95550e61f133492106f450a6970a6f1e9b5a013a65c6108004944115a"
+    },
+    "Inventory.csv": {
+      "bytes": 196471,
+      "sha256": "2dbbc72e401d6acaaca048bc846cc969c38c58ba3b864b1686bc53ff4350ab22"
+    },
+    "Menu_Categories.csv": {
+      "bytes": 136,
+      "sha256": "3e1a4c454d68ab5e1f4ed3a662e373b0dc735c4621ea87036d5c44b8f53bbea5"
+    },
+    "Menu_Items.csv": {
+      "bytes": 15038,
+      "sha256": "2ab020e1dcb4ff9449dc16b8a32ddb70e378d42b1307919ed3abc55ce759056a"
+    },
+    "Order_Items.csv": {
+      "bytes": 30567225,
+      "sha256": "8e3caf09d3606028178ad45fa41f7e92b4691ce5745f0cd844bbf001bd41a7e6"
+    },
+    "Orders.csv": {
+      "bytes": 6131518,
+      "sha256": "d8587e6ac70289d9ad3743d7baf708980bf0fa68ac616773bf5b2c2cf41636a3"
+    },
+    "Pricing_History.csv": {
+      "bytes": 7724,
+      "sha256": "ff9fbf280092da586f8e09d6a9e64a3ff0261a797290120f603460d37dbcb5e5"
+    },
+    "Promotions.csv": {
+      "bytes": 987,
+      "sha256": "cadb5169cb2d933c3c27ef2e31f757dfcdd7dc821423da5c719e542c47ef0713"
+    },
+    "Ratings.csv": {
+      "bytes": 4821927,
+      "sha256": "b08db2cb7e3ac96ec4bf8b3dd4d4b7e41ad6c15daae455c3ef6b2158842fae37"
+    },
+    "Restaurants.csv": {
+      "bytes": 2072,
+      "sha256": "7ef6939ced703d9e74c54af8821f1389810403c1f96f8a95bcaac1674599a7c5"
+    },
+    "Wastage.csv": {
+      "bytes": 2648374,
+      "sha256": "4d3adbf203c9fdeb7222b4cf5abada20319de448ad52b429923a88517485c163"
+    },
+    "injected_defects.csv": {
+      "bytes": 25352,
+      "sha256": "4969202efadcf9e8d835c653a89f70888aecdeb72da2b90d5b5db33d1f695747"
+    }
+  },
+  "matching_manifest": true,
+  "seed": 42,
+  "status": "PASS"
+}
