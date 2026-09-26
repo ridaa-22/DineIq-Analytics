@@ -1,0 +1,765 @@
+{
+  "analytics_eligible": false,
+  "data_root": "C:\\Users\\Aptech\\Desktop\\DINEIQ\\DineIq-Analytics\\data\\raw\\phase1-v1",
+  "dataset_version": "phase1-v1",
+  "elapsed_seconds": 37.157,
+  "inference_demonstration": {
+    "rows": 20,
+    "schema": {
+      "fields": [
+        {
+          "metadata": {},
+          "name": "Location_ID",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {},
+          "name": "Location_Name",
+          "nullable": true,
+          "type": "string"
+        },
+        {
+          "metadata": {},
+          "name": "City",
+          "nullable": true,
+          "type": "string"
+        },
+        {
+          "metadata": {},
+          "name": "Address",
+          "nullable": true,
+          "type": "string"
+        },
+        {
+          "metadata": {},
+          "name": "Opening_Date",
+          "nullable": true,
+          "type": "date"
+        }
+      ],
+      "type": "struct"
+    },
+    "table": "Restaurants"
+  },
+  "multifile_demonstration": {
+    "files": [
+      {
+        "bytes": 15172005,
+        "name": "part0.csv",
+        "sha256": "76c719b4615133bae5582dcb0c3f41d3b18c278694b2665e51bb18681e17709e"
+      },
+      {
+        "bytes": 15395288,
+        "name": "part1.csv",
+        "sha256": "9a035ccbcf474c8b49cafccdd87409641b9ca3805423761f985b8b5901348299"
+      }
+    ],
+    "input_files": 2,
+    "input_partitions": 2,
+    "required_id_enum_violations": 0,
+    "rows": 1000000,
+    "schema": {
+      "fields": [
+        {
+          "metadata": {},
+          "name": "Order_Item_ID",
+          "nullable": true,
+          "type": "long"
+        },
+        {
+          "metadata": {},
+          "name": "Order_ID",
+          "nullable": true,
+          "type": "long"
+        },
+        {
+          "metadata": {},
+          "name": "Item_ID",
+          "nullable": true,
+          "type": "long"
+        },
+        {
+          "metadata": {},
+          "name": "Quantity",
+          "nullable": true,
+          "type": "long"
+        },
+        {
+          "metadata": {},
+          "name": "Unit_Price",
+          "nullable": true,
+          "type": "decimal(18,2)"
+        },
+        {
+          "metadata": {},
+          "name": "Discount_Applied",
+          "nullable": true,
+          "type": "decimal(18,2)"
+        }
+      ],
+      "type": "struct"
+    },
+    "schema_version": "phase1-v1",
+    "type_violations": 0
+  },
+  "note": "Range, duplicates, missing non-ID values, and business relationships are assessed in Phase 3",
+  "phase": 2,
+  "raw_records_unchanged": true,
+  "spark_version": "4.0.2",
+  "status": "PASS",
+  "tables": {
+    "Customers": {
+      "files": [
+        {
+          "bytes": 2481311,
+          "name": "Customers.csv",
+          "sha256": "21ac15e95550e61f133492106f450a6970a6f1e9b5a013a65c6108004944115a"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 50040,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Customer_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Customer_Name",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "City",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "Signup_Date",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "metadata": {},
+            "name": "Preferred_Channel",
+            "nullable": true,
+            "type": "string"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Inventory": {
+      "files": [
+        {
+          "bytes": 196471,
+          "name": "Inventory.csv",
+          "sha256": "2dbbc72e401d6acaaca048bc846cc969c38c58ba3b864b1686bc53ff4350ab22"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 3000,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Inventory_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Location_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Item_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Stock_Quantity",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Reorder_Level",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Last_Restocked_Date",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "metadata": {},
+            "name": "Opening_Stock",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Received_Quantity",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Consumed_Quantity",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Wasted_Quantity",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Period_Start",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "metadata": {},
+            "name": "Period_End",
+            "nullable": true,
+            "type": "date"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Menu_Categories": {
+      "files": [
+        {
+          "bytes": 136,
+          "name": "Menu_Categories.csv",
+          "sha256": "3e1a4c454d68ab5e1f4ed3a662e373b0dc735c4621ea87036d5c44b8f53bbea5"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 10,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Category_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Category_Name",
+            "nullable": true,
+            "type": "string"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Menu_Items": {
+      "files": [
+        {
+          "bytes": 15038,
+          "name": "Menu_Items.csv",
+          "sha256": "2ab020e1dcb4ff9449dc16b8a32ddb70e378d42b1307919ed3abc55ce759056a"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 150,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Item_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Item_Name",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "Category_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Base_Price",
+            "nullable": true,
+            "type": "decimal(18,2)"
+          },
+          {
+            "metadata": {},
+            "name": "Cost",
+            "nullable": true,
+            "type": "decimal(18,2)"
+          },
+          {
+            "metadata": {},
+            "name": "Description",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "Is_Available",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Introduced_Date",
+            "nullable": true,
+            "type": "date"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Order_Items": {
+      "files": [
+        {
+          "bytes": 30567225,
+          "name": "Order_Items.csv",
+          "sha256": "8e3caf09d3606028178ad45fa41f7e92b4691ce5745f0cd844bbf001bd41a7e6"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 1000000,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Order_Item_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Order_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Item_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Quantity",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Unit_Price",
+            "nullable": true,
+            "type": "decimal(18,2)"
+          },
+          {
+            "metadata": {},
+            "name": "Discount_Applied",
+            "nullable": true,
+            "type": "decimal(18,2)"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Orders": {
+      "files": [
+        {
+          "bytes": 6131518,
+          "name": "Orders.csv",
+          "sha256": "d8587e6ac70289d9ad3743d7baf708980bf0fa68ac616773bf5b2c2cf41636a3"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 100080,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Order_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Customer_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Location_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Order_DateTime",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "metadata": {},
+            "name": "Channel",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "Promotion_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Order_Status",
+            "nullable": true,
+            "type": "string"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Pricing_History": {
+      "files": [
+        {
+          "bytes": 7724,
+          "name": "Pricing_History.csv",
+          "sha256": "ff9fbf280092da586f8e09d6a9e64a3ff0261a797290120f603460d37dbcb5e5"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 300,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Pricing_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Item_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Price",
+            "nullable": true,
+            "type": "decimal(18,2)"
+          },
+          {
+            "metadata": {},
+            "name": "Effective_Date",
+            "nullable": true,
+            "type": "date"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Promotions": {
+      "files": [
+        {
+          "bytes": 987,
+          "name": "Promotions.csv",
+          "sha256": "cadb5169cb2d933c3c27ef2e31f757dfcdd7dc821423da5c719e542c47ef0713"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 20,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Promotion_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Promotion_Name",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "Discount_Percent",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Start_Date",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "metadata": {},
+            "name": "End_Date",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "metadata": {},
+            "name": "Applicable_Category_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Applicable_Item_ID",
+            "nullable": true,
+            "type": "long"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Ratings": {
+      "files": [
+        {
+          "bytes": 4821927,
+          "name": "Ratings.csv",
+          "sha256": "b08db2cb7e3ac96ec4bf8b3dd4d4b7e41ad6c15daae455c3ef6b2158842fae37"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 100000,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Rating_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Order_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Item_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Customer_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Stars",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Rating_Date",
+            "nullable": true,
+            "type": "timestamp"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Restaurants": {
+      "files": [
+        {
+          "bytes": 2072,
+          "name": "Restaurants.csv",
+          "sha256": "7ef6939ced703d9e74c54af8821f1389810403c1f96f8a95bcaac1674599a7c5"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 20,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Location_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Location_Name",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "City",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "Address",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "Opening_Date",
+            "nullable": true,
+            "type": "date"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    },
+    "Wastage": {
+      "files": [
+        {
+          "bytes": 2648374,
+          "name": "Wastage.csv",
+          "sha256": "4d3adbf203c9fdeb7222b4cf5abada20319de448ad52b429923a88517485c163"
+        }
+      ],
+      "input_files": 1,
+      "input_partitions": 1,
+      "required_id_enum_violations": 0,
+      "rows": 50000,
+      "schema": {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "Wastage_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Item_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Location_ID",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Wastage_Date",
+            "nullable": true,
+            "type": "date"
+          },
+          {
+            "metadata": {},
+            "name": "Quantity_Wasted",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Cost_Impact",
+            "nullable": true,
+            "type": "decimal(18,2)"
+          },
+          {
+            "metadata": {},
+            "name": "Reason",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "Demand_Quantity",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Prepared_Quantity",
+            "nullable": true,
+            "type": "long"
+          },
+          {
+            "metadata": {},
+            "name": "Quantity_Consumed",
+            "nullable": true,
+            "type": "long"
+          }
+        ],
+        "type": "struct"
+      },
+      "schema_version": "phase1-v1",
+      "type_violations": 0
+    }
+  }
+}

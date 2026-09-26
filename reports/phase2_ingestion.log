@@ -1,0 +1,21 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+26/09/26 20:46:30 WARN Shell: Did not find winutils.exe: java.io.FileNotFoundException: java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset. -see https://cwiki.apache.org/confluence/display/HADOOP2/WindowsProblems
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/09/26 20:46:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[Stage 0:>                                                          (0 + 1) / 1]                                                                                [Stage 3:>                                                          (0 + 1) / 1]                                                                                Loaded Customers: 50,040 rows
+Loaded Menu_Categories: 10 rows
+Loaded Menu_Items: 150 rows
+Loaded Restaurants: 20 rows
+Loaded Promotions: 20 rows
+Loaded Orders: 100,080 rows
+[Stage 42:>                                                         (0 + 1) / 1]                                                                                [Stage 45:>                                                         (0 + 1) / 1]                                                                                Loaded Order_Items: 1,000,000 rows
+Loaded Pricing_History: 300 rows
+Loaded Ratings: 100,000 rows
+Loaded Inventory: 3,000 rows
+Loaded Wastage: 50,000 rows
+[Stage 82:>                                                         (0 + 2) / 2]                                                                                [Stage 85:>                                                         (0 + 2) / 2]                                                                                Phase 2 gate PASS: C:\Users\Aptech\Desktop\DINEIQ\DineIq-Analytics\reports\ingestion_summary.json
+SUCCESS: The process with PID 6452 (child process of PID 12800) has been terminated.
+SUCCESS: The process with PID 12800 (child process of PID 11232) has been terminated.
+SUCCESS: The process with PID 11232 (child process of PID 12532) has been terminated.
