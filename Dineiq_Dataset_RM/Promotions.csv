@@ -1,0 +1,21 @@
+Promotion_ID,Promotion_Name,Discount_Percent,Start_Date,End_Date,Applicable_Category_ID
+1,Combo Deal 1,30,2026-02-02,2026-02-20,8
+2,Flat Discount 2,30,2025-10-20,2025-11-13,7
+3,Percentage Discount 3,25,2026-06-07,2026-07-15,6
+4,Buy1Get1 4,20,2026-05-09,2026-06-11,2
+5,Buy1Get1 5,25,2025-11-14,2025-12-01,8
+6,Combo Deal 6,30,2026-01-22,2026-02-16,1
+7,Percentage Discount 7,20,2025-12-05,2026-01-10,5
+8,Percentage Discount 8,25,2025-10-05,2025-11-01,9
+9,Combo Deal 9,25,2026-05-08,2026-05-15,1
+10,Buy1Get1 10,30,2025-12-05,2025-12-24,8
+11,Percentage Discount 11,15,2026-05-16,2026-06-20,5
+12,Flat Discount 12,20,2026-07-02,2026-08-13,8
+13,Percentage Discount 13,10,2026-06-23,2026-07-31,10
+14,Flat Discount 14,20,2026-04-27,2026-05-19,9
+15,Combo Deal 15,10,2026-05-22,2026-05-29,4
+16,Combo Deal 16,10,2026-07-22,2026-08-05,3
+17,Buy1Get1 17,30,2026-02-02,2026-03-12,5
+18,Combo Deal 18,25,2026-01-05,2026-02-07,4
+19,Flat Discount 19,25,2025-10-11,2025-11-16,4
+20,Flat Discount 20,10,2025-09-25,2025-11-09,5
