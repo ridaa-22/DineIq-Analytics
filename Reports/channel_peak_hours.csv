@@ -1,0 +1,121 @@
+Channel,Hour,Order_Count
+App,0,797
+App,1,790
+App,2,794
+App,3,791
+App,4,734
+App,5,846
+App,6,795
+App,7,821
+App,8,771
+App,9,823
+App,10,803
+App,11,767
+App,12,805
+App,13,788
+App,14,750
+App,15,778
+App,16,771
+App,17,825
+App,18,790
+App,19,760
+App,20,789
+App,21,777
+App,22,814
+App,23,777
+Dine-in,0,706
+Dine-in,1,817
+Dine-in,2,824
+Dine-in,3,788
+Dine-in,4,810
+Dine-in,5,787
+Dine-in,6,793
+Dine-in,7,826
+Dine-in,8,831
+Dine-in,9,816
+Dine-in,10,841
+Dine-in,11,805
+Dine-in,12,794
+Dine-in,13,808
+Dine-in,14,850
+Dine-in,15,819
+Dine-in,16,785
+Dine-in,17,808
+Dine-in,18,772
+Dine-in,19,803
+Dine-in,20,786
+Dine-in,21,778
+Dine-in,22,831
+Dine-in,23,852
+Takeaway,0,794
+Takeaway,1,777
+Takeaway,2,802
+Takeaway,3,814
+Takeaway,4,816
+Takeaway,5,786
+Takeaway,6,802
+Takeaway,7,789
+Takeaway,8,788
+Takeaway,9,819
+Takeaway,10,776
+Takeaway,11,855
+Takeaway,12,764
+Takeaway,13,810
+Takeaway,14,808
+Takeaway,15,798
+Takeaway,16,817
+Takeaway,17,830
+Takeaway,18,778
+Takeaway,19,784
+Takeaway,20,776
+Takeaway,21,769
+Takeaway,22,799
+Takeaway,23,837
+Third-Party Delivery,0,797
+Third-Party Delivery,1,731
+Third-Party Delivery,2,772
+Third-Party Delivery,3,757
+Third-Party Delivery,4,797
+Third-Party Delivery,5,802
+Third-Party Delivery,6,768
+Third-Party Delivery,7,801
+Third-Party Delivery,8,840
+Third-Party Delivery,9,845
+Third-Party Delivery,10,825
+Third-Party Delivery,11,811
+Third-Party Delivery,12,789
+Third-Party Delivery,13,832
+Third-Party Delivery,14,856
+Third-Party Delivery,15,811
+Third-Party Delivery,16,781
+Third-Party Delivery,17,819
+Third-Party Delivery,18,785
+Third-Party Delivery,19,805
+Third-Party Delivery,20,821
+Third-Party Delivery,21,812
+Third-Party Delivery,22,775
+Third-Party Delivery,23,816
+Website,0,819
+Website,1,797
+Website,2,782
+Website,3,847
+Website,4,779
+Website,5,790
+Website,6,773
+Website,7,770
+Website,8,786
+Website,9,798
+Website,10,812
+Website,11,838
+Website,12,811
+Website,13,841
+Website,14,822
+Website,15,786
+Website,16,818
+Website,17,797
+Website,18,780
+Website,19,792
+Website,20,782
+Website,21,814
+Website,22,787
+Website,23,784
