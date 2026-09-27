@@ -1,0 +1,7 @@
+{
+  "total_compared_records": 72,
+  "overall_agreement_percentage": 50.0,
+  "avg_numerical_difference": 9.29,
+  "spark_avg_mae_vs_actual": 212.62,
+  "python_avg_mae_vs_actual": 211.89
+}
