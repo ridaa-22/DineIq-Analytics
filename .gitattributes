@@ -1,0 +1,4 @@
+# Preserve the exact bytes checked by the canonical raw snapshot manifest.
+data/raw/phase1-v1/* -text
+# Keep terminal progress-control bytes in the original execution evidence.
+reports/phase2_ingestion.log -text -diff

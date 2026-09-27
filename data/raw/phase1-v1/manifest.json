@@ -1,0 +1,90 @@
+{
+  "counts": {
+    "Customers": 50040,
+    "Inventory": 3000,
+    "Menu_Categories": 10,
+    "Menu_Items": 150,
+    "Order_Items": 1000000,
+    "Orders": 100080,
+    "Pricing_History": 300,
+    "Promotions": 20,
+    "Ratings": 100000,
+    "Restaurants": 20,
+    "Wastage": 50000
+  },
+  "currency": "PKR",
+  "dataset_version": "phase1-v1",
+  "end_inclusive": true,
+  "files": {
+    "Customers.csv": {
+      "bytes": 2481311,
+      "sha256": "21ac15e95550e61f133492106f450a6970a6f1e9b5a013a65c6108004944115a"
+    },
+    "Inventory.csv": {
+      "bytes": 196471,
+      "sha256": "2dbbc72e401d6acaaca048bc846cc969c38c58ba3b864b1686bc53ff4350ab22"
+    },
+    "Menu_Categories.csv": {
+      "bytes": 136,
+      "sha256": "3e1a4c454d68ab5e1f4ed3a662e373b0dc735c4621ea87036d5c44b8f53bbea5"
+    },
+    "Menu_Items.csv": {
+      "bytes": 15038,
+      "sha256": "2ab020e1dcb4ff9449dc16b8a32ddb70e378d42b1307919ed3abc55ce759056a"
+    },
+    "Order_Items.csv": {
+      "bytes": 30567225,
+      "sha256": "8e3caf09d3606028178ad45fa41f7e92b4691ce5745f0cd844bbf001bd41a7e6"
+    },
+    "Orders.csv": {
+      "bytes": 6131518,
+      "sha256": "d8587e6ac70289d9ad3743d7baf708980bf0fa68ac616773bf5b2c2cf41636a3"
+    },
+    "Pricing_History.csv": {
+      "bytes": 7724,
+      "sha256": "ff9fbf280092da586f8e09d6a9e64a3ff0261a797290120f603460d37dbcb5e5"
+    },
+    "Promotions.csv": {
+      "bytes": 987,
+      "sha256": "cadb5169cb2d933c3c27ef2e31f757dfcdd7dc821423da5c719e542c47ef0713"
+    },
+    "Ratings.csv": {
+      "bytes": 4821927,
+      "sha256": "b08db2cb7e3ac96ec4bf8b3dd4d4b7e41ad6c15daae455c3ef6b2158842fae37"
+    },
+    "Restaurants.csv": {
+      "bytes": 2072,
+      "sha256": "7ef6939ced703d9e74c54af8821f1389810403c1f96f8a95bcaac1674599a7c5"
+    },
+    "Wastage.csv": {
+      "bytes": 2648374,
+      "sha256": "4d3adbf203c9fdeb7222b4cf5abada20319de448ad52b429923a88517485c163"
+    },
+    "injected_defects.csv": {
+      "bytes": 25352,
+      "sha256": "4969202efadcf9e8d835c653a89f70888aecdeb72da2b90d5b5db33d1f695747"
+    }
+  },
+  "generator_sha256": "79e6df1ceffc25d9f4dd214f0da790f6e1c164bf5190f3da0ca50e86ea7e77b6",
+  "injected_defect_count": 525,
+  "seed": 42,
+  "source_sha256": {
+    "Customers.csv": "8ac41ce649734b707d87e8b926a3de133971b9dbf6085a3bab2581d450fbeeb3",
+    "Inventory.csv": "949367ecedca8e6aa0de335b82a0fc6bd25bf21172e1451617fdf8cdad0aa269",
+    "Menu_Categories.csv": "597beccf42d50e0611b2370b82a66f04e063b33c343781a407d0a3450b2efc22",
+    "Menu_Items.csv": "440897e8e7c79450f8b9eaaff1b7119f4dfb47941cd105cad5a29511778b3f98",
+    "Order_Items.csv": "ffee771e7ec866ef6cde35f9988806df6702c444b87188974f60c236842d7623",
+    "Order_Items.parquet": "d73131b8f46926ea10e5a6d9d035ad5e6f3cf463d4cd8c9e3e24dbc122d33f19",
+    "Orders.csv": "a384c0b4e15ac8999700c0bf2c8fad06688c9bab347022028d556bacdb891c46",
+    "Pricing_History.csv": "6a413f6bf33a05293cbe847fb373685e5e6d217dbc98730025cbbfcb16f18728",
+    "Promotions.csv": "677837418f5ae4e20a0f17f0daa3c84e002b59220b01ea7f6631100a2d1f51f9",
+    "Ratings.csv": "8316d53e06ba74c2d557e9507ff6f398c715bbbf062a1ee334d990cf0db9c6de",
+    "Restaurants.csv": "c5773b63129b4176c8b145d6ca663b091072dcbc02ea4ea6c95a084309791aa7",
+    "Wastage.csv": "cd084e63c762c45acf6d7e115dbd673bfe2dd14a3258b4b400b42cc0b41cc297"
+  },
+  "source_snapshot": "legacy-rm-phase0",
+  "storage": "raw CSV; no cleaned/processed Parquet claim",
+  "timezone": "Asia/Karachi",
+  "transaction_end": "2026-01-01T00:00:00+05:00",
+  "transaction_start": "2025-01-01T00:00:00+05:00"
+}

@@ -1,0 +1,14 @@
+Command: .venv-spark\Scripts\python.exe -B tests/test_spark_ingestion.py
+Executed 2026-09-26.
+8 tests passed in 39.873 seconds; exit code 0.
+
+PASS dirty numeric values and missing non-ID values retained
+PASS empty input and duplicate input-file paths rejected
+PASS nonempty invalid dates rejected
+PASS bad numeric types and excess decimal precision rejected
+PASS malformed records and inconsistent multi-file headers rejected
+PASS missing files and missing columns rejected
+PASS missing IDs and unsupported enums rejected
+PASS multi-file load and explicit decimal schema
+
+Runtime warnings: Windows native Hadoop/winutils not available; Spark used builtin Java fallback for CSV reads. PySpark emitted ResourceWarning for internal result sockets under unittest. No test failed.
