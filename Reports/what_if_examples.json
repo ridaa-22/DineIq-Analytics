@@ -1,0 +1,10 @@
+[
+  {
+    "is_estimate":true,
+    "Item_ID":1,
+    "baseline_revenue":12499849.4499999993,
+    "scenario_revenue":12649847.6400000006,
+    "delta":149998.19,
+    "assumptions":"Linear demand elasticity assumption (0.8 factor), not a causal guarantee"
+  }
+]

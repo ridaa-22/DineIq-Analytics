@@ -1,0 +1,164 @@
+Recommendation_ID,Entity,Type,Action,Priority,Evidence,Reason
+1,Evidence Classic,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=60.69, Quantity_Sold=8711",Good profitability but low sales volume
+2,We Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=35.23, Quantity_Sold=8706",Weak demand and weak profitability
+3,Particularly Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=40.02, Quantity_Sold=8732",Weak demand and weak profitability
+4,Property Special,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=57.12, Quantity_Sold=8741",Good profitability but low sales volume
+5,Join Platter,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=39.16, Quantity_Sold=8815",Weak demand and weak profitability
+6,Summer Classic,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=62.54, Quantity_Sold=8809",Good profitability but low sales volume
+7,Level Combo,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=61.93, Quantity_Sold=8775",Good profitability but low sales volume
+8,Claim Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=45.74, Quantity_Sold=8728",Weak demand and weak profitability
+9,Industry Platter,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=43.22, Quantity_Sold=8808",Weak demand and weak profitability
+10,Control Special,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=54.75, Quantity_Sold=8529",Good profitability but low sales volume
+11,Role Platter,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=39.15, Quantity_Sold=8622",Weak demand and weak profitability
+12,Scientist Special,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=56.59, Quantity_Sold=8810",Good profitability but low sales volume
+13,Member Combo,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=53.63, Quantity_Sold=8745",Good profitability but low sales volume
+14,Open Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=33.79, Quantity_Sold=8654",Weak demand and weak profitability
+15,Pressure Classic,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=29.23, Quantity_Sold=8677",Weak demand and weak profitability
+16,Recently Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=46.97, Quantity_Sold=8805",Weak demand and weak profitability
+17,Company Classic,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=64.2, Quantity_Sold=8725",Good profitability but low sales volume
+18,Expert Classic,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=63.68, Quantity_Sold=8647",Good profitability but low sales volume
+19,Pay Classic,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=27.81, Quantity_Sold=8805",Weak demand and weak profitability
+20,Fight Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=28.67, Quantity_Sold=8689",Weak demand and weak profitability
+21,Ability Classic,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=40.1, Quantity_Sold=8714",Weak demand and weak profitability
+22,While Special,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=57.88, Quantity_Sold=8755",Good profitability but low sales volume
+23,Skin Platter,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=53.37, Quantity_Sold=8716",Good profitability but low sales volume
+24,Tend Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=33.27, Quantity_Sold=8781",Weak demand and weak profitability
+25,Material Special,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=63.08, Quantity_Sold=8739",Good profitability but low sales volume
+26,Price Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=37.71, Quantity_Sold=8664",Weak demand and weak profitability
+27,Turn Platter,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=61.08, Quantity_Sold=8697",Good profitability but low sales volume
+28,Effect Special,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=57.2, Quantity_Sold=8654",Good profitability but low sales volume
+29,Enough Platter,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=62.96, Quantity_Sold=8749",Good profitability but low sales volume
+30,Themselves Classic,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=31.23, Quantity_Sold=8740",Weak demand and weak profitability
+31,Few Special,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=62.81, Quantity_Sold=8639",Good profitability but low sales volume
+32,Sign Special,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=62.91, Quantity_Sold=8674",Good profitability but low sales volume
+33,Than Deluxe,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=61.77, Quantity_Sold=8782",Good profitability but low sales volume
+34,Southern Classic,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=62.7, Quantity_Sold=8799",Good profitability but low sales volume
+35,High Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=46.49, Quantity_Sold=8761",Weak demand and weak profitability
+36,Probably Deluxe,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=54.75, Quantity_Sold=8650",Good profitability but low sales volume
+37,Hotel Platter,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=37.45, Quantity_Sold=8764",Weak demand and weak profitability
+38,Reduce Platter,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=61.16, Quantity_Sold=8726",Good profitability but low sales volume
+39,Box Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=37.17, Quantity_Sold=8575",Weak demand and weak profitability
+40,Others Combo,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=57.34, Quantity_Sold=8818",Good profitability but low sales volume
+41,Forget Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=32.53, Quantity_Sold=8782",Weak demand and weak profitability
+42,Foot Classic,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=48.46, Quantity_Sold=8649",Weak demand and weak profitability
+43,No Combo,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=59.46, Quantity_Sold=8765",Good profitability but low sales volume
+44,Will Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=42.15, Quantity_Sold=8746",Weak demand and weak profitability
+45,Building Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=33.67, Quantity_Sold=8699",Weak demand and weak profitability
+46,Either Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=28.38, Quantity_Sold=8679",Weak demand and weak profitability
+47,Majority Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=42.79, Quantity_Sold=8792",Weak demand and weak profitability
+48,Race Platter,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=53.41, Quantity_Sold=8783",Good profitability but low sales volume
+49,Resource Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=44.14, Quantity_Sold=8694",Weak demand and weak profitability
+50,Hard Platter,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=40.42, Quantity_Sold=8780",Weak demand and weak profitability
+51,Strong Deluxe,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=64.28, Quantity_Sold=8631",Good profitability but low sales volume
+52,Story Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=34.58, Quantity_Sold=8806",Weak demand and weak profitability
+53,Under Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=38.54, Quantity_Sold=8634",Weak demand and weak profitability
+54,Daughter Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=25.29, Quantity_Sold=8791",Weak demand and weak profitability
+55,Decision Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=47.23, Quantity_Sold=8799",Weak demand and weak profitability
+56,Explain Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=39.91, Quantity_Sold=8644",Weak demand and weak profitability
+57,Morning Platter,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=53.46, Quantity_Sold=8708",Good profitability but low sales volume
+58,Certain Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=28.75, Quantity_Sold=8670",Weak demand and weak profitability
+59,Kind Deluxe,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=58.35, Quantity_Sold=8712",Good profitability but low sales volume
+60,Movement Platter,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=60.72, Quantity_Sold=8599",Good profitability but low sales volume
+61,Analysis Classic,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=41.84, Quantity_Sold=8800",Weak demand and weak profitability
+62,Six Combo,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=57.19, Quantity_Sold=8804",Good profitability but low sales volume
+63,Road Deluxe,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=53.06, Quantity_Sold=8661",Good profitability but low sales volume
+64,Public Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=45.29, Quantity_Sold=8701",Weak demand and weak profitability
+65,Consider Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=37.15, Quantity_Sold=8752",Weak demand and weak profitability
+66,Seek Deluxe,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=52.41, Quantity_Sold=8787",Good profitability but low sales volume
+67,Unit Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=40.43, Quantity_Sold=8672",Weak demand and weak profitability
+68,Car Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=43.04, Quantity_Sold=8767",Weak demand and weak profitability
+69,Charge Platter,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=38.14, Quantity_Sold=8768",Weak demand and weak profitability
+70,Effort Combo,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=34.84, Quantity_Sold=8695",Weak demand and weak profitability
+71,Teach Deluxe,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=25.87, Quantity_Sold=8807",Weak demand and weak profitability
+72,Institution Platter,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=60.63, Quantity_Sold=8778",Good profitability but low sales volume
+73,South Classic,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=58.74, Quantity_Sold=8802",Good profitability but low sales volume
+74,Firm Special,Menu Optimization,Review for redesign or removal,Medium,"Profit_Pct=25.31, Quantity_Sold=8656",Weak demand and weak profitability
+75,Matter Deluxe,Menu Optimization,"Promote item (high margin, low visibility)",High,"Profit_Pct=59.14, Quantity_Sold=8644",Good profitability but low sales volume
+76,Evidence Classic,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4625, Cost_Impact=386575.36",High wastage cost impact
+77,Much Special,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4417, Cost_Impact=366943.94",High wastage cost impact
+78,We Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4344, Cost_Impact=354755.45",High wastage cost impact
+79,Summer Classic,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4460, Cost_Impact=363525.49",High wastage cost impact
+80,Nothing Combo,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4368, Cost_Impact=346169.05",High wastage cost impact
+81,Later Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4335, Cost_Impact=366933.96",High wastage cost impact
+82,Plan Combo,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4525, Cost_Impact=372112.34",High wastage cost impact
+83,Role Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4421, Cost_Impact=355422.71",High wastage cost impact
+84,Trouble Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4563, Cost_Impact=384715.31",High wastage cost impact
+85,Recent Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4690, Cost_Impact=362628.5",High wastage cost impact
+86,Pay Classic,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4403, Cost_Impact=355601.72",High wastage cost impact
+87,Ability Classic,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4332, Cost_Impact=342077.06",High wastage cost impact
+88,Material Special,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4371, Cost_Impact=348779.49",High wastage cost impact
+89,This Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4348, Cost_Impact=351149.95",High wastage cost impact
+90,History Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4338, Cost_Impact=345799.45",High wastage cost impact
+91,Onto Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4324, Cost_Impact=349622.79",High wastage cost impact
+92,Against Special,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4431, Cost_Impact=357589.38",High wastage cost impact
+93,Hotel Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4416, Cost_Impact=389968.18",High wastage cost impact
+94,Positive Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4415, Cost_Impact=352789.11",High wastage cost impact
+95,Speak Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4424, Cost_Impact=336472.47",High wastage cost impact
+96,Mrs Combo,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4403, Cost_Impact=353482.42",High wastage cost impact
+97,Race Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4514, Cost_Impact=378000.49",High wastage cost impact
+98,Resource Combo,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4576, Cost_Impact=372771.44",High wastage cost impact
+99,Affect Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4413, Cost_Impact=372929.46",High wastage cost impact
+100,Explain Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4592, Cost_Impact=349212.83",High wastage cost impact
+101,Morning Platter,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4427, Cost_Impact=358730.35",High wastage cost impact
+102,Certain Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4334, Cost_Impact=355512.27",High wastage cost impact
+103,List Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4473, Cost_Impact=363481.86",High wastage cost impact
+104,Analysis Classic,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4343, Cost_Impact=364514.96",High wastage cost impact
+105,Road Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4785, Cost_Impact=389445.15",High wastage cost impact
+106,Public Combo,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4348, Cost_Impact=322478.29",High wastage cost impact
+107,Seek Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4416, Cost_Impact=373611.94",High wastage cost impact
+108,Unit Combo,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4519, Cost_Impact=333880.94",High wastage cost impact
+109,Owner Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4609, Cost_Impact=380277.87",High wastage cost impact
+110,Long Classic,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4353, Cost_Impact=374021.09",High wastage cost impact
+111,Decide Combo,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4337, Cost_Impact=377213.18",High wastage cost impact
+112,Firm Special,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4645, Cost_Impact=358947.27",High wastage cost impact
+113,Matter Deluxe,Inventory,Reduce preparation quantity,Critical,"Total_Wasted=4321, Cost_Impact=330097.35",High wastage cost impact
+114,Customer_2,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=251,"Increasing inactivity, at risk of churn"
+115,Customer_8,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=357,"Increasing inactivity, at risk of churn"
+116,Customer_9,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=237,"Increasing inactivity, at risk of churn"
+117,Customer_11,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=282,"Increasing inactivity, at risk of churn"
+118,Customer_13,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=336,"Increasing inactivity, at risk of churn"
+119,Customer_15,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=236,"Increasing inactivity, at risk of churn"
+120,Customer_48,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=343,"Increasing inactivity, at risk of churn"
+121,Customer_56,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=217,"Increasing inactivity, at risk of churn"
+122,Customer_59,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=346,"Increasing inactivity, at risk of churn"
+123,Customer_61,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=265,"Increasing inactivity, at risk of churn"
+124,Customer_65,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=246,"Increasing inactivity, at risk of churn"
+125,Customer_68,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=327,"Increasing inactivity, at risk of churn"
+126,Customer_73,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=223,"Increasing inactivity, at risk of churn"
+127,Customer_75,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=321,"Increasing inactivity, at risk of churn"
+128,Customer_82,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=230,"Increasing inactivity, at risk of churn"
+129,Customer_86,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=202,"Increasing inactivity, at risk of churn"
+130,Customer_95,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=223,"Increasing inactivity, at risk of churn"
+131,Customer_101,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=247,"Increasing inactivity, at risk of churn"
+132,Customer_104,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=240,"Increasing inactivity, at risk of churn"
+133,Customer_111,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=201,"Increasing inactivity, at risk of churn"
+134,Customer_119,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=313,"Increasing inactivity, at risk of churn"
+135,Customer_121,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=290,"Increasing inactivity, at risk of churn"
+136,Customer_130,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=300,"Increasing inactivity, at risk of churn"
+137,Customer_135,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=264,"Increasing inactivity, at risk of churn"
+138,Customer_137,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=263,"Increasing inactivity, at risk of churn"
+139,Customer_144,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=330,"Increasing inactivity, at risk of churn"
+140,Customer_149,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=327,"Increasing inactivity, at risk of churn"
+141,Customer_150,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=276,"Increasing inactivity, at risk of churn"
+142,Customer_159,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=282,"Increasing inactivity, at risk of churn"
+143,Customer_160,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=303,"Increasing inactivity, at risk of churn"
+144,Customer_164,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=307,"Increasing inactivity, at risk of churn"
+145,Customer_165,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=210,"Increasing inactivity, at risk of churn"
+146,Customer_178,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=267,"Increasing inactivity, at risk of churn"
+147,Customer_180,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=337,"Increasing inactivity, at risk of churn"
+148,Customer_181,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=281,"Increasing inactivity, at risk of churn"
+149,Customer_187,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=287,"Increasing inactivity, at risk of churn"
+150,Customer_188,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=243,"Increasing inactivity, at risk of churn"
+151,Customer_190,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=200,"Increasing inactivity, at risk of churn"
+152,Customer_196,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=227,"Increasing inactivity, at risk of churn"
+153,Customer_203,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=254,"Increasing inactivity, at risk of churn"
+154,Customer_206,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=326,"Increasing inactivity, at risk of churn"
+155,Customer_208,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=211,"Increasing inactivity, at risk of churn"
+156,Customer_212,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=249,"Increasing inactivity, at risk of churn"
+157,Customer_215,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=225,"Increasing inactivity, at risk of churn"
+158,Customer_228,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=249,"Increasing inactivity, at risk of churn"
+159,Customer_230,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=196,"Increasing inactivity, at risk of churn"
+160,Customer_235,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=300,"Increasing inactivity, at risk of churn"
+161,Customer_242,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=198,"Increasing inactivity, at risk of churn"
+162,Customer_244,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=204,"Increasing inactivity, at risk of churn"
+163,Customer_246,Customer Targeting,Send re-engagement offer,Medium,Recency_Days=329,"Increasing inactivity, at risk of churn"
