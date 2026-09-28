@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin - Login</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <!-- SweetAlert2 for Stylish Popups -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      /* Unique Animated Gradient Background & Glassmorphism Design */
+      body, .auth.login-bg {
+        background: linear-gradient(-45deg, #0f0c20, #1a103c, #091328, #140727) !important;
+        background-size: 400% 400% !important;
+        animation: gradientBG 12s ease infinite !important;
+        min-height: 100vh;
+      }
+
+      @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      .custom-card {
+        background: rgba(20, 24, 33, 0.75) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(111, 66, 193, 0.15) !important;
+      }
+
+      .custom-input {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease;
+      }
+
+      .custom-input:focus {
+        background: rgba(255, 255, 255, 0.08) !important;
+        border-color: #00d25b !important;
+        box-shadow: 0 0 10px rgba(0, 210, 91, 0.3) !important;
+      }
+
+      .btn-custom {
+        background: linear-gradient(90deg, #00d25b, #00b04f) !important;
+        border: none !important;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        box-shadow: 0 4px 15px rgba(0, 210, 91, 0.3) !important;
+        transition: all 0.3s ease !important;
+      }
+
+      .btn-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 210, 91, 0.5) !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="card col-lg-4 col-md-6 mx-auto custom-card">
+              <div class="card-body px-5 py-5">
+                <h3 class="card-title text-left mb-4 text-white font-weight-bold">Welcome Back</h3>
+                <form id="loginForm">
+                  <div class="form-group mb-3">
+                    <label class="text-white mb-2">Username or Email *</label>
+                    <input type="text" id="email" class="form-control p_input custom-input" placeholder="Enter Username or Email" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="text-white mb-2">Password *</label>
+                    <input type="password" id="password" class="form-control p_input custom-input" placeholder="Enter Password" required>
+                  </div>
+                  <div class="form-group d-flex align-items-center justify-content-between mb-4">
+                    <div class="form-check">
+                      <label class="form-check-label text-muted">
+                        <input type="checkbox" class="form-check-input"> Remember me
+                      </label>
+                    </div>
+                    <a href="#" class="forgot-pass text-muted">Forgot password?</a>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-custom btn-block enter-btn">Login</button>
+                  </div>
+                  <p class="sign-up text-center text-muted mt-4 mb-0">Don't have an Account? <a href="register.html" class="text-success font-weight-bold">Sign Up</a></p>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/todolist.js"></script>
+
+    <!-- Login Authentication Script -->
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+          const response = await fetch('http://localhost:5000/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            // Save JWT Token and user info locally
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            // Show Thank You Popup with Loading Spinner
+            Swal.fire({
+              title: 'Thank You!',
+              text: 'Login successful. Redirecting to Dashboard...',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading();
+              }
+            }).then(() => {
+              window.location.href = 'index.html'; // Set your landing or dashboard page URL
+            });
+
+          } else {
+            // Error popup for wrong password or email
+            Swal.fire({
+              icon: 'error',
+              title: 'Authentication Failed',
+              text: data.message || 'Invalid Email or Password!',
+              confirmButtonColor: '#d33'
+            });
+          }
+        } catch (err) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Server Error',
+            text: 'Unable to connect to the backend server. Please make sure server.js is running.'
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "corona-free-dark-bootstrap-admin-template-1.0.0",
+  "version": "1.0.0",
+  "description": "<table>   <tr>     <td>       <a href=\"https://www.bootstrapdash.com/demo/corona-free/jquery/template/index.html\" target=\"_blank\"><img src=\"preview.jpg\"></a>        <h3>Corona-free</h3>     </td>   </tr> </table>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.2"
+  }
+}
