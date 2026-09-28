@@ -32,7 +32,7 @@ def export(report_name: str, format: str = "csv", location_id: int | None = None
     else:
         data = dynamic.promotions(location_id=location_id, user=user)["campaigns"]
     table = pd.DataFrame(data)
-    for column in table.select_dtypes(include=["object", "str"]):
+    for column in table.select_dtypes(include=["object", "string"]):
         table[column] = table[column].map(lambda value: "'" + value if isinstance(value, str)
             and value.startswith(("=", "+", "-", "@")) else value)
     buffer = BytesIO()

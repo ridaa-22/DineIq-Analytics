@@ -4,6 +4,7 @@ Run from the repository root: python -m Python_Pipeline.build_processed
 """
 
 import json
+import numpy as np
 from pathlib import Path
 
 import pandas as pd
@@ -28,6 +29,41 @@ def build():
     locations = read("Restaurants")
     ratings = read("Ratings")
     wastage = read("Wastage")
+    rejections = []
+
+    def reject(table, frame, identifier, rule, mask, reason):
+        for value in frame.loc[mask.fillna(True), identifier]:
+            rejections.append({"record_identifier": str(value), "source_table": table,
+                               "rule": rule, "reason": reason, "action": "quarantined"})
+
+    def finite(series):
+        return pd.to_numeric(series, errors="coerce").replace([np.inf, -np.inf], np.nan).notna()
+
+    valid_channels = {"Dine-in", "Takeaway", "Website", "Third-Party Delivery", "App"}
+    reject("Orders", orders, "Order_ID", "known_channel", ~orders.Channel.isin(valid_channels), "Unknown ordering channel")
+    orders = orders[orders.Channel.isin(valid_channels)]
+    for field in ("Quantity", "Unit_Price", "Discount_Applied"):
+        bad = ~finite(lines[field])
+        reject("Order_Items", lines, "Order_Item_ID", f"finite_{field}", bad, "Nonfinite financial or quantity value")
+        lines = lines[~bad]
+    fractional = pd.to_numeric(lines.Quantity, errors="coerce").mod(1).ne(0)
+    reject("Order_Items", lines, "Order_Item_ID", "integer_quantity", fractional, "Quantity must be whole portions")
+    lines = lines[~fractional]
+    for field in ("Base_Price", "Cost"):
+        bad = ~finite(menu[field])
+        reject("Menu_Items", menu, "Item_ID", f"finite_{field}", bad, "Nonfinite menu financial value")
+        menu = menu[~bad]
+    bad = ~finite(price_history.Price)
+    reject("Pricing_History", price_history, "Pricing_ID", "finite_price", bad, "Nonfinite price")
+    price_history = price_history[~bad]
+    for field in ("Quantity_Wasted", "Cost_Impact", "Demand_Quantity", "Prepared_Quantity", "Quantity_Consumed"):
+        bad = ~finite(wastage[field])
+        reject("Wastage", wastage, "Wastage_ID", f"finite_{field}", bad, "Nonfinite wastage value")
+        wastage = wastage[~bad]
+    bad = (pd.to_numeric(wastage.Quantity_Consumed) + pd.to_numeric(wastage.Quantity_Wasted)
+           > pd.to_numeric(wastage.Prepared_Quantity))
+    reject("Wastage", wastage, "Wastage_ID", "preparation_balance", bad, "Consumed plus wasted exceeds prepared")
+    wastage = wastage[~bad]
     counts = {"dataset_version": "phase1-v1-clean-v3", "raw_orders": len(orders), "raw_lines": len(lines)}
     line_qty = pd.to_numeric(lines.Quantity, errors="coerce")
     line_price = pd.to_numeric(lines.Unit_Price, errors="coerce")
@@ -60,10 +96,14 @@ def build():
     }
 
     orders["Order_DateTime"] = pd.to_datetime(orders["Order_DateTime"], errors="coerce", utc=True).dt.tz_convert("Asia/Karachi")
+    bad = orders.Order_ID.isna() | orders.Customer_ID.isna() | orders.Location_ID.isna() | orders.Order_DateTime.isna()
+    reject("Orders", orders, "Order_ID", "required_order_fields", bad, "Missing ID or invalid timestamp")
     orders = orders.drop_duplicates("Order_ID", keep="first")
     orders = orders[orders.Order_ID.notna() & orders.Customer_ID.notna() & orders.Location_ID.notna()
                     & orders.Order_DateTime.notna()]
-    orders = orders[orders.Customer_ID.isin(customers.Customer_ID) & orders.Location_ID.isin(locations.Location_ID)]
+    bad = ~orders.Customer_ID.isin(customers.Customer_ID) | ~orders.Location_ID.isin(locations.Location_ID)
+    reject("Orders", orders, "Order_ID", "known_order_references", bad, "Unknown customer or location")
+    orders = orders[~bad]
     counts["valid_orders_all_statuses"] = len(orders)
     completed = orders[orders.Order_Status.eq("Completed")].copy()
     counts["completed_orders"] = len(completed)
@@ -80,10 +120,16 @@ def build():
     for field in ("Quantity", "Unit_Price", "Discount_Applied"):
         lines[field] = pd.to_numeric(lines[field], errors="coerce")
     lines = lines.drop_duplicates("Order_Item_ID", keep="first")
+    bad = (lines.Order_Item_ID.isna() | lines.Order_ID.isna() | lines.Item_ID.isna()
+           | ~lines.Quantity.gt(0) | ~lines.Unit_Price.gt(0) | ~lines.Discount_Applied.ge(0)
+           | ~lines.Discount_Applied.le(lines.Quantity * lines.Unit_Price))
+    reject("Order_Items", lines, "Order_Item_ID", "valid_line_values", bad, "Missing reference or invalid quantity, price, or discount")
     lines = lines[lines.Order_Item_ID.notna() & lines.Order_ID.notna() & lines.Item_ID.notna()
                   & lines.Quantity.gt(0) & lines.Unit_Price.gt(0) & lines.Discount_Applied.ge(0)]
     lines = lines[lines.Discount_Applied.le(lines.Quantity * lines.Unit_Price)]
-    lines = lines[lines.Item_ID.isin(valid_menu.Item_ID)]
+    bad = ~lines.Item_ID.isin(valid_menu.Item_ID) | ~lines.Order_ID.isin(orders.Order_ID)
+    reject("Order_Items", lines, "Order_Item_ID", "known_line_references", bad, "Unknown order or valid item")
+    lines = lines[~bad]
     sales = lines.merge(completed, on="Order_ID", how="inner", validate="many_to_one")
     sales = sales.merge(valid_menu[["Item_ID", "Item_Name", "Category_ID", "Cost"]], on="Item_ID", validate="many_to_one")
     sales["Net_Revenue"] = sales.Quantity * sales.Unit_Price - sales.Discount_Applied
@@ -113,6 +159,9 @@ def build():
     rating = ratings.copy()
     rating["Stars"] = pd.to_numeric(rating.Stars, errors="coerce")
     rating = rating.drop_duplicates("Rating_ID")
+    bad = (~rating.Stars.between(1, 5) | ~rating.Order_ID.isin(completed.Order_ID)
+           | ~rating.Item_ID.isin(valid_menu.Item_ID))
+    reject("Ratings", rating, "Rating_ID", "valid_rating_references", bad, "Invalid stars, order, or item")
     rating = rating[rating.Stars.between(1, 5) & rating.Order_ID.isin(completed.Order_ID)
                     & rating.Item_ID.isin(valid_menu.Item_ID)]
     rating.to_parquet(OUT / "ratings.parquet", index=False)
@@ -137,6 +186,12 @@ def build():
         wastage[field] = pd.to_numeric(wastage[field], errors="coerce")
     wastage["Wastage_Date"] = pd.to_datetime(wastage.Wastage_Date, errors="coerce")
     wastage = wastage.drop_duplicates("Wastage_ID")
+    bad = ~wastage.Item_ID.isin(valid_menu.Item_ID) | ~wastage.Location_ID.isin(locations.Location_ID)
+    reject("Wastage", wastage, "Wastage_ID", "known_wastage_references", bad, "Unknown item or location")
+    bad_values = (wastage.Wastage_Date.isna() | ~wastage.Quantity_Wasted.ge(0) | ~wastage.Cost_Impact.ge(0)
+                  | ~wastage.Demand_Quantity.ge(0) | ~wastage.Prepared_Quantity.ge(0)
+                  | ~wastage.Quantity_Consumed.ge(0) | ~wastage.Quantity_Wasted.le(wastage.Prepared_Quantity))
+    reject("Wastage", wastage, "Wastage_ID", "valid_wastage_values", bad_values, "Invalid date or negative/impossible wastage value")
     wastage = wastage[wastage.Item_ID.isin(valid_menu.Item_ID) & wastage.Location_ID.isin(locations.Location_ID)
         & wastage.Wastage_Date.notna() & wastage.Quantity_Wasted.ge(0) & wastage.Cost_Impact.ge(0)
         & wastage.Demand_Quantity.ge(0) & wastage.Prepared_Quantity.ge(0) & wastage.Quantity_Consumed.ge(0)
@@ -144,6 +199,8 @@ def build():
     wastage.to_parquet(OUT / "wastage.parquet", index=False)
     counts["valid_wastage"] = len(wastage)
     counts["valid_ratings"] = len(rating)
+    counts["quarantined_records"] = len(rejections)
+    (OUT / "rejections.jsonl").write_text("".join(json.dumps(row) + "\n" for row in rejections), encoding="utf-8")
     counts["cleaning_rules"] = {
         "orders": "First unique Order_ID; require IDs, valid timestamp, known customer/location; preserve cancelled headers but exclude from realized sales",
         "lines": "First unique Order_Item_ID; require IDs, positive quantity and unit price, nonnegative line discount no greater than gross; join to valid completed order and known priced item",

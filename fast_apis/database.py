@@ -80,6 +80,14 @@ def initialize(db):
           wasted_quantity REAL NOT NULL DEFAULT 0, period_start TEXT, period_end TEXT,
           updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
+        CREATE TRIGGER IF NOT EXISTS inventory_refs_insert BEFORE INSERT ON inventory_records
+        WHEN NOT EXISTS (SELECT 1 FROM menu_items WHERE item_id=NEW.item_id)
+          OR NOT EXISTS (SELECT 1 FROM restaurant_locations WHERE location_id=NEW.location_id)
+        BEGIN SELECT RAISE(ABORT, 'Unknown inventory item or location'); END;
+        CREATE TRIGGER IF NOT EXISTS inventory_refs_update BEFORE UPDATE OF item_id,location_id ON inventory_records
+        WHEN NOT EXISTS (SELECT 1 FROM menu_items WHERE item_id=NEW.item_id)
+          OR NOT EXISTS (SELECT 1 FROM restaurant_locations WHERE location_id=NEW.location_id)
+        BEGIN SELECT RAISE(ABORT, 'Unknown inventory item or location'); END;
         CREATE TABLE IF NOT EXISTS wastage_overrides (
           id INTEGER PRIMARY KEY, item_id INTEGER NOT NULL,
           location_id INTEGER NOT NULL, wastage_date TEXT NOT NULL,

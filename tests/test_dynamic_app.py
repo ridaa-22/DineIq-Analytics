@@ -1,6 +1,7 @@
 """End-to-end API checks against generated cleaned artifacts and isolated app state."""
 
 import tempfile
+import json
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -151,6 +152,54 @@ class DynamicAppTests(unittest.TestCase):
         actions = {row["action"] for row in self.client.get("/api/audit-logs", headers=self.admin).json()}
         self.assertTrue({"category_created", "menu_item_created", "inventory_created",
                          "wastage_record_created"}.issubset(actions))
+
+    def test_management_rejects_invalid_values_and_references(self):
+        item = {"item_name": "Integrity item", "category_id": 1, "base_price": 100, "cost": 20}
+        created = self.client.post("/api/menu/items", headers=self.manager, json=item)
+        self.assertEqual(created.status_code, 200)
+        item_id = created.json()["item_id"]
+        with database.connection() as db:
+            before = db.execute("SELECT COUNT(*) FROM menu_items").fetchone()[0]
+        for method, url in ((self.client.post, "/api/menu/items"),
+                            (self.client.put, f"/api/menu/items/{item_id}")):
+            for field, value in (("base_price", float("inf")), ("cost", float("nan")),
+                                 ("base_price", 0), ("cost", -1), ("base_price", 1_000_001)):
+                self.assertEqual(method(url, headers=self.manager,
+                    content=json.dumps({**item, field: value}),
+                    ).status_code, 422)
+        with database.connection() as db:
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM menu_items").fetchone()[0], before)
+            self.assertEqual(db.execute("SELECT base_price FROM menu_items WHERE item_id=?", (item_id,)).fetchone()[0], 100)
+        self.assertEqual(self.client.put(f"/api/menu/items/{item_id}", headers=self.manager,
+                                         json={**item, "base_price": 110}).status_code, 200)
+        promotion = {"promotion_name": "Valid", "discount_percent": 10,
+                     "start_date": "2025-01-01", "end_date": "2025-01-31", "applicable_item_id": item_id}
+        made = self.client.post("/api/promotions", headers=self.manager, json=promotion)
+        self.assertEqual(made.status_code, 200)
+        self.assertEqual(self.client.put(f"/api/promotions/{made.json()['promotion_id']}",
+                                         headers=self.manager, json=promotion).status_code, 200)
+        for method, url in ((self.client.post, "/api/promotions"),
+                            (self.client.put, f"/api/promotions/{made.json()['promotion_id']}")):
+            for change in ({"start_date": "not-a-date"}, {"end_date": "2024-12-31"},
+                           {"applicable_item_id": 999999}, {"applicable_category_id": 999999},
+                           {"discount_percent": float("inf")}):
+                self.assertEqual(method(url, headers=self.manager,
+                    content=json.dumps({**promotion, **change})).status_code, 422)
+        inventory = {"location_id": 1, "item_id": item_id, "stock_quantity": 5, "reorder_level": 2}
+        made = self.client.post("/api/inventory", headers=self.manager, json=inventory)
+        self.assertEqual(made.status_code, 200)
+        self.assertEqual(self.client.put(f"/api/inventory/{made.json()['inventory_id']}",
+                                         headers=self.manager, json=inventory).status_code, 200)
+        for method, url in ((self.client.post, "/api/inventory"),
+                            (self.client.put, f"/api/inventory/{made.json()['inventory_id']}")):
+            for change in ({"item_id": 999999}, {"location_id": 999999},
+                           {"stock_quantity": float("inf")}, {"reorder_level": -1}):
+                self.assertEqual(method(url, headers=self.manager,
+                    content=json.dumps({**inventory, **change})).status_code, 422)
+        self.assertEqual(self.client.get("/app/server.js").status_code, 404)
+        with database.connection() as db:
+            with self.assertRaises(Exception):
+                db.execute("INSERT INTO inventory_records(location_id,item_id,stock_quantity,reorder_level) VALUES(999999,999999,1,1)")
 
     def test_recommendation_evidence_and_job_lifecycle(self):
         result = self.client.get("/api/analytics/recommendations", headers=self.admin)

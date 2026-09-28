@@ -5,7 +5,7 @@ import time
 from datetime import date
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict, model_validator
 
 from fast_apis import database
 from fast_apis.services import auth_service as auth
@@ -138,10 +138,11 @@ def metadata_items(user=Depends(auth.current_user)):
 
 
 class ItemUpdate(BaseModel):
+    model_config = ConfigDict(allow_inf_nan=False)
     item_name: str
     category_id: int
-    base_price: float = Field(gt=0)
-    cost: float = Field(ge=0)
+    base_price: float = Field(gt=0, le=1_000_000)
+    cost: float = Field(ge=0, le=1_000_000)
     description: str = ""
     is_available: bool = True
 
@@ -193,6 +194,8 @@ def add_item(payload: ItemUpdate, user=Depends(business)):
 @router.put("/menu/items/{item_id}")
 def edit_item(item_id: int, payload: ItemUpdate, user=Depends(business)):
     with database.connection() as db:
+        if not db.execute("SELECT 1 FROM menu_categories WHERE category_id=?", (payload.category_id,)).fetchone():
+            raise HTTPException(422, "Unknown category")
         old = db.execute("SELECT base_price FROM menu_items WHERE item_id=?", (item_id,)).fetchone()
         if old is None:
             raise HTTPException(404, "Item not found")
@@ -222,37 +225,51 @@ def promotions(user=Depends(auth.current_user)):
 
 
 class PromotionUpdate(BaseModel):
+    model_config = ConfigDict(allow_inf_nan=False)
     promotion_name: str
     discount_percent: float = Field(ge=0, le=100)
-    start_date: str
-    end_date: str
+    start_date: date
+    end_date: date
     applicable_item_id: int | None = None
     applicable_category_id: int | None = None
+
+    @model_validator(mode="after")
+    def valid_window(self):
+        if self.start_date > self.end_date:
+            raise ValueError("Promotion end date precedes start date")
+        return self
+
+
+def validate_promotion_refs(db, payload):
+    for table, column, value in (("menu_items", "item_id", payload.applicable_item_id),
+                                 ("menu_categories", "category_id", payload.applicable_category_id)):
+        if value is not None and not db.execute(f"SELECT 1 FROM {table} WHERE {column}=?", (value,)).fetchone():
+            raise HTTPException(422, f"Unknown {column}")
 
 
 @router.post("/promotions")
 def add_promotion(payload: PromotionUpdate, user=Depends(business)):
-    if payload.end_date < payload.start_date:
-        raise HTTPException(422, "Promotion end date precedes start date")
     with database.connection() as db:
+        validate_promotion_refs(db, payload)
         identity = db.execute("""INSERT INTO promotions(promotion_name,discount_percent,start_date,end_date,
             applicable_item_id,applicable_category_id) VALUES(?,?,?,?,?,?)""",
-            (payload.promotion_name, payload.discount_percent, payload.start_date, payload.end_date,
+            (payload.promotion_name, payload.discount_percent, payload.start_date.isoformat(), payload.end_date.isoformat(),
              payload.applicable_item_id, payload.applicable_category_id)).lastrowid
-    database.audit("promotion_created", user["id"], "promotion", identity, payload.model_dump())
+    database.audit("promotion_created", user["id"], "promotion", identity, payload.model_dump(mode="json"))
     return {"promotion_id": identity}
 
 
 @router.put("/promotions/{promotion_id}")
 def edit_promotion(promotion_id: int, payload: PromotionUpdate, user=Depends(business)):
     with database.connection() as db:
+        validate_promotion_refs(db, payload)
         cursor = db.execute("""UPDATE promotions SET promotion_name=?,discount_percent=?,start_date=?,end_date=?,
             applicable_item_id=?,applicable_category_id=? WHERE promotion_id=?""",
-            (payload.promotion_name, payload.discount_percent, payload.start_date, payload.end_date,
+            (payload.promotion_name, payload.discount_percent, payload.start_date.isoformat(), payload.end_date.isoformat(),
              payload.applicable_item_id, payload.applicable_category_id, promotion_id))
         if not cursor.rowcount:
             raise HTTPException(404, "Promotion not found")
-    database.audit("promotion_updated", user["id"], "promotion", promotion_id, payload.model_dump())
+    database.audit("promotion_updated", user["id"], "promotion", promotion_id, payload.model_dump(mode="json"))
     return {"success": True}
 
 
@@ -275,42 +292,54 @@ def inventory(location_id: int | None = None, limit: int = Query(100, ge=1, le=5
 
 
 class InventoryUpdate(BaseModel):
+    model_config = ConfigDict(allow_inf_nan=False)
     location_id: int
     item_id: int
-    stock_quantity: float = Field(ge=0)
-    reorder_level: float = Field(ge=0)
-    opening_stock: float = Field(0, ge=0)
-    received_quantity: float = Field(0, ge=0)
-    consumed_quantity: float = Field(0, ge=0)
-    wasted_quantity: float = Field(0, ge=0)
-    period_start: str | None = None
-    period_end: str | None = None
+    stock_quantity: float = Field(ge=0, multiple_of=1)
+    reorder_level: float = Field(ge=0, multiple_of=1)
+    opening_stock: float = Field(0, ge=0, multiple_of=1)
+    received_quantity: float = Field(0, ge=0, multiple_of=1)
+    consumed_quantity: float = Field(0, ge=0, multiple_of=1)
+    wasted_quantity: float = Field(0, ge=0, multiple_of=1)
+    period_start: date | None = None
+    period_end: date | None = None
+
+    @model_validator(mode="after")
+    def valid_period(self):
+        if self.period_start and self.period_end and self.period_start > self.period_end:
+            raise ValueError("Inventory period end precedes start")
+        return self
+
+
+def validate_inventory_refs(db, payload):
+    if not db.execute("SELECT 1 FROM restaurant_locations WHERE location_id=?", (payload.location_id,)).fetchone():
+        raise HTTPException(422, "Unknown location")
+    if not db.execute("SELECT 1 FROM menu_items WHERE item_id=?", (payload.item_id,)).fetchone():
+        raise HTTPException(422, "Unknown item")
 
 
 @router.post("/inventory")
 def add_inventory(payload: InventoryUpdate, user=Depends(business)):
     with database.connection() as db:
-        if not db.execute("SELECT 1 FROM restaurant_locations WHERE location_id=?", (payload.location_id,)).fetchone():
-            raise HTTPException(422, "Unknown location")
-        if not db.execute("SELECT 1 FROM menu_items WHERE item_id=?", (payload.item_id,)).fetchone():
-            raise HTTPException(422, "Unknown item")
+        validate_inventory_refs(db, payload)
         identity = db.execute("""INSERT INTO inventory_records(location_id,item_id,stock_quantity,reorder_level,
             opening_stock,received_quantity,consumed_quantity,wasted_quantity,period_start,period_end)
-            VALUES(?,?,?,?,?,?,?,?,?,?)""", tuple(payload.model_dump().values())).lastrowid
-    database.audit("inventory_created", user["id"], "inventory", identity, payload.model_dump())
+            VALUES(?,?,?,?,?,?,?,?,?,?)""", tuple(payload.model_dump(mode="json").values())).lastrowid
+    database.audit("inventory_created", user["id"], "inventory", identity, payload.model_dump(mode="json"))
     return {"inventory_id": identity}
 
 
 @router.put("/inventory/{inventory_id}")
 def edit_inventory(inventory_id: int, payload: InventoryUpdate, user=Depends(business)):
     with database.connection() as db:
+        validate_inventory_refs(db, payload)
         cursor = db.execute("""UPDATE inventory_records SET location_id=?,item_id=?,stock_quantity=?,
             reorder_level=?,opening_stock=?,received_quantity=?,consumed_quantity=?,wasted_quantity=?,
             period_start=?,period_end=?,updated_at=CURRENT_TIMESTAMP WHERE inventory_id=?""",
-            (*payload.model_dump().values(), inventory_id))
+            (*payload.model_dump(mode="json").values(), inventory_id))
         if not cursor.rowcount:
             raise HTTPException(404, "Inventory record not found")
-    database.audit("inventory_updated", user["id"], "inventory", inventory_id, payload.model_dump())
+    database.audit("inventory_updated", user["id"], "inventory", inventory_id, payload.model_dump(mode="json"))
     return {"success": True}
 
 
