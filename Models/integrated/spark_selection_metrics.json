@@ -1,0 +1,77 @@
+{
+  "version": "spark-location-selected-v4",
+  "dataset_version": "phase1-v1-clean-v3",
+  "validation_start": "2025-11-02",
+  "test_cutoff": "2025-12-02",
+  "holdout_cases": 581,
+  "candidates": [
+    {
+      "algorithm": "LinearRegression",
+      "validation_mae": 45.6383500165334,
+      "hyperparameters": {
+        "maxBlockSizeInMB": "0.0",
+        "aggregationDepth": "2",
+        "solver": "auto",
+        "standardization": "True",
+        "fitIntercept": "True",
+        "elasticNetParam": "0.0",
+        "predictionCol": "prediction",
+        "featuresCol": "features",
+        "labelCol": "Demand",
+        "maxIter": "100",
+        "regParam": "0.1",
+        "tol": "1e-06",
+        "loss": "squaredError",
+        "epsilon": "1.35"
+      }
+    },
+    {
+      "algorithm": "DecisionTreeRegressor",
+      "validation_mae": 42.64960533503982,
+      "hyperparameters": {
+        "seed": "42",
+        "maxDepth": "8",
+        "maxBins": "32",
+        "minInstancesPerNode": "3",
+        "minInfoGain": "0.0",
+        "maxMemoryInMB": "256",
+        "cacheNodeIds": "False",
+        "checkpointInterval": "10",
+        "impurity": "variance",
+        "leafCol": "",
+        "minWeightFractionPerNode": "0.0",
+        "predictionCol": "prediction",
+        "featuresCol": "features",
+        "labelCol": "Demand"
+      }
+    },
+    {
+      "algorithm": "RandomForestRegressor",
+      "validation_mae": 42.50720070133772,
+      "hyperparameters": {
+        "seed": "42",
+        "maxDepth": "10",
+        "maxBins": "32",
+        "minInstancesPerNode": "3",
+        "minInfoGain": "0.0",
+        "maxMemoryInMB": "256",
+        "cacheNodeIds": "False",
+        "checkpointInterval": "10",
+        "impurity": "variance",
+        "subsamplingRate": "1.0",
+        "numTrees": "50",
+        "featureSubsetStrategy": "auto",
+        "leafCol": "",
+        "minWeightFractionPerNode": "0.0",
+        "bootstrap": "True",
+        "predictionCol": "prediction",
+        "featuresCol": "features",
+        "labelCol": "Demand"
+      }
+    }
+  ],
+  "selected_algorithm": "RandomForestRegressor",
+  "test_mae": 79.24595661593085,
+  "model_path": null,
+  "save_error": "Py4JJavaError: An error occurred while calling o2553.save."
+}

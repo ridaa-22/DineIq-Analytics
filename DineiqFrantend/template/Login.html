@@ -126,7 +126,8 @@
         const password = document.getElementById('password').value;
 
         try {
-          const response = await fetch('http://localhost:5000/api/login', {
+          const apiBase = location.port === '8000' ? '' : 'http://127.0.0.1:8000';
+          const response = await fetch(apiBase + '/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -159,7 +160,7 @@
             Swal.fire({
               icon: 'error',
               title: 'Authentication Failed',
-              text: data.message || 'Invalid Email or Password!',
+              text: data.detail || data.message || 'Invalid email or password.',
               confirmButtonColor: '#d33'
             });
           }
@@ -167,7 +168,7 @@
           Swal.fire({
             icon: 'error',
             title: 'Server Error',
-            text: 'Unable to connect to the backend server. Please make sure server.js is running.'
+            text: 'FastAPI is not reachable. Start it with: python -m uvicorn fast_apis.main:app --host 127.0.0.1 --port 8000'
           });
         }
       });

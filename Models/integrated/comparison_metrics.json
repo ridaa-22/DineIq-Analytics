@@ -1,0 +1,9 @@
+{
+  "case_count": 581,
+  "spark_mae": 79.24595661593085,
+  "python_mae": 70.48401227967386,
+  "average_difference": 31.556786958413642,
+  "agreement_percentage": 86.23063683304647,
+  "tolerance_units": 50.0,
+  "dataset_version": "phase1-v1-clean-v3"
+}

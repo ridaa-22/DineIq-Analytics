@@ -1,0 +1,68 @@
+{
+  "version": "rfm-kmeans-v4",
+  "dataset_version": "phase1-v1-clean-v3",
+  "customers": 48886,
+  "selected_k": 5,
+  "silhouette_sample_size": 4000,
+  "silhouette": 0.528039499799861,
+  "candidates": [
+    {
+      "k": 3,
+      "silhouette": 0.46669256340312126
+    },
+    {
+      "k": 4,
+      "silhouette": 0.5160780615139534
+    },
+    {
+      "k": 5,
+      "silhouette": 0.528039499799861
+    },
+    {
+      "k": 6,
+      "silhouette": 0.4489867078047953
+    }
+  ],
+  "profiles": [
+    {
+      "Cluster": 0,
+      "Size": 6321,
+      "Recency_Days": 27.5181142224,
+      "Frequency": 1.0003164056,
+      "Monetary": 15891.4049232716,
+      "Segment": "Occasional"
+    },
+    {
+      "Cluster": 1,
+      "Size": 6405,
+      "Recency_Days": 21.2661982826,
+      "Frequency": 2.4357533177,
+      "Monetary": 38465.0919562842,
+      "Segment": "Engaged"
+    },
+    {
+      "Cluster": 2,
+      "Size": 999,
+      "Recency_Days": 12.5705705706,
+      "Frequency": 22.4884884885,
+      "Monetary": 353111.7505905906,
+      "Segment": "High Value"
+    },
+    {
+      "Cluster": 3,
+      "Size": 21803,
+      "Recency_Days": 223.9369352841,
+      "Frequency": 1.0000458652,
+      "Monetary": 15679.0380080723,
+      "Segment": "At Risk"
+    },
+    {
+      "Cluster": 4,
+      "Size": 13358,
+      "Recency_Days": 151.9038029645,
+      "Frequency": 2.2320706693,
+      "Monetary": 35140.9028836652,
+      "Segment": "Cooling"
+    }
+  ]
+}

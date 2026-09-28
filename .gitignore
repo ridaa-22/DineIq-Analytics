@@ -5,3 +5,6 @@ spark-warehouse/
 artifacts/
 derby.log
 metastore_db/
+data/app_users.sqlite3*
+data/.jwt_secret
+data/demo_credentials.json

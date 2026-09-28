@@ -1,0 +1,20 @@
+{
+  "version": "weekly-wastage-hgb-v5",
+  "dataset_version": "phase1-v1-clean-v3",
+  "cutoff": "2025-11-03",
+  "holdout_cases": 6149,
+  "high_risk_threshold": 1.0,
+  "target_grain": "observed item/location/week wastage subtotal",
+  "observed_week_rows": 38953,
+  "unobserved_week_rows": 120047,
+  "validation_cases": 5846,
+  "validation_risk_f1": 0.34334763948497854,
+  "risk_probability_threshold": 0.20000000000000004,
+  "mae": 0.7928655740575534,
+  "rmse": 3.855816962582551,
+  "baseline_mae": 0.6527890713937226,
+  "high_risk_precision": 0.49278846153846156,
+  "high_risk_recall": 0.2303370786516854,
+  "high_risk_predicted_cases": 416,
+  "high_risk_actual_cases": 890
+}

@@ -129,7 +129,7 @@
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        // Show loading spinner while saving data to MongoDB
+        // Show loading spinner while the FastAPI demo creates the account.
         Swal.fire({
           title: 'Saving Account...',
           text: 'Please wait while we register your credentials.',
@@ -140,7 +140,8 @@
         });
 
         try {
-          const response = await fetch('http://localhost:5000/api/register', {
+          const apiBase = location.port === '8000' ? '' : 'http://127.0.0.1:8000';
+          const response = await fetch(apiBase + '/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, email, password })
@@ -166,7 +167,7 @@
             Swal.fire({
               icon: 'warning',
               title: 'Registration Failed',
-              text: data.message || 'Pehle se yeh email registered hai!',
+            text: data.detail || data.message || 'Registration failed.',
               confirmButtonColor: '#ffc107'
             });
           }
@@ -174,7 +175,7 @@
           Swal.fire({
             icon: 'error',
             title: 'Server Error',
-            text: 'Backend server connected nahi hai! Pehle server.js run karein.'
+            text: 'FastAPI is not reachable. Start it with: python -m uvicorn fast_apis.main:app --host 127.0.0.1 --port 8000'
           });
         }
       });

@@ -314,9 +314,7 @@
 
     <script>
       const token = localStorage.getItem('authToken');
-      if (!token) {
-        window.location.href = 'login.html';
-      }
+      // Read-only demo pages are served by FastAPI; legacy Express login is separate.
       const storedUser = localStorage.getItem('user');
       if (storedUser) {
         const userObj = JSON.parse(storedUser);
@@ -332,5 +330,6 @@
       }
 
     </script>
+    <script src="assets/js/dineiq-demo.js"></script>
   </body>
 </html>
