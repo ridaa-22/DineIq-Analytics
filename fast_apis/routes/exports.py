@@ -11,7 +11,7 @@ from fast_apis.routes import dynamic
 from fast_apis.services import auth_service as auth
 
 router = APIRouter(prefix="/api")
-ALLOWED = {"menu", "customers", "forecast", "basket", "wastage", "promotions"}
+ALLOWED = {"menu", "slow-moving", "customers", "forecast", "basket", "wastage", "promotions"}
 
 
 @router.get("/exports/{report_name}")
@@ -21,6 +21,8 @@ def export(report_name: str, format: str = "csv", location_id: int | None = None
         raise HTTPException(404, "Export unavailable")
     if report_name == "menu":
         data = dynamic.menu(location_id=location_id, limit=200, offset=0, user=user)["items"]
+    elif report_name == "slow-moving":
+        data = dynamic.slow_moving(location_id=location_id, limit=200, offset=0, user=user)["items"]
     elif report_name == "customers":
         data = dynamic.customers(location_id=location_id, limit=100000, offset=0, user=user)["customers"]
     elif report_name == "forecast":

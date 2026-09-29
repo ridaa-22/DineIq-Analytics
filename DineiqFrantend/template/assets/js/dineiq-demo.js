@@ -47,13 +47,17 @@
     const location_id = params.get('location_id') || '';
     const category_id = params.get('category_id') || '';
     const classification = params.get('classification') || '';
+    const slow_status = params.get('slow_status') || '';
     const [data, categories, select] = await Promise.all([request('/api/analytics/menu?' + q({location_id,category_id,classification,limit:150})), request('/api/menu/categories'), locationSelect()]);
+    const visible = slow_status ? data.items.filter(item => item.Slow_Moving_Status === slow_status) : data.items;
     view.innerHTML = title('Menu Intelligence', data.method) + select +
       `<label for="category-filter">Category</label><select class="form-control col-md-4 mb-3" id="category-filter"><option value="">All</option>${categories.map(row => `<option value="${row.category_id}" ${String(row.category_id) === category_id ? 'selected' : ''}>${esc(row.category_name)}</option>`).join('')}</select>` +
       `<label for="class-filter">Classification</label><select class="form-control col-md-4 mb-3" id="class-filter">${['','Profit Driver','Volume Driver','Hidden Opportunity','Low Performer'].map(x => `<option value="${esc(x)}" ${x === classification ? 'selected' : ''}>${esc(x || 'All')}</option>`).join('')}</select>` +
-      panel(`${data.total} items`, table([['Item','Item_Name'],['Sales','sales'],['Net revenue','revenue',money],['Contribution','contribution',money],['Profit %','profit_percent'],['Rating','Average_Rating'],['Wastage units','wastage_quantity'],['Class','classification'],['History','insufficient_history',x => x ? 'Insufficient' : 'Established']], data.items));
+      `<label for="slow-filter">Slow-moving status</label><select class="form-control col-md-4 mb-3" id="slow-filter">${['','SLOW_MOVER','WATCHLIST','HIDDEN_OPPORTUNITY','SEASONAL_REVIEW','INSUFFICIENT_HISTORY','NO_OBSERVED_SALES','NOT_SLOW'].map(x => `<option value="${esc(x)}" ${x === slow_status ? 'selected' : ''}>${esc(x || 'All')}</option>`).join('')}</select>` +
+      panel(`${visible.length} items`, table([['Item','Item_Name'],['Sales','sales'],['Net revenue','revenue',money],['Contribution','contribution',money],['Profit %','profit_percent'],['Rating','Average_Rating'],['Wastage units','wastage_quantity'],['Class','classification'],['Slow status','Slow_Moving_Status'],['Severity','Severity'],['History','History_Status'],['Reason','Reason'],['Action','Recommended_Action']], visible));
     bindLocation(); document.getElementById('class-filter').onchange = e => { const url = new URL(location.href); e.target.value ? url.searchParams.set('classification',e.target.value) : url.searchParams.delete('classification'); location.href = url; };
     document.getElementById('category-filter').onchange = e => { const url = new URL(location.href); e.target.value ? url.searchParams.set('category_id',e.target.value) : url.searchParams.delete('category_id'); location.href = url; };
+    document.getElementById('slow-filter').onchange = e => { const url = new URL(location.href); e.target.value ? url.searchParams.set('slow_status',e.target.value) : url.searchParams.delete('slow_status'); location.href = url; };
   }
   async function showCustomers() {
     const location_id = params.get('location_id') || '';
@@ -125,7 +129,7 @@
     bindLocation();
   }
   async function showReports() {
-    const names = [['Menu intelligence','menu'],['Customer RFM','customers'],['Forecast comparison','forecast'],['Basket associations','basket'],['Wastage','wastage'],['Promotion economics','promotions']];
+    const names = [['Menu intelligence','menu'],['Slow-moving items','slow-moving'],['Customer RFM','customers'],['Forecast comparison','forecast'],['Basket associations','basket'],['Wastage','wastage'],['Promotion economics','promotions']];
     const select = await locationSelect();
     view.innerHTML = title('Authenticated Reports','Current cleaned analytics in CSV or Excel; exports are audited') + select + panel('Reports', names.map(([label,slug]) => `<div>${esc(label)} <button class="btn btn-outline-light m-1" data-report="${slug}" data-format="csv">CSV</button><button class="btn btn-outline-light m-1" data-report="${slug}" data-format="xlsx">Excel</button></div>`).join(''));
     bindLocation();

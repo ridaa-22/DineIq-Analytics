@@ -22,7 +22,7 @@ def request(url, payload=None):
         return json.load(response)
 
 
-def run():
+def run(phase7=False):
     with tempfile.TemporaryDirectory() as temporary:
         with socket.socket() as listener:
             listener.bind(("127.0.0.1", 0))
@@ -76,6 +76,18 @@ def run():
                         assert "Test MAE" in content and "Baseline" in content
                         assert page.locator("#grain-result tbody tr").count() == horizon
                         checked.append(f"{grain}:{horizon}")
+                    if phase7:
+                        page.goto(origin + "/app/Menu-management.html")
+                        page.locator("#slow-filter").wait_for(timeout=30000)
+                        page.locator("#slow-filter").select_option("HIDDEN_OPPORTUNITY")
+                        page.wait_for_url("**slow_status=HIDDEN_OPPORTUNITY", timeout=30000)
+                        page.locator("#slow-filter").wait_for(timeout=30000)
+                        assert page.locator(".content-wrapper tbody tr").count() == 25
+                        assert "HIDDEN_OPPORTUNITY" in page.locator(".content-wrapper").inner_text()
+                        checked.append("menu:slow_filter")
+                        page.goto(origin + "/app/index.html?view=recommendations")
+                        page.get_by_text("slow_moving", exact=True).first.wait_for(timeout=30000)
+                        checked.append("recommendations:slow_moving")
                     print(json.dumps({"browser": "Chromium", "checked": checked, "passed": True}))
                 finally:
                     browser.close()

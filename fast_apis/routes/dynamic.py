@@ -14,6 +14,7 @@ from pydantic import BaseModel, Field
 from fast_apis import database
 from fast_apis.services import auth_service as auth
 from Python_Pipeline.menu_scoring import classify_items
+from Python_Pipeline.slow_moving import analyze_slow_moving
 from Python_Pipeline.train_customer_segments import features as rfm_features
 from Python_Pipeline.business_windows import promotion_trap, sales_metrics, sensitivity
 from Python_Pipeline.business_time import local_dates, local_day_start, local_day_after, parse_order_timestamps
@@ -75,6 +76,41 @@ def include_unsold_menu_items(grouped, category_id=None):
                   "wastage_cost", "Average_Rating", "Rating_Count"):
         rows[field] = 0.0
     return pd.concat([grouped, rows], ignore_index=True)
+
+
+def add_slow_moving_evidence(grouped, sales, user, location_id):
+    """Use the same clean sales scope as Menu Intelligence and one global snapshot date."""
+    snapshot = pd.Timestamp(frame("sales").Date.max())
+    catalog = frame("menu_items_validated")[["Item_ID", "Introduced_Date"]]
+    introduced = pd.to_datetime(catalog.set_index("Item_ID").Introduced_Date)
+    allowed = scope(user, location_id)
+    effective_location = location_id if location_id is not None else (allowed[0] if allowed and len(allowed) == 1 else None)
+    grouped = grouped.copy()
+    first_known = pd.to_datetime(grouped.Item_ID.map(introduced))
+    if effective_location is not None:
+        locations = frame("restaurant_locations_validated")
+        opening = locations.loc[locations.Location_ID.eq(effective_location), "Opening_Date"]
+        if not opening.empty:
+            first_known = first_known.clip(lower=pd.Timestamp(opening.iloc[0]))
+    grouped["history_days"] = ((snapshot - first_known).dt.days + 1).fillna(0).clip(lower=0).astype(int)
+    last_sale = grouped["last_sale"] if "last_sale" in grouped else pd.Series(pd.NaT, index=grouped.index)
+    last_day = pd.to_datetime(last_sale, utc=True).dt.tz_convert("Asia/Karachi").dt.tz_localize(None).dt.normalize()
+    grouped["days_since_last_purchase"] = (snapshot - last_day).dt.days.fillna(grouped.history_days).clip(lower=0).astype(int)
+    if sales.empty:
+        grouped["active_months"] = 0
+        grouped["seasonal_top3_share"] = 0.0
+    else:
+        monthly = sales.groupby(["Item_ID", pd.to_datetime(sales.Date).dt.month]).Quantity.sum()
+        active_months = monthly.groupby(level=0).size()
+        concentration = monthly.groupby(level=0).apply(lambda values: values.nlargest(3).sum() / values.sum())
+        grouped["active_months"] = grouped.Item_ID.map(active_months).fillna(0).astype(int)
+        grouped["seasonal_top3_share"] = grouped.Item_ID.map(concentration).fillna(0.0)
+    grouped["Location_ID"] = effective_location
+    grouped["Scope"] = (f"LOCATION_{effective_location}" if effective_location is not None else
+                        "GLOBAL" if allowed is None else "ASSIGNED_LOCATIONS")
+    global_sales = frame("sales").groupby("Item_ID").Quantity.sum()
+    grouped["global_sales"] = grouped.Item_ID.map(global_sales).fillna(0).astype(int)
+    return analyze_slow_moving(grouped)
 
 
 def scope(user, location_id):
@@ -157,14 +193,15 @@ def executive(location_id: int | None = None, date_from: str | None = None, date
 def menu(location_id: int | None = None, category_id: int | None = None, classification: str | None = None,
          limit: int = Query(50, ge=1, le=200), offset: int = Query(0, ge=0), user=Depends(auth.current_user)):
     sales = sales_for(user, location_id)
-    if category_id is not None:
-        sales = sales[sales.Category_ID.eq(category_id)]
     if sales.empty:
-        grouped = classify_items(include_unsold_menu_items(pd.DataFrame(), category_id))
+        grouped = classify_items(include_unsold_menu_items(pd.DataFrame()))
+        grouped = add_slow_moving_evidence(grouped, sales, user, location_id)
+        if category_id is not None:
+            grouped = grouped[grouped.Category_ID.eq(category_id)]
         if classification and not grouped.empty:
             grouped = grouped[grouped.classification.eq(classification)]
         return {"total": len(grouped), "items": records(grouped.iloc[offset:offset + limit]),
-                "method": "Multifactor descriptive classes; zero-history items are provisional"}
+                "method": "Multifactor descriptive classes and slow-moving evidence; zero-history items are provisional"}
     grouped = sales.groupby(["Item_ID", "Item_Name", "Category_ID"], as_index=False).agg(
         sales=("Quantity", "sum"), revenue=("Net_Revenue", "sum"), cost=("Cost_Total", "sum"),
         contribution=("Contribution", "sum"), orders=("Order_ID", "nunique"),
@@ -178,7 +215,7 @@ def menu(location_id: int | None = None, category_id: int | None = None, classif
     repeat = purchases.groupby("Item_ID").purchase_orders.agg(lambda x: float(x.gt(1).mean())).reset_index().rename(
         columns={"purchase_orders": "repeat_purchase_rate"})
     grouped = grouped.merge(repeat, on="Item_ID", how="left")
-    end = sales.Order_DateTime.max()
+    end = frame("sales").Order_DateTime.max()
     current = sales[sales.Order_DateTime.gt(end - pd.Timedelta(days=30))].groupby("Item_ID").Quantity.sum()
     previous = sales[sales.Order_DateTime.le(end - pd.Timedelta(days=30)) &
                      sales.Order_DateTime.gt(end - pd.Timedelta(days=60))].groupby("Item_ID").Quantity.sum()
@@ -196,13 +233,36 @@ def menu(location_id: int | None = None, category_id: int | None = None, classif
     rating_metrics = ratings.groupby("Item_ID").Stars.agg(["mean", "count"]).reset_index().rename(
         columns={"mean": "Average_Rating", "count": "Rating_Count"})
     grouped = grouped.merge(rating_metrics, on="Item_ID", how="left")
-    grouped = include_unsold_menu_items(grouped.fillna({"wastage_quantity": 0, "wastage_cost": 0}), category_id)
+    grouped = include_unsold_menu_items(grouped.fillna({"wastage_quantity": 0, "wastage_cost": 0}))
     grouped = classify_items(grouped)
+    grouped = add_slow_moving_evidence(grouped, sales, user, location_id)
+    if category_id is not None:
+        grouped = grouped[grouped.Category_ID.eq(category_id)]
     if classification:
         grouped = grouped[grouped.classification.eq(classification)]
-    grouped = grouped.sort_values("revenue", ascending=False).fillna(0)
+    grouped = grouped.sort_values("revenue", ascending=False)
+    numeric = grouped.select_dtypes(include="number").columns
+    grouped[numeric] = grouped[numeric].fillna(0)
     return {"total": len(grouped), "items": records(grouped.iloc[offset:offset + limit]),
-            "method": "Multifactor descriptive classes; rule version menu-multifactor-v1; not supervised ML labels"}
+            "method": "Multifactor descriptive classes and slow-moving evidence; rules, not supervised ML labels"}
+
+
+@router.get("/analytics/slow-moving")
+def slow_moving(location_id: int | None = None, category_id: int | None = None,
+                status: str | None = None, limit: int = Query(150, ge=1, le=200),
+                offset: int = Query(0, ge=0), user=Depends(auth.current_user)):
+    items = pd.DataFrame(menu(location_id=location_id, category_id=category_id,
+                              limit=200, offset=0, user=user)["items"])
+    if status is not None:
+        if status not in {"SLOW_MOVER", "WATCHLIST", "HIDDEN_OPPORTUNITY", "SEASONAL_REVIEW",
+                          "INSUFFICIENT_HISTORY", "NO_OBSERVED_SALES", "NOT_SLOW"}:
+            raise HTTPException(422, "Unknown slow-moving status")
+        items = items[items.Slow_Moving_Status.eq(status)] if not items.empty else items
+    columns = ["Item_ID", "Item_Name", "Category_ID", "Location_ID", "Scope", "Slow_Moving_Status",
+               "Severity", "Evidence", "Reason", "History_Status", "Recommended_Action",
+               "Slow_Moving_Rule_Version"]
+    return {"total": len(items), "items": items.reindex(columns=columns).iloc[offset:offset + limit].to_dict("records"),
+            "method": "Scoped multifactor rule using volume, order frequency, recency, trend, repeats, contribution, wastage, seasonality candidate, and history"}
 
 
 @router.get("/analytics/menu/{item_id}")
@@ -566,11 +626,16 @@ def recommendations(location_id: int | None = None, user=Depends(auth.current_us
             "reason": reason, "rule_version": "evidence-rules-v2",
             "dataset_version": "phase1-v1-clean-v3", "generated_at": timestamp})
     for item in items:
+        if item["Slow_Moving_Status"] in {"SLOW_MOVER", "WATCHLIST", "HIDDEN_OPPORTUNITY", "SEASONAL_REVIEW"}:
+            priority = {"HIGH": "High", "MEDIUM": "Medium", "LOW": "Low", "REVIEW": "Low"}[item["Severity"]]
+            add("slow_moving", item["Item_ID"], item["Recommended_Action"], priority,
+                item["Evidence"], item["Reason"])
         evidence = {"sales": item["sales"], "revenue": item["revenue"],
                     "contribution": item["contribution"], "rating": item["Average_Rating"],
                     "wastage_quantity": item["wastage_quantity"],
                     "promotion_dependency": item["promotion_dependency"]}
-        if item["classification"] == "Hidden Opportunity" and item["Average_Rating"] >= 4:
+        if (item["classification"] == "Hidden Opportunity" and item["Average_Rating"] >= 4
+                and item["Slow_Moving_Status"] != "HIDDEN_OPPORTUNITY"):
             action, priority, kind = "Increase visibility for this profitable, well-rated item", "High", "menu"
         elif item["classification"] == "Volume Driver" and item["contribution"] < 0:
             action, priority, kind = "Review price or cost; high volume has negative contribution", "Critical", "pricing"

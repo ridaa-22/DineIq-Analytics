@@ -8,6 +8,7 @@ Data: synthetic `phase1-v1`, cleaned `phase1-v1-clean-v3`. Generated outputs are
 | --- | --- | --- |
 | Clean sales | 959,964 completed order lines from 96,010 orders, across all 150 menu items | `data/processed/phase1-v1/quality_report.json`; valid historical prices retain the five invalid-base-price items |
 | Menu | Four descriptive classes use volume, contribution, ratings, repeats, wastage, promotion dependency, trend, and history | `Python_Pipeline/menu_scoring.py`; class labels are rules, not ground truth |
+| Slow-moving | 0 confirmed slow movers, 25 watchlist, 25 hidden opportunities, 1 seasonal review, 1 insufficient history | `Reports/CURRENT_SLOW_MOVING.csv`; scoped multifactor rules; one-year seasonality is provisional |
 | Customer | 48,886 clean-RFM customers; KMeans selected five clusters with sampled silhouette 0.5280 | `Models/integrated/customer_segment_metrics.json`; cluster names derive from profiles |
 | Basket | 300 association rules from clean completed baskets; support, confidence, lift, and pair count | `data/processed/phase1-v1/basket_rules.csv`; no causal bundle lift measured |
 | Demand | 581 common unseen location-day cases; Python MAE 70.48, Spark MAE 79.25, 86.23% prediction agreement within 50 units | `Models/integrated/comparison_metrics.json`; one-step-ahead backtest |
@@ -20,3 +21,17 @@ Data: synthetic `phase1-v1`, cleaned `phase1-v1-clean-v3`. Generated outputs are
 ## Immediate decision constraints
 
 Review item 6's price result with promotion and seasonality context before making a pricing change. Investigate campaign 1's falling contribution alongside its sales increase. Treat high-risk wastage results as prompts for manual review because low recall makes the absence of a flag weak evidence. Do not treat descriptive menu groups or KMeans segment names as verified causal outcomes. Managed SQLite edits do not update this versioned historical dataset automatically.
+
+<!-- SLOW_MOVING_BEGIN -->
+## Slow-moving assessment
+
+These are descriptive review flags, not verified demand labels. This clean snapshot has 0 confirmed global slow movers under the documented rule.
+
+| Item | Status | Sales | 30-day trend | Repeat rate | Action |
+| --- | --- | ---: | ---: | ---: | --- |
+| 111 | WATCHLIST | 6217 | 42.21% | 0.089 | Monitor trend, repeat purchasing, and waste before intervening. |
+| 134 | WATCHLIST | 6144 | 50.64% | 0.084 | Monitor trend, repeat purchasing, and waste before intervening. |
+| 89 | WATCHLIST | 6148 | 35.03% | 0.087 | Monitor trend, repeat purchasing, and waste before intervening. |
+| 44 | WATCHLIST | 6094 | 30.43% | 0.082 | Monitor trend, repeat purchasing, and waste before intervening. |
+| 66 | WATCHLIST | 6209 | 47.36% | 0.092 | Monitor trend, repeat purchasing, and waste before intervening. |
+<!-- SLOW_MOVING_END -->

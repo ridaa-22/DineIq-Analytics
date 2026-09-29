@@ -118,6 +118,40 @@ class DynamicAppTests(unittest.TestCase):
         self.assertEqual(asset.status_code, 200)
         self.assertIn("grain-forecast", asset.text)
 
+    def test_slow_moving_analysis_is_scoped_and_actionable(self):
+        global_rows = self.client.get("/api/analytics/slow-moving?limit=200", headers=self.analyst)
+        self.assertEqual(global_rows.status_code, 200, global_rows.text)
+        self.assertGreaterEqual(global_rows.json()["total"], 150)
+        indexed = {row["Item_ID"]: row for row in global_rows.json()["items"]}
+        self.assertEqual(indexed[2]["Slow_Moving_Status"], "HIDDEN_OPPORTUNITY")
+        self.assertEqual(indexed[9]["History_Status"], "INSUFFICIENT")
+        self.assertEqual(indexed[8]["Slow_Moving_Status"], "SEASONAL_REVIEW")
+        self.assertIsNone(indexed[2]["Location_ID"])
+        self.assertIn("order_frequency_percentile", indexed[2]["Evidence"])
+        category = self.client.get(f"/api/analytics/slow-moving?category_id={indexed[2]['Category_ID']}",
+                                   headers=self.analyst)
+        self.assertEqual(category.status_code, 200)
+        self.assertEqual(next(row for row in category.json()["items"] if row["Item_ID"] == 2)
+                         ["Slow_Moving_Status"], indexed[2]["Slow_Moving_Status"])
+        scoped = self.client.get("/api/analytics/slow-moving?location_id=1", headers=self.regional_manager)
+        self.assertEqual(scoped.status_code, 200, scoped.text)
+        self.assertTrue(all(row["Location_ID"] == 1 for row in scoped.json()["items"]))
+        implicit_scope = self.client.get("/api/analytics/slow-moving", headers=self.regional_manager)
+        self.assertEqual(implicit_scope.status_code, 200)
+        self.assertTrue(all(row["Location_ID"] == 1 for row in implicit_scope.json()["items"]))
+        self.assertEqual(self.client.get("/api/analytics/slow-moving?location_id=2",
+                                         headers=self.regional_manager).status_code, 403)
+        self.assertEqual(self.client.get("/api/analytics/slow-moving?status=UNKNOWN",
+                                         headers=self.analyst).status_code, 422)
+        actions = self.client.get("/api/analytics/recommendations", headers=self.analyst)
+        self.assertEqual(actions.status_code, 200)
+        self.assertTrue(any(row["type"] == "slow_moving" for row in actions.json()["recommendations"]))
+        export = self.client.get("/api/exports/slow-moving?format=csv", headers=self.analyst)
+        self.assertEqual(export.status_code, 200)
+        self.assertIn(b"Slow_Moving_Status", export.content)
+        asset = self.client.get("/app/assets/js/dineiq-demo.js")
+        self.assertIn("slow-filter", asset.text)
+
     def test_export_is_authenticated_and_audited(self):
         path = "/api/exports/menu?format=csv"
         self.assertEqual(self.client.get(path).status_code, 401)

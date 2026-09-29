@@ -12,6 +12,7 @@ Base URL: `http://127.0.0.1:8000`. Send `Authorization: Bearer <access_token>` t
 | GET | `/api/analytics/orders` | Paginated validated historical orders; optional location, date, channel, status |
 | GET | `/api/analytics/menu` | Multifactor item economics and descriptive classes; optional location, category, class |
 | GET | `/api/analytics/menu/{item_id}` | Item detail |
+| GET | `/api/analytics/slow-moving` | Scoped item slow-moving status, severity, evidence, history status, reason, and recommended action; optional `location_id`, `category_id`, `status`, `limit`, `offset` |
 | GET | `/api/analytics/customers` | Clean-RFM KMeans segments; optional location, segment |
 | GET | `/api/analytics/customers/profiles` | Per-cluster business evidence |
 | GET | `/api/analytics/customers/{customer_id}` | Scoped customer spending |
