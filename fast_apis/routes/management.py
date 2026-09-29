@@ -232,6 +232,7 @@ class PromotionUpdate(BaseModel):
     end_date: date
     applicable_item_id: int | None = None
     applicable_category_id: int | None = None
+    location_id: int | None = None
 
     @model_validator(mode="after")
     def valid_window(self):
@@ -242,7 +243,8 @@ class PromotionUpdate(BaseModel):
 
 def validate_promotion_refs(db, payload):
     for table, column, value in (("menu_items", "item_id", payload.applicable_item_id),
-                                 ("menu_categories", "category_id", payload.applicable_category_id)):
+                                 ("menu_categories", "category_id", payload.applicable_category_id),
+                                 ("restaurant_locations", "location_id", payload.location_id)):
         if value is not None and not db.execute(f"SELECT 1 FROM {table} WHERE {column}=?", (value,)).fetchone():
             raise HTTPException(422, f"Unknown {column}")
 
@@ -252,9 +254,9 @@ def add_promotion(payload: PromotionUpdate, user=Depends(business)):
     with database.connection() as db:
         validate_promotion_refs(db, payload)
         identity = db.execute("""INSERT INTO promotions(promotion_name,discount_percent,start_date,end_date,
-            applicable_item_id,applicable_category_id) VALUES(?,?,?,?,?,?)""",
+            applicable_item_id,applicable_category_id,location_id) VALUES(?,?,?,?,?,?,?)""",
             (payload.promotion_name, payload.discount_percent, payload.start_date.isoformat(), payload.end_date.isoformat(),
-             payload.applicable_item_id, payload.applicable_category_id)).lastrowid
+             payload.applicable_item_id, payload.applicable_category_id, payload.location_id)).lastrowid
     database.audit("promotion_created", user["id"], "promotion", identity, payload.model_dump(mode="json"))
     return {"promotion_id": identity}
 
@@ -264,9 +266,9 @@ def edit_promotion(promotion_id: int, payload: PromotionUpdate, user=Depends(bus
     with database.connection() as db:
         validate_promotion_refs(db, payload)
         cursor = db.execute("""UPDATE promotions SET promotion_name=?,discount_percent=?,start_date=?,end_date=?,
-            applicable_item_id=?,applicable_category_id=? WHERE promotion_id=?""",
+            applicable_item_id=?,applicable_category_id=?,location_id=? WHERE promotion_id=?""",
             (payload.promotion_name, payload.discount_percent, payload.start_date.isoformat(), payload.end_date.isoformat(),
-             payload.applicable_item_id, payload.applicable_category_id, promotion_id))
+             payload.applicable_item_id, payload.applicable_category_id, payload.location_id, promotion_id))
         if not cursor.rowcount:
             raise HTTPException(404, "Promotion not found")
     database.audit("promotion_updated", user["id"], "promotion", promotion_id, payload.model_dump(mode="json"))

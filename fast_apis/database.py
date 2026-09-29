@@ -70,7 +70,8 @@ def initialize(db):
         CREATE TABLE IF NOT EXISTS promotions (
           promotion_id INTEGER PRIMARY KEY, promotion_name TEXT NOT NULL,
           discount_percent REAL NOT NULL, start_date TEXT NOT NULL, end_date TEXT NOT NULL,
-          applicable_item_id INTEGER, applicable_category_id INTEGER
+          applicable_item_id INTEGER, applicable_category_id INTEGER,
+          location_id INTEGER REFERENCES restaurant_locations(location_id)
         );
         CREATE TABLE IF NOT EXISTS inventory_records (
           inventory_id INTEGER PRIMARY KEY, location_id INTEGER NOT NULL,
@@ -134,6 +135,9 @@ def initialize(db):
     columns = {row[1] for row in db.execute("PRAGMA table_info(users)")}
     if "is_active" not in columns:
         db.execute("ALTER TABLE users ADD COLUMN is_active INTEGER NOT NULL DEFAULT 1")
+    promotion_columns = {row[1] for row in db.execute("PRAGMA table_info(promotions)")}
+    if "location_id" not in promotion_columns:
+        db.execute("ALTER TABLE promotions ADD COLUMN location_id INTEGER REFERENCES restaurant_locations(location_id)")
     recommendation_columns = {row[1] for row in db.execute("PRAGMA table_info(recommendations)")}
     if "rec_key" not in recommendation_columns:
         db.execute("ALTER TABLE recommendations ADD COLUMN rec_key TEXT")

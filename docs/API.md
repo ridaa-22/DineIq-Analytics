@@ -17,7 +17,7 @@ Base URL: `http://127.0.0.1:8000`. Send `Authorization: Bearer <access_token>` t
 | GET | `/api/analytics/customers/{customer_id}` | Scoped customer spending |
 | GET | `/api/analytics/wastage` | Clean wastage summaries |
 | GET | `/api/analytics/wastage/forecast` | Experimental next-week item/location risk |
-| GET | `/api/analytics/forecast` | Location-day holdout predictions |
+| GET | `/api/analytics/forecast` | Without `grain`: preserved 581-case location comparison. With `grain=location|item|category`, `entity_id`, `horizon=1|7|14|30`, and optional `mode=future|backtest`: recursive demand estimates, actuals where backtesting, baseline and exact-lead test MAE. Global item/category demand is unavailable to regional accounts. |
 | GET | `/api/analytics/pricing` | Equal-window observed economics around genuine historical price changes |
 | GET | `/api/analytics/promotions` | Before/during/after campaign economics and trap flag |
 | GET | `/api/analytics/anomalies` | Sales spikes, rating bursts, and unusual orders |

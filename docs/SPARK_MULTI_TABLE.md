@@ -1,0 +1,17 @@
+# Active Spark multi-table contract and evidence
+
+The active `spark_jobs.processed_sql` job reads only `data/processed/phase1-v1/`, version `phase1-v1-clean-v3`. `Python_Pipeline.build_processed` writes the authoritative clean sale lines and eleven table snapshots from the same cleaning run. `spark_snapshot_manifest.json` binds all twelve Parquet files by SHA-256 and records the source raw manifest hash; Spark rejects a missing or altered snapshot. The raw `data/raw/phase1-v1` files remain unchanged; no legacy notebook or dataset path is used. Parquet timestamps are encoded in microseconds so Spark 4 can read them while preserving second-resolution source times and Asia/Karachi business dates.
+
+## Grain and relationships
+
+`Order_Item_ID` is the final integration grain. Clean Order_Items join completed Orders, then Customers, Menu_Items, Menu_Categories, and Restaurant Locations. Orders left join Promotions; campaign eligibility applies the item target before its category. Menu_Items join effective Pricing History using the latest event on or before the local sale date, selected with `row_number()` per sale line. Ratings join Orders to obtain location and are aggregated by item/location before the sale-line join. Wastage is aggregated by item/location. Inventory selects the latest period per item/location. These preaggregations prevent one-to-many fan-out; item/location wastage, ratings, and inventory summaries are descriptive context, not transaction-level measures.
+
+The `integrated_sales` Spark view contains net revenue, cost, contribution, item/category and location attributes, effective price, rating and wastage context, campaign eligibility, channel, local date, and local hour. Actual `spark.sql(...)` queries persist menu profitability, location performance, peak location/hour, category performance, tagged eligible campaign performance, high-wastage item/location context, and channel behavior in `Reports/processed_spark/`.
+
+## Fresh-run evidence
+
+Commands: `python -m Python_Pipeline.build_processed` then `python -m spark_jobs.processed_sql`. The fresh Spark job reconciled 959,964 joined rows and 959,964 distinct line IDs with clean sales. Net revenue PKR 1,510,839,369.75, cost PKR 760,038,095.26, and contribution PKR 750,801,274.49 matched exactly at two decimals. Missing effective prices, price mismatches, unknown promotions, and missing dimensions were all zero. The seven SQL files contain 150 menu rows, 20 locations, 480 location/hour rows, 10 categories, 20 campaigns, 100 top high-wastage item/location rows, and five channels. `Reports/processed_spark/integration_validation.json` is the machine-readable result.
+
+The Spark fixture test includes two sale lines sharing a category, two price events, two ratings, two inventory periods, and two wastage records. It verifies no fan-out, effective-date selection, corrected net revenue/cost/contribution, item-specific campaign exclusion, SQL category/campaign/high-wastage values, a missing-customer gate failure, and rejection of an altered snapshot.
+
+The campaign SQL file covers tagged eligible sale lines; the separate promotion effectiveness report compares all eligible lines in before/during/after windows. Their quantities answer different questions. High-wastage output is limited to the top 100 item/location pairs and does not represent the entire wastage table. Spark's native model-save limitation on this Windows host is separate from this SQL integration run.

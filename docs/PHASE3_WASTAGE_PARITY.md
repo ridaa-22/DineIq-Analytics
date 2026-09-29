@@ -1,0 +1,9 @@
+# Phase 3 wastage parity evidence
+
+The previous training path used a strict four-week rolling mean, while next-week inference averaged whichever of the four weeks had observations. On the existing grid, this differed for 2,047 of 3,000 item/location groups. `Python_Pipeline/wastage_features.py` now builds both historical and future vectors. Missing observed wastage and preparation are unavailable (`NaN`); a four-week wastage mean exists only when all four weeks are observed. Missing sales demand remains zero because completed sales are fully enumerated.
+
+`python -m Python_Pipeline.train_wastage_forecast` retrained version `weekly-wastage-hgb-v6` from `phase1-v1-clean-v3`. The chronological ranges are train 2024-12-30 to 2025-09-08 (26,958 observed cases), validation 2025-09-15 to 2025-11-03 (5,846), and test 2025-11-10 to 2025-12-29 (6,149). Validation selected the classification probability threshold; test was held out from fitting and selection. The saved `wastage_weekly_model.joblib` contains the preprocessing version, missing-week rule, feature names/order, dataset version, date ranges, models, threshold, and metrics. The saved model loads and predicts in the parity test.
+
+Test amount MAE is 1.0035 and RMSE 4.5921, versus last-observed baseline MAE 0.6528 and RMSE 3.5891. Test high-risk accuracy is 86.58%, precision 60.00%, recall 21.91%, and F1 32.10%. The simple last-observed risk baseline has accuracy 79.62%, precision 29.02%, recall 28.20%, and F1 28.60%. The model is marked `EXPERIMENTAL` because the amount estimate is worse than baseline and high-risk recall is low.
+
+The source contains 120,047 unobserved item/location/week rows. Scores cover observed weeks only and cannot measure performance when no record exists. Managed SQLite wastage additions are not part of this versioned training data; retraining is needed before they affect the prospective forecast.

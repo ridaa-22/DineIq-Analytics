@@ -1,5 +1,5 @@
 {
-  "version": "weekly-wastage-hgb-v5",
+  "version": "weekly-wastage-hgb-v6",
   "dataset_version": "phase1-v1-clean-v3",
   "cutoff": "2025-11-03",
   "holdout_cases": 6149,
@@ -7,14 +7,53 @@
   "target_grain": "observed item/location/week wastage subtotal",
   "observed_week_rows": 38953,
   "unobserved_week_rows": 120047,
+  "preprocessing_version": "observed-week-history-v1",
+  "missing_week_policy": "Absent wastage and preparation are unavailable (NaN); four-week wastage mean requires four observed weeks. Missing sales demand is zero.",
+  "feature_names": [
+    "Item_ID",
+    "Location_ID",
+    "month",
+    "week_of_year",
+    "lag_waste_1",
+    "lag_waste_4",
+    "rolling_waste_4",
+    "lag_demand_1",
+    "rolling_demand_4",
+    "lag_prepared_1"
+  ],
+  "status": "EXPERIMENTAL",
+  "training_range": [
+    "2024-12-30",
+    "2025-09-08"
+  ],
+  "validation_range": [
+    "2025-09-15",
+    "2025-11-03"
+  ],
+  "test_range": [
+    "2025-11-10",
+    "2025-12-29"
+  ],
+  "training_cases": 26958,
   "validation_cases": 5846,
   "validation_risk_f1": 0.34334763948497854,
+  "validation_mae": 0.46792531005739396,
+  "validation_rmse": 1.9022506428365227,
+  "validation_baseline_mae": 0.46048580225795416,
+  "validation_baseline_rmse": 2.0101521329674585,
   "risk_probability_threshold": 0.20000000000000004,
-  "mae": 0.7928655740575534,
-  "rmse": 3.855816962582551,
+  "mae": 1.0034807358700875,
+  "rmse": 4.5920579895017095,
   "baseline_mae": 0.6527890713937226,
-  "high_risk_precision": 0.49278846153846156,
-  "high_risk_recall": 0.2303370786516854,
-  "high_risk_predicted_cases": 416,
+  "baseline_rmse": 3.5891181916171693,
+  "high_risk_accuracy": 0.8658318425760286,
+  "high_risk_precision": 0.6,
+  "high_risk_recall": 0.21910112359550563,
+  "high_risk_f1": 0.32098765432098764,
+  "baseline_high_risk_accuracy": 0.7962270287851683,
+  "baseline_high_risk_precision": 0.2901734104046243,
+  "baseline_high_risk_recall": 0.28202247191011237,
+  "baseline_high_risk_f1": 0.28603988603988606,
+  "high_risk_predicted_cases": 325,
   "high_risk_actual_cases": 890
 }

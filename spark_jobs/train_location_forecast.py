@@ -2,6 +2,7 @@
 
 import json
 import csv
+from datetime import datetime, timezone
 from pathlib import Path
 
 from pyspark.ml.feature import VectorAssembler
@@ -12,6 +13,9 @@ from pyspark.sql import SparkSession, functions as F, Window
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "Models" / "integrated"
 FEATURES = ["Location_ID", "day_of_week", "month", "lag_1", "lag_7", "rolling_7"]
+MODEL_VERSION = "spark-location-selected-v4"
+DATASET_VERSION = "phase1-v1-clean-v3"
+MODEL_ROOT = ROOT / "Models" / "spark" / "location_forecast" / MODEL_VERSION
 
 
 def train():
@@ -54,7 +58,7 @@ def train():
                                "hyperparameters": {key.name: str(value) for key, value in algorithm.extractParamMap().items()}})
         selected = min(candidates, key=lambda result: result["validation_mae"])["algorithm"]
         model = algorithms[selected].fit(training_full)
-        saved_path = OUT / "spark_location_best_v4"
+        saved_path = MODEL_ROOT / "model"
         save_error = None
         try:
             model.write().overwrite().save(str(saved_path))
@@ -64,19 +68,40 @@ def train():
                      .select(F.concat_ws(":", F.col("Date"), F.col("Location_ID")).alias("Case_ID"),
                              F.col("Date"), F.col("Location_ID"), F.col("Demand").alias("Actual"),
                              F.greatest(F.col("prediction"), F.lit(0.0)).alias("Spark_Prediction"),
-                             F.lit("spark-location-selected-v4").alias("Spark_Model_Version"),
-                             F.lit("phase1-v1-clean-v3").alias("Dataset_Version")))
+                             F.lit(MODEL_VERSION).alias("Spark_Model_Version"),
+                             F.lit(DATASET_VERSION).alias("Dataset_Version")))
         rows = predicted.collect()
         with (OUT / "spark_holdout.csv").open("w", newline="", encoding="utf-8") as destination:
             writer = csv.DictWriter(destination, fieldnames=predicted.columns)
             writer.writeheader()
             writer.writerows(row.asDict() for row in rows)
-        metrics = {"version": "spark-location-selected-v4", "dataset_version": "phase1-v1-clean-v3",
+        metrics = {"version": MODEL_VERSION, "dataset_version": DATASET_VERSION,
                    "validation_start": str(validation_start), "test_cutoff": str(cutoff),
                    "holdout_cases": len(rows), "candidates": candidates, "selected_algorithm": selected,
                    "test_mae": float(mae.evaluate(model.transform(testing))),
-                   "model_path": str(saved_path) if save_error is None else None,
+                   "model_path": str(saved_path.relative_to(ROOT)) if save_error is None else None,
                    "save_error": save_error}
+        if save_error is None:
+            ranges = {}
+            for name, dataset in (("training", training), ("validation", validation), ("test", testing)):
+                bounds = dataset.agg(F.min("date_value").alias("start"),
+                                     F.max("date_value").alias("end")).first()
+                ranges[name] = {"start": str(bounds.start), "end": str(bounds.end)}
+            fixture_rows = (model.transform(testing).orderBy("date_value", "Location_ID")
+                            .select(*FEATURES, "prediction").limit(3).collect())
+            fixture = [{"features": [float(row[name]) for name in FEATURES],
+                        "expected_prediction": float(row.prediction)} for row in fixture_rows]
+            (MODEL_ROOT / "reload_fixture.json").write_text(json.dumps(fixture, indent=2), encoding="utf-8")
+            manifest = {"model_name": "location_forecast", "model_version": MODEL_VERSION,
+                        "dataset_version": DATASET_VERSION, "algorithm": selected,
+                        "features": FEATURES, "model_path": str(saved_path.relative_to(ROOT)),
+                        "training_range": ranges["training"], "validation_range": ranges["validation"],
+                        "test_range": ranges["test"],
+                        "metrics": {"validation_mae": next(c["validation_mae"] for c in candidates
+                                                        if c["algorithm"] == selected),
+                                    "test_mae": metrics["test_mae"], "holdout_cases": len(rows)},
+                        "created_at": datetime.now(timezone.utc).isoformat()}
+            (MODEL_ROOT / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
         (OUT / "spark_selection_metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
         print(json.dumps({key: metrics[key] for key in ("holdout_cases", "selected_algorithm", "test_mae", "model_path", "save_error")}, indent=2))
     finally:

@@ -34,6 +34,7 @@
   "partitioned_sales_lines": 959964,
   "valid_wastage": 49960,
   "valid_ratings": 99906,
+  "quarantined_records": 613,
   "cleaning_rules": {
     "orders": "First unique Order_ID; require IDs, valid timestamp, known customer/location; preserve cancelled headers but exclude from realized sales",
     "lines": "First unique Order_Item_ID; require IDs, positive quantity and unit price, nonnegative line discount no greater than gross; join to valid completed order and known priced item",

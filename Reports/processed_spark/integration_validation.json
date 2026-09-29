@@ -1,0 +1,28 @@
+{
+  "dataset_version": "phase1-v1-clean-v3",
+  "joined_rows": 959964,
+  "distinct_order_item_ids": 959964,
+  "financial_totals": {
+    "net_revenue": 1510839369.75,
+    "cost": 760038095.26,
+    "contribution": 750801274.49
+  },
+  "authoritative_totals": {
+    "net_revenue": 1510839369.75,
+    "cost": 760038095.26,
+    "contribution": 750801274.49
+  },
+  "missing_price": 0,
+  "price_mismatch": 0,
+  "missing_promotion": 0,
+  "missing_dimension": 0,
+  "outputs": {
+    "menu_sql.csv": 150,
+    "locations_sql.csv": 20,
+    "peaks.csv": 480,
+    "categories_sql.csv": 10,
+    "campaigns_sql.csv": 20,
+    "high_wastage_sql.csv": 100,
+    "channels_sql.csv": 5
+  }
+}

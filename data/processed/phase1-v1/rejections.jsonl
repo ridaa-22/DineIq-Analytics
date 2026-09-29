@@ -1,0 +1,613 @@
+{"record_identifier": "8042", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "8622", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "13168", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "13421", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "16939", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "17099", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "18871", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "19790", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "19831", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "27134", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "27769", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "29628", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "32389", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "38871", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "40483", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "42407", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "55073", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "62380", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "72682", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "76918", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "78551", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "79658", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "83103", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "85687", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "89410", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "93873", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "94931", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "95693", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "96247", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "98291", "source_table": "Orders", "rule": "required_order_fields", "reason": "Missing ID or invalid timestamp", "action": "quarantined"}
+{"record_identifier": "8777", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "9378", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "19579", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "19891", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "33211", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "33950", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "36880", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "51786", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "60265", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "61151", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "61933", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "79413", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "86529", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "90419", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "91994", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "92360", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "96526", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "100293", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "119260", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "127157", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "129471", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "132456", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "144831", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "155111", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "165478", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "169360", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "173337", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "180162", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "180595", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "186325", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "186836", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "195657", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "218642", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "221306", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "225039", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "226549", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "232916", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "240976", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "243533", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "244977", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "259290", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "259637", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "259758", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "274904", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "282190", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "285851", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "291049", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "295460", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "320100", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "321098", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "325954", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "327269", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "335005", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "343899", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "370788", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "375679", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "376533", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "380682", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "381150", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "381686", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "394687", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "402419", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "409907", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "414404", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "426067", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "432227", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "434293", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "443706", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "446783", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "465893", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "467209", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "473709", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "478287", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "479848", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "480408", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "482331", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "501246", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "507892", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "508003", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "509263", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "522831", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "523435", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "526858", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "530000", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "534780", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "537600", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "538968", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "542615", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "545486", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "549238", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "553940", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "554484", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "560793", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "576988", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "585656", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "605736", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "607118", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "620360", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "634064", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "636031", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "654794", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "664183", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "665042", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "666517", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "686494", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "690343", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "694316", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "703312", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "705123", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "708283", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "710866", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "719656", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "725309", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "734531", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "742371", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "754054", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "775295", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "776727", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "776788", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "778128", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "784245", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "787853", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "795909", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "799832", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "803497", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "816595", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "839663", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "854867", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "857918", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "861205", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "882142", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "893241", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "902551", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "903687", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "910574", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "915668", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "930473", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "932552", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "938394", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "940927", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "953286", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "954034", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "955635", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "958143", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "965814", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "976215", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "980178", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "981801", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "982520", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "982741", "source_table": "Order_Items", "rule": "valid_line_values", "reason": "Missing reference or invalid quantity, price, or discount", "action": "quarantined"}
+{"record_identifier": "80340", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80341", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80342", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80343", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80344", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80345", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80346", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80347", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80348", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "80349", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86133", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86134", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86135", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86136", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86137", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86138", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86139", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86140", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86141", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "86142", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131556", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131557", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131558", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131559", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131560", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131561", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131562", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131563", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131564", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "131565", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134084", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134085", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134086", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134087", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134088", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134089", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134090", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134091", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134092", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "134093", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169245", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169246", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169247", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169248", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169249", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169250", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169251", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169252", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169253", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "169254", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170843", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170844", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170845", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170846", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170847", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170848", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170849", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170850", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170851", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "170852", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188551", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188552", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188553", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188554", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188555", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188556", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188557", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188558", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188559", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "188560", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197734", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197735", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197736", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197737", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197738", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197739", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197740", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197741", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197742", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "197743", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198144", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198145", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198146", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198147", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198148", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198149", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198150", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198151", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "198152", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271108", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271109", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271110", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271111", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271112", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271113", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271114", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271115", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271116", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "271117", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277450", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277451", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277452", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277453", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277454", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277455", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277456", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277457", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277458", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "277459", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296032", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296033", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296034", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296035", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296036", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296037", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296038", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296039", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296040", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "296041", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323625", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323626", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323627", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323628", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323629", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323630", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323631", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323632", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323633", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "323634", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388392", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388393", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388394", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388395", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388396", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388397", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388398", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388399", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388400", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "388401", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404500", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404501", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404502", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404503", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404504", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404505", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404506", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404507", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404508", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "404509", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423728", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423729", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423730", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423731", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423732", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423733", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423734", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423735", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423736", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "423737", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550284", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550285", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550286", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550287", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550288", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550289", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550290", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550291", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550292", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "550293", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623294", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623295", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623296", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623297", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623298", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623299", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623300", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623301", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623302", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "623303", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726225", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726226", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726227", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726228", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726229", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726230", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726231", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726232", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726233", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "726234", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768558", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768559", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768560", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768561", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768562", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768563", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768564", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768565", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768566", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "768567", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784881", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784882", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784883", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784884", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784885", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784886", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784887", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784888", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784889", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "784890", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795939", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795940", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795941", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795942", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795943", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795944", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795945", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795946", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795947", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "795948", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830366", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830367", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830368", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830369", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830370", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830371", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830372", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830373", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830374", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "830375", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856187", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856188", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856189", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856190", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856191", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856192", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856193", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856194", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856195", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "856196", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893378", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893379", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893380", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893381", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893382", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893383", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893384", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893385", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893386", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "893387", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937961", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937962", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937963", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937964", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937965", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937966", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937967", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937968", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937969", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "937970", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948530", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948531", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948532", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948533", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948534", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948535", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948536", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948537", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948538", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "948539", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956145", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956146", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956147", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956148", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956149", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956150", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956151", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956152", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956153", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "956154", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961682", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961683", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961684", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961685", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961686", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961687", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961688", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961689", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961690", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "961691", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982107", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982108", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982109", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982110", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982111", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982112", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982113", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982114", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982115", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "982116", "source_table": "Order_Items", "rule": "known_line_references", "reason": "Unknown order or valid item", "action": "quarantined"}
+{"record_identifier": "310", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "1531", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "4257", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "4932", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "5376", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "6206", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "6283", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "6719", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "8290", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "12242", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "13337", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "13450", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "13604", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "14111", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "15795", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "18473", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "20090", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "21954", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "23521", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "24192", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "24873", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "27235", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "27458", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "28005", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "28055", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "28634", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "29098", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "29132", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "30456", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "32643", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "33107", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "36524", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "37907", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "38491", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "39907", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "40089", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "41155", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "41881", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "42066", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "43780", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "43983", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "44304", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "44340", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "44840", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "46035", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "48690", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "49658", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "50837", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "51425", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "52842", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "53595", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "54711", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "57378", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "58658", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "59042", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "61075", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "64594", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "64990", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "65541", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "65578", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "65642", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "66734", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "67680", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "68424", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "70786", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "71100", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "71267", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "75233", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "76535", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "76839", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "77476", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "77903", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "80068", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "82319", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "83105", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "84003", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "85313", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "86779", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "86851", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "87220", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "88462", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "89848", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "90365", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "91325", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "91729", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "93027", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "93316", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "94457", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "94630", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "95464", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "96974", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "97508", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "97751", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "99503", "source_table": "Ratings", "rule": "valid_rating_references", "reason": "Invalid stars, order, or item", "action": "quarantined"}
+{"record_identifier": "581", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "1010", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "1096", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "2645", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "3717", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "4263", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "4839", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "5128", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "10192", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "11748", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "11751", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "11767", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "12571", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "13709", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "15182", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "15870", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "17888", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "17955", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "21168", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "21872", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "24940", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "33043", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "34216", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "34326", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "34684", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "36575", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "36873", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "38246", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "38684", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "39498", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "40035", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "40877", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "41374", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "42630", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "42981", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "44367", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "45613", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "46094", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "46536", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}
+{"record_identifier": "46613", "source_table": "Wastage", "rule": "valid_wastage_values", "reason": "Invalid date or negative/impossible wastage value", "action": "quarantined"}

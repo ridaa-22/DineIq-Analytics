@@ -65,7 +65,7 @@ Except documented injected defects, primary keys are unique and non-null. Requir
 
 ## Business relationships and economics
 
-Campaigns apply only inside their date interval and to their designated item/category. Every campaign-bearing order contains at least one eligible item. Other items may share its basket; only eligible lines receive its percent discount. There are no unrelated random discounts. Discount amount is half-up rounded `Quantity × Unit_Price × Discount_Percent / 100` once per line. Zero discount on ineligible lines is expected.
+Campaigns apply only inside their date interval and to their designated item/category. An item target takes precedence over its category field; the category never expands an item-specific campaign. See [the campaign and time contract](PROMOTION_TIME_CONTRACT.md) for category, global, and location scope. Every campaign-bearing order contains at least one eligible item. Other items may share its basket; only eligible lines receive its percent discount. There are no unrelated random discounts. Discount amount is half-up rounded `Quantity × Unit_Price × Discount_Percent / 100` once per line. Zero discount on ineligible lines is expected.
 
 Price history has two events per item, Jan 1 and Jul 1. Equal prices are valid historical observations; item 6 increases 40% on Jul 1. Base_Price is the initial list price, not a substitute for time-effective history. Unit_Price follows the history even when a deliberately invalid Base_Price is injected into the master fixture.
 

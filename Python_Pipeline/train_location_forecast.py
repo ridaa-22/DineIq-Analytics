@@ -32,7 +32,13 @@ def train():
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
     frame = feature_frame()
     cutoff = frame.Date.max() - pd.Timedelta(days=30)
+    validation_start = cutoff - pd.Timedelta(days=30)
     train_set, test_set = frame[frame.Date.le(cutoff)], frame[frame.Date.gt(cutoff)].copy()
+    early = frame[frame.Date.le(validation_start)]
+    validation = frame[frame.Date.gt(validation_start) & frame.Date.le(cutoff)]
+    validation_model = RandomForestRegressor(n_estimators=80, min_samples_leaf=3, random_state=42, n_jobs=-1)
+    validation_model.fit(early[FEATURES], early.Demand)
+    validation_prediction = np.maximum(0, validation_model.predict(validation[FEATURES]))
     model = RandomForestRegressor(n_estimators=80, min_samples_leaf=3, random_state=42, n_jobs=-1)
     model.fit(train_set[FEATURES], train_set.Demand)
     test_set["Python_Prediction"] = np.maximum(0, model.predict(test_set[FEATURES]))
@@ -47,6 +53,11 @@ def train():
     test_set.to_parquet(ARTIFACTS / "python_holdout.parquet", index=False)
     metrics = {"model": "RandomForestRegressor", "version": "python-location-rf-v3",
                "dataset_version": "phase1-v1-clean-v3", "cutoff": str(cutoff.date()),
+               "training_range": {"start": str(early.Date.min().date()), "end": str(validation_start.date())},
+               "validation_range": {"start": str(validation.Date.min().date()), "end": str(cutoff.date())},
+               "test_range": {"start": str(test_set.Date.min().date()), "end": str(test_set.Date.max().date())},
+               "validation_mae": mean_absolute_error(validation.Demand, validation_prediction),
+               "validation_baseline_mae": mean_absolute_error(validation.Demand, validation.lag_7),
                "holdout_cases": len(test_set), "mae": mean_absolute_error(test_set.Actual, test_set.Python_Prediction),
                "rmse": mean_squared_error(test_set.Actual, test_set.Python_Prediction) ** 0.5,
                "baseline_mae": mean_absolute_error(test_set.Actual, test_set.Baseline)}

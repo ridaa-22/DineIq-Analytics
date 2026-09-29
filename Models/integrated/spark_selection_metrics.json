@@ -72,6 +72,6 @@
   ],
   "selected_algorithm": "RandomForestRegressor",
   "test_mae": 79.24595661593085,
-  "model_path": null,
-  "save_error": "Py4JJavaError: An error occurred while calling o2553.save."
+  "model_path": "Models/spark/location_forecast/spark-location-selected-v4/model",
+  "save_error": null
 }

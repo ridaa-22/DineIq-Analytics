@@ -88,6 +88,36 @@ class DynamicAppTests(unittest.TestCase):
         self.assertEqual(self.client.post("/api/models/forecast/predict?location_id=2",
             headers=self.regional_manager).status_code, 403)
 
+    def test_grain_and_horizon_forecasts(self):
+        for grain in ("location", "item", "category"):
+            for horizon in (1, 7, 14, 30):
+                with self.subTest(grain=grain, horizon=horizon):
+                    query = f"grain={grain}&entity_id=1&horizon={horizon}"
+                    future = self.client.get("/api/analytics/forecast?" + query, headers=self.analyst)
+                    self.assertEqual(future.status_code, 200, future.text)
+                    payload = future.json()
+                    self.assertEqual(payload["total"], horizon)
+                    self.assertTrue(all(row["Actual"] is None for row in payload["forecasts"]))
+                    self.assertIn("mae", payload["metrics"])
+                    self.assertIn("baseline_mae", payload["metrics"])
+                    self.assertEqual(payload["dataset_version"], "phase1-v1-clean-v3")
+                    backtest = self.client.get("/api/analytics/forecast?" + query + "&mode=backtest",
+                                               headers=self.analyst)
+                    self.assertEqual(backtest.status_code, 200, backtest.text)
+                    self.assertEqual(backtest.json()["total"], horizon)
+                    self.assertTrue(all(row["Actual"] is not None for row in backtest.json()["forecasts"]))
+        self.assertEqual(self.client.get("/api/analytics/forecast?grain=item&entity_id=1&horizon=2",
+                                         headers=self.analyst).status_code, 422)
+        self.assertEqual(self.client.get("/api/analytics/forecast?grain=item&entity_id=1",
+                                         headers=self.regional_manager).status_code, 403)
+        self.assertEqual(self.client.get("/api/analytics/forecast?grain=location&entity_id=2",
+                                         headers=self.regional_manager).status_code, 403)
+        self.assertEqual(self.client.get("/api/analytics/forecast?grain=item&entity_id=9&mode=backtest",
+                                         headers=self.analyst).status_code, 422)
+        asset = self.client.get("/app/assets/js/dineiq-demo.js")
+        self.assertEqual(asset.status_code, 200)
+        self.assertIn("grain-forecast", asset.text)
+
     def test_export_is_authenticated_and_audited(self):
         path = "/api/exports/menu?format=csv"
         self.assertEqual(self.client.get(path).status_code, 401)
@@ -178,10 +208,14 @@ class DynamicAppTests(unittest.TestCase):
         self.assertEqual(made.status_code, 200)
         self.assertEqual(self.client.put(f"/api/promotions/{made.json()['promotion_id']}",
                                          headers=self.manager, json=promotion).status_code, 200)
+        scoped = self.client.post("/api/promotions", headers=self.manager,
+                                  json={**promotion, "location_id": 1})
+        self.assertEqual(scoped.status_code, 200)
         for method, url in ((self.client.post, "/api/promotions"),
                             (self.client.put, f"/api/promotions/{made.json()['promotion_id']}")):
             for change in ({"start_date": "not-a-date"}, {"end_date": "2024-12-31"},
                            {"applicable_item_id": 999999}, {"applicable_category_id": 999999},
+                           {"location_id": 999999},
                            {"discount_percent": float("inf")}):
                 self.assertEqual(method(url, headers=self.manager,
                     content=json.dumps({**promotion, **change})).status_code, 422)
@@ -200,6 +234,26 @@ class DynamicAppTests(unittest.TestCase):
         with database.connection() as db:
             with self.assertRaises(Exception):
                 db.execute("INSERT INTO inventory_records(location_id,item_id,stock_quantity,reorder_level) VALUES(999999,999999,1,1)")
+
+    def test_item_campaign_what_if_excludes_same_category_item(self):
+        invalid = self.client.post("/api/what-if", headers=self.manager,
+            json={"item_id": 21, "promotion_id": 1})
+        self.assertEqual(invalid.status_code, 404)
+        valid = self.client.post("/api/what-if", headers=self.manager,
+            json={"item_id": 4, "promotion_id": 1})
+        self.assertEqual(valid.status_code, 200)
+
+    def test_location_campaign_visibility(self):
+        base = {"promotion_name": "Scoped campaign", "discount_percent": 10,
+                "start_date": "2025-06-01", "end_date": "2025-06-30", "applicable_item_id": 4}
+        first = self.client.post("/api/promotions", headers=self.manager, json={**base, "location_id": 1})
+        second = self.client.post("/api/promotions", headers=self.manager, json={**base, "location_id": 2})
+        self.assertEqual(first.status_code, 200)
+        self.assertEqual(second.status_code, 200)
+        visible = {row["Promotion_ID"] for row in self.client.get(
+            "/api/analytics/promotions", headers=self.regional_manager).json()["campaigns"]}
+        self.assertIn(first.json()["promotion_id"], visible)
+        self.assertNotIn(second.json()["promotion_id"], visible)
 
     def test_recommendation_evidence_and_job_lifecycle(self):
         result = self.client.get("/api/analytics/recommendations", headers=self.admin)

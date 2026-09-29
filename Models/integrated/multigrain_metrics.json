@@ -1,0 +1,194 @@
+{
+  "model_version": "python-multigrain-rf-v1",
+  "dataset_version": "phase1-v1-clean-v3",
+  "features": [
+    "Entity_ID",
+    "day_of_week",
+    "month",
+    "lag_1",
+    "lag_7",
+    "rolling_7"
+  ],
+  "horizons": [
+    1,
+    7,
+    14,
+    30
+  ],
+  "grains": {
+    "location": {
+      "training_range": {
+        "start": "2025-01-08",
+        "end": "2025-11-02"
+      },
+      "validation_range": {
+        "start": "2025-11-03",
+        "end": "2025-12-02"
+      },
+      "test_range": {
+        "start": "2025-12-03",
+        "end": "2026-01-01"
+      },
+      "validation": {
+        "1": {
+          "cases": 20,
+          "mae": 31.7629346139971,
+          "baseline_mae": 38.0
+        },
+        "7": {
+          "cases": 20,
+          "mae": 55.33191436688312,
+          "baseline_mae": 58.7
+        },
+        "14": {
+          "cases": 20,
+          "mae": 47.59261190892442,
+          "baseline_mae": 54.85
+        },
+        "30": {
+          "cases": 20,
+          "mae": 89.0628737998113,
+          "baseline_mae": 99.05
+        }
+      },
+      "test": {
+        "1": {
+          "cases": 20,
+          "mae": 49.545271735209234,
+          "baseline_mae": 106.45
+        },
+        "7": {
+          "cases": 20,
+          "mae": 50.848800550144304,
+          "baseline_mae": 76.0
+        },
+        "14": {
+          "cases": 20,
+          "mae": 42.0648418109668,
+          "baseline_mae": 62.35
+        },
+        "30": {
+          "cases": 20,
+          "mae": 226.6468471320346,
+          "baseline_mae": 128.95
+        }
+      }
+    },
+    "item": {
+      "training_range": {
+        "start": "2025-01-08",
+        "end": "2025-11-02"
+      },
+      "validation_range": {
+        "start": "2025-11-03",
+        "end": "2025-12-02"
+      },
+      "test_range": {
+        "start": "2025-12-03",
+        "end": "2026-01-01"
+      },
+      "validation": {
+        "1": {
+          "cases": 149,
+          "mae": 4.176794149176699,
+          "baseline_mae": 5.516778523489933
+        },
+        "7": {
+          "cases": 149,
+          "mae": 6.601003717326012,
+          "baseline_mae": 8.61744966442953
+        },
+        "14": {
+          "cases": 149,
+          "mae": 6.661080351415922,
+          "baseline_mae": 8.664429530201343
+        },
+        "30": {
+          "cases": 149,
+          "mae": 12.550997841178212,
+          "baseline_mae": 13.295302013422818
+        }
+      },
+      "test": {
+        "1": {
+          "cases": 149,
+          "mae": 11.363805052609582,
+          "baseline_mae": 15.073825503355705
+        },
+        "7": {
+          "cases": 149,
+          "mae": 9.3969910887025,
+          "baseline_mae": 7.10738255033557
+        },
+        "14": {
+          "cases": 149,
+          "mae": 9.95472452510204,
+          "baseline_mae": 7.342281879194631
+        },
+        "30": {
+          "cases": 149,
+          "mae": 26.675424987018946,
+          "baseline_mae": 17.308724832214764
+        }
+      }
+    },
+    "category": {
+      "training_range": {
+        "start": "2025-01-08",
+        "end": "2025-11-02"
+      },
+      "validation_range": {
+        "start": "2025-11-03",
+        "end": "2025-12-02"
+      },
+      "test_range": {
+        "start": "2025-12-03",
+        "end": "2026-01-01"
+      },
+      "validation": {
+        "1": {
+          "cases": 10,
+          "mae": 28.70791421772675,
+          "baseline_mae": 24.2
+        },
+        "7": {
+          "cases": 10,
+          "mae": 62.56997097347096,
+          "baseline_mae": 72.2
+        },
+        "14": {
+          "cases": 10,
+          "mae": 38.908183802308805,
+          "baseline_mae": 54.9
+        },
+        "30": {
+          "cases": 10,
+          "mae": 173.83090238927744,
+          "baseline_mae": 162.9
+        }
+      },
+      "test": {
+        "1": {
+          "cases": 10,
+          "mae": 99.28849377705625,
+          "baseline_mae": 205.1
+        },
+        "7": {
+          "cases": 10,
+          "mae": 99.12262404956157,
+          "baseline_mae": 35.2
+        },
+        "14": {
+          "cases": 10,
+          "mae": 113.1021077949828,
+          "baseline_mae": 34.3
+        },
+        "30": {
+          "cases": 10,
+          "mae": 460.8395358322233,
+          "baseline_mae": 257.9
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "promotion:1:all",
+    "type": "promotion",
+    "entity_id": 1,
+    "action": "Review campaign: units rose while contribution fell",
+    "priority": "Critical",
+    "evidence": {
+      "before": {
+        "quantity": 258.0,
+        "net_revenue": 232200.0,
+        "contribution": 64500.0,
+        "orders": 185,
+        "aov": 1255.1351351351352,
+        "customers": 184
+      },
+      "during": {
+        "quantity": 2979.0,
+        "net_revenue": 1687500.0,
+        "contribution": -248850.0,
+        "orders": 1022,
+        "aov": 1651.174168297456,
+        "customers": 994
+      }
+    },
+    "reason": "Equal-window observational promotion trap",
+    "rule_version": "evidence-rules-v2",
+    "dataset_version": "phase1-v1-clean-v3"
+  }
+]

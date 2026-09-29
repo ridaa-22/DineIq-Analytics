@@ -4,15 +4,30 @@ Run from the repository root: python -m Python_Pipeline.build_processed
 """
 
 import json
+import hashlib
 import numpy as np
 from pathlib import Path
 
 import pandas as pd
+from Python_Pipeline.business_time import local_dates, parse_order_timestamps
 
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw" / "phase1-v1"
 OUT = ROOT / "data" / "processed" / "phase1-v1"
+PARQUET_OPTIONS = {"engine": "pyarrow", "coerce_timestamps": "us", "allow_truncated_timestamps": True}
+SPARK_SNAPSHOT_NAMES = ("orders_validated", "customers_validated", "order_items_validated",
+    "menu_items_validated", "menu_categories_validated", "restaurant_locations_validated",
+    "promotions_validated", "pricing_history_validated", "ratings", "inventory_validated",
+    "wastage", "sales")
+
+
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1048576), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def read(name):
@@ -95,7 +110,7 @@ def build():
         "wastage_unknown_location_ids": int((~wastage.Location_ID.isin(locations.Location_ID)).sum()),
     }
 
-    orders["Order_DateTime"] = pd.to_datetime(orders["Order_DateTime"], errors="coerce", utc=True).dt.tz_convert("Asia/Karachi")
+    orders["Order_DateTime"] = parse_order_timestamps(orders["Order_DateTime"])
     bad = orders.Order_ID.isna() | orders.Customer_ID.isna() | orders.Location_ID.isna() | orders.Order_DateTime.isna()
     reject("Orders", orders, "Order_ID", "required_order_fields", bad, "Missing ID or invalid timestamp")
     orders = orders.drop_duplicates("Order_ID", keep="first")
@@ -104,6 +119,10 @@ def build():
     bad = ~orders.Customer_ID.isin(customers.Customer_ID) | ~orders.Location_ID.isin(locations.Location_ID)
     reject("Orders", orders, "Order_ID", "known_order_references", bad, "Unknown customer or location")
     orders = orders[~bad]
+    customers.drop_duplicates("Customer_ID").to_parquet(OUT / "customers_validated.parquet", index=False, **PARQUET_OPTIONS)
+    locations.drop_duplicates("Location_ID").to_parquet(OUT / "restaurant_locations_validated.parquet", index=False, **PARQUET_OPTIONS)
+    read("Menu_Categories").drop_duplicates("Category_ID").to_parquet(
+        OUT / "menu_categories_validated.parquet", index=False, **PARQUET_OPTIONS)
     counts["valid_orders_all_statuses"] = len(orders)
     completed = orders[orders.Order_Status.eq("Completed")].copy()
     counts["completed_orders"] = len(completed)
@@ -116,6 +135,17 @@ def build():
     # Base_Price is a raw initial-list attribute; transaction Unit_Price is the
     # observed effective price. Keep an item when a valid price event exists.
     valid_menu = menu[menu.Cost.ge(0) & menu.Item_ID.isin(priced_items)].drop_duplicates("Item_ID")
+    valid_menu.to_parquet(OUT / "menu_items_validated.parquet", index=False, **PARQUET_OPTIONS)
+    price_history[price_history.Price.gt(0) & price_history.Item_ID.isin(valid_menu.Item_ID)].drop_duplicates(
+        "Pricing_ID").to_parquet(OUT / "pricing_history_validated.parquet", index=False, **PARQUET_OPTIONS)
+    promotions = read("Promotions").drop_duplicates("Promotion_ID")
+    promotions = promotions[promotions.Applicable_Item_ID.isin(valid_menu.Item_ID) &
+                            promotions.Applicable_Category_ID.isin(valid_menu.Category_ID)]
+    promotions.to_parquet(OUT / "promotions_validated.parquet", index=False, **PARQUET_OPTIONS)
+    inventory = read("Inventory").drop_duplicates("Inventory_ID")
+    inventory = inventory[inventory.Item_ID.isin(valid_menu.Item_ID) &
+                          inventory.Location_ID.isin(locations.Location_ID)]
+    inventory.to_parquet(OUT / "inventory_validated.parquet", index=False, **PARQUET_OPTIONS)
     counts["valid_menu_items"] = len(valid_menu)
     for field in ("Quantity", "Unit_Price", "Discount_Applied"):
         lines[field] = pd.to_numeric(lines[field], errors="coerce")
@@ -130,26 +160,27 @@ def build():
     bad = ~lines.Item_ID.isin(valid_menu.Item_ID) | ~lines.Order_ID.isin(orders.Order_ID)
     reject("Order_Items", lines, "Order_Item_ID", "known_line_references", bad, "Unknown order or valid item")
     lines = lines[~bad]
+    lines.to_parquet(OUT / "order_items_validated.parquet", index=False, **PARQUET_OPTIONS)
     sales = lines.merge(completed, on="Order_ID", how="inner", validate="many_to_one")
     sales = sales.merge(valid_menu[["Item_ID", "Item_Name", "Category_ID", "Cost"]], on="Item_ID", validate="many_to_one")
     sales["Net_Revenue"] = sales.Quantity * sales.Unit_Price - sales.Discount_Applied
     sales["Cost_Total"] = sales.Quantity * sales.Cost
     sales["Contribution"] = sales.Net_Revenue - sales.Cost_Total
-    sales["Date"] = sales.Order_DateTime.dt.date.astype(str)
+    sales["Date"] = local_dates(sales.Order_DateTime).astype(str)
     counts["clean_completed_lines"] = len(sales)
-    sales.to_parquet(OUT / "sales.parquet", index=False)
+    sales.to_parquet(OUT / "sales.parquet", index=False, **PARQUET_OPTIONS)
     partitions = {}
     for location_id, subset in sales.groupby("Location_ID"):
         destination = OUT / "sales_by_location" / f"Location_ID={int(location_id)}"
         destination.mkdir(parents=True, exist_ok=True)
-        subset.drop(columns="Location_ID").to_parquet(destination / "part.parquet", index=False)
+        subset.drop(columns="Location_ID").to_parquet(destination / "part.parquet", index=False, **PARQUET_OPTIONS)
         partitions[str(int(location_id))] = len(subset)
     counts["partitioned_sales_lines"] = sum(partitions.values())
     (OUT / "partition_strategy.json").write_text(json.dumps({
         "dataset": "sales_by_location", "partition_column": "Location_ID",
         "purpose": "Spark location pruning on clean completed sale lines",
         "rows_by_location": partitions}, indent=2), encoding="utf-8")
-    orders.to_parquet(OUT / "orders_validated.parquet", index=False)
+    orders.to_parquet(OUT / "orders_validated.parquet", index=False, **PARQUET_OPTIONS)
 
     item = sales.groupby("Item_ID").agg(Item_Name=("Item_Name", "first"), Category_ID=("Category_ID", "first"),
         Sales_Quantity=("Quantity", "sum"), Revenue=("Net_Revenue", "sum"), Cost=("Cost_Total", "sum"),
@@ -164,10 +195,10 @@ def build():
     reject("Ratings", rating, "Rating_ID", "valid_rating_references", bad, "Invalid stars, order, or item")
     rating = rating[rating.Stars.between(1, 5) & rating.Order_ID.isin(completed.Order_ID)
                     & rating.Item_ID.isin(valid_menu.Item_ID)]
-    rating.to_parquet(OUT / "ratings.parquet", index=False)
+    rating.to_parquet(OUT / "ratings.parquet", index=False, **PARQUET_OPTIONS)
     item = item.merge(rating.groupby("Item_ID").Stars.agg(["mean", "count"]).reset_index().rename(
         columns={"mean": "Average_Rating", "count": "Rating_Count"}), on="Item_ID", how="left")
-    item.to_parquet(OUT / "menu_metrics.parquet", index=False)
+    item.to_parquet(OUT / "menu_metrics.parquet", index=False, **PARQUET_OPTIONS)
 
     order_totals = sales.groupby(["Order_ID", "Customer_ID", "Location_ID"]).Net_Revenue.sum().reset_index()
     rfm = sales.groupby("Customer_ID").agg(Last_Order=("Order_DateTime", "max"),
@@ -175,12 +206,12 @@ def build():
         Preferred_Location=("Location_ID", lambda x: x.mode().iloc[0])).reset_index()
     snapshot = sales.Order_DateTime.max() + pd.Timedelta(days=1)
     rfm["Recency_Days"] = (snapshot - rfm.Last_Order).dt.days
-    rfm.to_parquet(OUT / "customer_rfm.parquet", index=False)
-    order_totals.to_parquet(OUT / "order_totals.parquet", index=False)
+    rfm.to_parquet(OUT / "customer_rfm.parquet", index=False, **PARQUET_OPTIONS)
+    order_totals.to_parquet(OUT / "order_totals.parquet", index=False, **PARQUET_OPTIONS)
     location_daily = sales.groupby(["Date", "Location_ID"]).agg(Demand=("Quantity", "sum"),
         Revenue=("Net_Revenue", "sum"), Contribution=("Contribution", "sum"),
         Orders=("Order_ID", "nunique")).reset_index()
-    location_daily.to_parquet(OUT / "location_daily.parquet", index=False)
+    location_daily.to_parquet(OUT / "location_daily.parquet", index=False, **PARQUET_OPTIONS)
 
     for field in ("Quantity_Wasted", "Cost_Impact", "Demand_Quantity", "Prepared_Quantity", "Quantity_Consumed"):
         wastage[field] = pd.to_numeric(wastage[field], errors="coerce")
@@ -196,7 +227,7 @@ def build():
         & wastage.Wastage_Date.notna() & wastage.Quantity_Wasted.ge(0) & wastage.Cost_Impact.ge(0)
         & wastage.Demand_Quantity.ge(0) & wastage.Prepared_Quantity.ge(0) & wastage.Quantity_Consumed.ge(0)
         & wastage.Quantity_Wasted.le(wastage.Prepared_Quantity)]
-    wastage.to_parquet(OUT / "wastage.parquet", index=False)
+    wastage.to_parquet(OUT / "wastage.parquet", index=False, **PARQUET_OPTIONS)
     counts["valid_wastage"] = len(wastage)
     counts["valid_ratings"] = len(rating)
     counts["quarantined_records"] = len(rejections)
@@ -211,6 +242,11 @@ def build():
         "partitioning": "Persist identical clean sales by Location_ID for Spark SQL; retain one-file Parquet for Python",
     }
     (OUT / "quality_report.json").write_text(json.dumps(counts, indent=2), encoding="utf-8")
+    (OUT / "spark_snapshot_manifest.json").write_text(json.dumps({
+        "dataset_version": counts["dataset_version"],
+        "source_raw_manifest_sha256": file_sha256(RAW / "manifest.json"),
+        "files": {f"{name}.parquet": file_sha256(OUT / f"{name}.parquet")
+                  for name in SPARK_SNAPSHOT_NAMES}}, indent=2), encoding="utf-8")
     print(json.dumps(counts, indent=2))
 
 

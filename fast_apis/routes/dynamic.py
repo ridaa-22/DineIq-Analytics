@@ -4,6 +4,7 @@ import json
 from datetime import date
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 import pandas as pd
 import joblib
@@ -15,6 +16,9 @@ from fast_apis.services import auth_service as auth
 from Python_Pipeline.menu_scoring import classify_items
 from Python_Pipeline.train_customer_segments import features as rfm_features
 from Python_Pipeline.business_windows import promotion_trap, sales_metrics, sensitivity
+from Python_Pipeline.business_time import local_dates, local_day_start, local_day_after, parse_order_timestamps
+from Python_Pipeline.campaign_eligibility import get_eligible_sales_for_promotion
+from Python_Pipeline.forecast_features import recursive_forecast
 
 router = APIRouter(prefix="/api")
 DATA = database.PROJECT_ROOT / "data" / "processed" / "phase1-v1"
@@ -85,10 +89,13 @@ def sales_for(user, location_id=None, date_from=None, date_to=None):
     locations = scope(user, location_id)
     if locations is not None:
         sales = sales[sales.Location_ID.isin(locations)]
-    if date_from:
-        sales = sales[sales.Date.ge(date_from)]
-    if date_to:
-        sales = sales[sales.Date.le(date_to)]
+    if date_from or date_to:
+        dates = local_dates(sales.Order_DateTime)
+        if date_from:
+            sales = sales[dates.ge(date.fromisoformat(str(date_from)))]
+            dates = dates.loc[sales.index]
+        if date_to:
+            sales = sales[dates.le(date.fromisoformat(str(date_to)))]
     return sales
 
 
@@ -101,7 +108,7 @@ def orders(location_id: int | None = None, date_from: date | None = None, date_t
     allowed = scope(user, location_id)
     if allowed is not None:
         source = source[source.Location_ID.isin(allowed)]
-    dates = source.Order_DateTime.dt.date
+    dates = local_dates(source.Order_DateTime)
     if date_from is not None:
         source = source[dates.ge(date_from)]
         dates = dates.loc[source.index]
@@ -309,7 +316,52 @@ def wastage_forecast(location_id: int | None = None, risk: str | None = None,
 
 @router.get("/analytics/forecast")
 def forecast(location_id: int | None = None, limit: int = Query(100, ge=1, le=600),
-             offset: int = Query(0, ge=0), user=Depends(auth.current_user)):
+             offset: int = Query(0, ge=0), user=Depends(auth.current_user),
+             grain: Literal["location", "item", "category"] | None = None,
+             entity_id: int | None = Query(None, gt=0), horizon: int = Query(7, ge=1, le=30),
+             mode: Literal["future", "backtest"] = "future"):
+    if grain is not None:
+        if horizon not in (1, 7, 14, 30):
+            raise HTTPException(422, "Supported horizons are 1, 7, 14, and 30 days")
+        if grain == "location":
+            if entity_id is None:
+                entity_id = location_id
+            elif location_id is not None and entity_id != location_id:
+                raise HTTPException(422, "Location and entity IDs disagree")
+            if entity_id is None:
+                raise HTTPException(422, "Location entity_id is required")
+            scope(user, entity_id)
+        else:
+            if location_id is not None:
+                raise HTTPException(422, "Item and category forecasts are global; omit location_id")
+            if "REGIONAL_MANAGER" in user["roles"] and "ADMIN" not in user["roles"]:
+                raise HTTPException(403, "Global item/category forecasts are not available to regional accounts")
+            if entity_id is None:
+                raise HTTPException(422, "entity_id is required")
+        metrics_path = MODELS / "multigrain_metrics.json"
+        artifact_path = MODELS / f"multigrain_{grain}.joblib"
+        if not metrics_path.is_file() or not artifact_path.is_file():
+            raise HTTPException(503, "Grain forecasts not generated")
+        artifact = joblib.load(artifact_path)
+        if entity_id not in artifact["last_history"]:
+            raise HTTPException(404, "Forecast entity has no trained history")
+        metrics = json.loads(metrics_path.read_text(encoding="utf-8"))["grains"][grain]["test"][str(horizon)]
+        if mode == "backtest":
+            holdout = pd.read_parquet(MODELS / "multigrain_holdout.parquet")
+            data = holdout[(holdout.Grain.eq(grain.upper())) &
+                           (holdout.Entity_ID.eq(entity_id)) & (holdout.Lead.le(horizon))].copy()
+            if data.empty:
+                raise HTTPException(422, "Entity lacks seven pre-test days for recursive backtesting")
+        else:
+            start = pd.Timestamp(artifact["last_date"]) + pd.Timedelta(days=1)
+            data = recursive_forecast(artifact["model"],
+                                      {entity_id: artifact["last_history"][entity_id]}, start, horizon)
+            data["Actual"] = None
+        data = data.sort_values("Date")
+        return {"grain": grain.upper(), "entity_id": entity_id, "horizon": horizon, "mode": mode,
+                "model_version": artifact["version"], "dataset_version": artifact["dataset_version"],
+                "status": "EXPERIMENTAL", "metrics": metrics, "total": len(data), "forecasts": records(data),
+                "method": "Recursive forecast; later leads use prior predictions, never future actual demand"}
     path = MODELS / "dual_pipeline_comparison.csv"
     if not path.is_file():
         raise HTTPException(503, "Comparison not generated")
@@ -350,7 +402,7 @@ def pricing(item_id: int | None = None, location_id: int | None = None,
     changes["Previous_List_Price"] = changes.groupby("item_id").price.shift(1)
     changed = changes[changes.Previous_List_Price.notna() & changes.price.ne(changes.Previous_List_Price)]
     for row in changed.itertuples():
-        date = pd.Timestamp(row.effective_date, tz="UTC")
+        date = local_day_start(row.effective_date)
         item_sales = sales[sales.Item_ID.eq(row.item_id)]
         before = item_sales[item_sales.Order_DateTime.ge(date - pd.Timedelta(days=30)) & item_sales.Order_DateTime.lt(date)]
         after = item_sales[item_sales.Order_DateTime.ge(date) & item_sales.Order_DateTime.lt(date + pd.Timedelta(days=30))]
@@ -389,13 +441,14 @@ def promotions(location_id: int | None = None, user=Depends(auth.current_user)):
     lower, upper = sales.Order_DateTime.min(), sales.Order_DateTime.max()
     outputs = []
     for campaign in campaigns:
-        eligible = sales[(sales.Item_ID.eq(campaign["applicable_item_id"])) |
-                         (sales.Category_ID.eq(campaign["applicable_category_id"]))]
-        start = pd.Timestamp(campaign["start_date"], tz="UTC")
-        end = pd.Timestamp(campaign["end_date"], tz="UTC") + pd.Timedelta(days=1)
+        if campaign.get("location_id") is not None and allowed is not None and campaign["location_id"] not in allowed:
+            continue
+        eligible = get_eligible_sales_for_promotion(sales, campaign)
+        start = local_day_start(campaign["start_date"])
+        end = local_day_after(campaign["end_date"])
         span = end - start
         before_window = eligible[eligible.Order_DateTime.ge(start - span) & eligible.Order_DateTime.lt(start)]
-        during_window = eligible[eligible.Order_DateTime.ge(start) & eligible.Order_DateTime.lt(end)]
+        during_window = get_eligible_sales_for_promotion(sales, campaign, during=True)
         after_window = eligible[eligible.Order_DateTime.ge(end) & eligible.Order_DateTime.lt(end + span)]
         before = sales_metrics(before_window) if start - span >= lower else None
         during = sales_metrics(during_window)
@@ -403,6 +456,8 @@ def promotions(location_id: int | None = None, user=Depends(auth.current_user)):
         tagged = during_window[during_window.Promotion_ID.eq(campaign["promotion_id"])]
         item_ids = eligible.Item_ID.unique()
         campaign_waste = waste[waste.Item_ID.isin(item_ids)]
+        if campaign.get("location_id") is not None:
+            campaign_waste = campaign_waste[campaign_waste.Location_ID.eq(campaign["location_id"])]
         during_waste = campaign_waste[campaign_waste.Wastage_Date.ge(start.tz_localize(None)) &
                                       campaign_waste.Wastage_Date.lt(end.tz_localize(None))]
         repeat = during_window.groupby("Customer_ID").Order_ID.nunique().gt(1).sum() if not during_window.empty else 0
@@ -412,12 +467,13 @@ def promotions(location_id: int | None = None, user=Depends(auth.current_user)):
             "revenue": during["net_revenue"], "contribution": during["contribution"],
             "orders": during["orders"], "customers": during["customers"], "aov": during["aov"],
             "tagged_campaign_orders": int(tagged.Order_ID.nunique()),
+            "eligible_item_count": int(len(item_ids)),
             "repeat_customers": int(repeat), "wastage_cost": float(during_waste.Cost_Impact.sum()),
             "before": before, "during": during, "after": after,
             "promotion_trap": promotion_trap(before, during) if before else None,
             "comparison_available": before is not None})
     return {"campaigns": outputs,
-            "method": "Equal before/during/after windows for eligible item/category; trap is sales-up/contribution-down; observational only"}
+            "method": "Asia/Karachi equal before/during/after windows for item, category, or global target intersected with location; trap is sales-up/contribution-down; observational only"}
 
 
 @router.get("/analytics/anomalies")
@@ -437,7 +493,7 @@ def anomalies(location_id: int | None = None, user=Depends(auth.current_user)):
     ratings = frame("ratings")
     eligible = sales[["Order_ID", "Item_ID"]].drop_duplicates()
     ratings = ratings.merge(eligible, on=["Order_ID", "Item_ID"], how="inner")
-    ratings["Rating_Day"] = pd.to_datetime(ratings.Rating_Date, errors="coerce", utc=True).dt.date.astype(str)
+    ratings["Rating_Day"] = local_dates(parse_order_timestamps(ratings.Rating_Date)).astype(str)
     daily_ratings = ratings.groupby(["Item_ID", "Rating_Day"], as_index=False).agg(
         count=("Stars", "size"), average_stars=("Stars", "mean"), five_star_rate=("Stars", lambda x: x.eq(5).mean()))
     baseline = daily_ratings.groupby("Item_ID").agg(item_daily_mean=("count", "mean"),
@@ -628,6 +684,7 @@ def predict_next_day(location_id: int, user=Depends(auth.current_user)):
 class Scenario(BaseModel):
     item_id: int
     location_id: int | None = None
+    promotion_id: int | None = None
     price_change_percent: float = Field(0, ge=-90, le=200)
     discount_change_percent: float = Field(0, ge=-100, le=100)
     demand_change_percent: float = Field(0, ge=-90, le=200)
@@ -639,6 +696,12 @@ class Scenario(BaseModel):
 def what_if(payload: Scenario, user=Depends(auth.require_roles("ADMIN", "MANAGER", "REGIONAL_MANAGER", "ANALYST"))):
     sales = sales_for(user, payload.location_id)
     own = sales[sales.Item_ID.eq(payload.item_id)]
+    if payload.promotion_id is not None:
+        with database.connection() as db:
+            row = db.execute("SELECT * FROM promotions WHERE promotion_id=?", (payload.promotion_id,)).fetchone()
+        if row is None:
+            raise HTTPException(422, "Unknown promotion")
+        own = get_eligible_sales_for_promotion(own, dict(row), during=True)
     if own.empty:
         raise HTTPException(404, "Item has no eligible sales in allowed scope")
     quantity = float(own.Quantity.sum())

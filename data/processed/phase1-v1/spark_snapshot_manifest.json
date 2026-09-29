@@ -1,0 +1,18 @@
+{
+  "dataset_version": "phase1-v1-clean-v3",
+  "source_raw_manifest_sha256": "f51977a3a2d0126c1507ff2b6b5c55bc5679cb95811ffd0c92e9acf3ff01be00",
+  "files": {
+    "orders_validated.parquet": "dc7553c6a15a78432aefb665e7c2a8261178eb4b3336ea93c0fa5d42de8d4b8a",
+    "customers_validated.parquet": "651fde9815fa5972fbb880a8ff7d0d0abb7c3774cacbf16f403f91ee52291ea5",
+    "order_items_validated.parquet": "95d327371da3cbe2241ffe0d43885fe9f89479a9d23d0d19839420a697c6e0bc",
+    "menu_items_validated.parquet": "5d07bd6a97f0efa43b73cc8b047b9f6c40b278ccb5c098f5ffaffb6e95ef3068",
+    "menu_categories_validated.parquet": "7d0eaa9382a34dfa15316cacf1d91d26e1bba8c13191028b55b56f78d8bbe8b5",
+    "restaurant_locations_validated.parquet": "0e1dcf0bbe5b56af863bd0deaa164dda3038b35f7f3bc83932e8dc885ae5135a",
+    "promotions_validated.parquet": "94f72c2fa2d4c0fdba348edfa7ec10aa6ea774f0cb3286266e0e959cb9fbbd91",
+    "pricing_history_validated.parquet": "5600947caae631b4d6eabcfc2a32c8489e17d990da2e559ef826464c9dfc7089",
+    "ratings.parquet": "8b23651a4208d38f4627354d22c337615c4e33f3717db905c185c5cda780d16a",
+    "inventory_validated.parquet": "ab722f3197f3f25e7d2a879ccf680683ea95a5a0f2d810359fd46fcabd847984",
+    "wastage.parquet": "fa5207551b06ac6e5859c3cd2a2ee675f20f557fa31221a2f53410f19e704537",
+    "sales.parquet": "b94dceee1075564419ab47965bdaa31ca315ca800ba59d2637c4e05bdad694c4"
+  }
+}

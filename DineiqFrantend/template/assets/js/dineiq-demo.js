@@ -1,6 +1,6 @@
 /* DineIQ application views; values come from authenticated FastAPI endpoints. */
 (function () {
-  const API = location.port === '8000' ? '' : 'http://127.0.0.1:8000';
+  const API = location.pathname.startsWith('/app/') ? '' : 'http://127.0.0.1:8000';
   const token = localStorage.getItem('authToken');
   if (!token) { location.replace('Login.html'); return; }
   let profile = {};
@@ -103,8 +103,11 @@
     view.innerHTML = title('Spark vs Python Forecast','Same unseen location-day cases; fixed 50-unit agreement tolerance') + select +
       '<div class="row">' + card('Cases',num(data.total)) + card('Spark MAE',num(data.summary.spark_mae)) +
       card('Python MAE',num(data.summary.python_mae)) + card('Agreement',num(data.summary.agreement_percentage) + '%') + '</div>' +
-      '<button class="btn btn-primary mb-3" id="predict-next">Predict next day for selected location</button><div id="next-prediction"></div>' + panel('Holdout predictions',table([
+      '<button class="btn btn-primary mb-3" id="predict-next">Predict next day for selected location</button><div id="next-prediction"></div>' +
+      panel('Demand forecast by grain',`<form id="grain-forecast"><div class="row"><div class="col-md-3"><label>Grain</label><select class="form-control" name="grain"><option value="location">Location</option><option value="item">Item</option><option value="category">Category</option></select></div><div class="col-md-3"><label>Entity ID</label><input class="form-control" type="number" min="1" name="entity_id" required value="1"></div><div class="col-md-3"><label>Horizon</label><select class="form-control" name="horizon"><option>1</option><option selected>7</option><option>14</option><option>30</option></select></div><div class="col-md-3"><label>View</label><select class="form-control" name="mode"><option value="future">Future</option><option value="backtest">Backtest</option></select></div></div><button class="btn btn-primary mt-3">Get forecast</button></form><div id="grain-result" class="mt-3"></div>`) +
+      panel('Holdout predictions',table([
         ['Case','Case_ID'],['Actual','Actual'],['Spark','Spark_Prediction'],['Python','Python_Prediction'],['Difference','Difference'],['Match','Match_Status'],['Spark version','Spark_Model_Version'],['Python version','Python_Model_Version']],data.forecasts)); bindLocation();
+    document.getElementById('grain-forecast').onsubmit = async e => { e.preventDefault(); const input = Object.fromEntries(new FormData(e.target)); const target = document.getElementById('grain-result'); target.textContent='Loading forecast...'; try { const result = await request('/api/analytics/forecast?' + q(input)); target.innerHTML = `<p>${esc(result.grain)} ${esc(result.entity_id)} · ${esc(result.horizon)} day(s) · ${esc(result.model_version)} · ${esc(result.dataset_version)}. ${esc(result.method)}</p><p>Test MAE ${num(result.metrics.mae)}; seasonal baseline MAE ${num(result.metrics.baseline_mae)} (${esc(result.metrics.cases)} entities).</p>` + table([['Date','Date'],['Lead','Lead'],['Actual','Actual'],['Prediction','Prediction'],['Baseline','Baseline']],result.forecasts); } catch(error) { target.textContent=error.message; } };
     document.getElementById('predict-next').onclick = async () => { const locationId = document.getElementById('location-filter').value; const target = document.getElementById('next-prediction'); if (!locationId) { target.textContent='Select a location first.'; return; } try { const result=await request('/api/models/forecast/predict?location_id='+encodeURIComponent(locationId),{method:'POST'}); target.innerHTML=panel('Next-day estimate',`<p>${esc(result.forecast_date)}: ${num(result.prediction)} demand units, ${esc(result.model_version)}. Estimate; actual unavailable.</p>`); } catch(error) { target.textContent=error.message; } };
   }
   async function showWhatIf() {
