@@ -1,0 +1,20 @@
+{
+  "python_location": {
+    "cases": 581,
+    "model_mae": 70.48401227967386,
+    "baseline_mae": 77.07917383820998,
+    "baseline": "observed lag 7"
+  },
+  "spark_location": {
+    "cases": 581,
+    "model_mae": 79.24595661593085,
+    "baseline_mae": 77.07917383820998,
+    "baseline": "observed lag 7"
+  },
+  "wastage_amount": {
+    "cases": 6149,
+    "model_mae": 1.0034807358700875,
+    "baseline_mae": 0.6527890713937226,
+    "baseline": "last observed wastage"
+  }
+}

@@ -1,6 +1,6 @@
 /* DineIQ application views; values come from authenticated FastAPI endpoints. */
 (function () {
-  const API = location.pathname.startsWith('/app/') ? '' : 'http://127.0.0.1:8000';
+  const API = '';
   const token = localStorage.getItem('authToken');
   if (!token) { location.replace('Login.html'); return; }
   let profile = {};
@@ -34,13 +34,16 @@
   }
   async function showDashboard() {
     const location_id = params.get('location_id') || '';
-    const [data, select] = await Promise.all([request('/api/dashboard/executive?' + q({location_id})), locationSelect()]);
+    const category_id = params.get('category_id') || '';
+    const [data, select, categories] = await Promise.all([request('/api/dashboard/executive?' + q({location_id,category_id})), locationSelect(),request('/api/menu/categories')]);
     view.innerHTML = title('Executive Dashboard', 'Completed transactions from cleaned phase1-v1 data') + select + '<div class="row">' +
       card('Net revenue', money(data.revenue)) + card('Contribution', money(data.contribution)) +
       card('Completed orders', num(data.orders)) + card('AOV', money(data.aov)) +
       card('Active customers', num(data.active_customers)) + card('Repeat customers', num(data.repeat_customers)) +
-      card('Wastage cost', money(data.wastage_cost)) + '</div>';
+      card('Wastage cost', money(data.wastage_cost)) + '</div>' +
+      `<label for="dashboard-category">Category</label><select class="form-control col-md-4 mb-3" id="dashboard-category"><option value="">All</option>${categories.map(row => `<option value="${row.category_id}" ${String(row.category_id) === category_id ? 'selected' : ''}>${esc(row.category_name)}</option>`).join('')}</select>`;
     bindLocation();
+    document.getElementById('dashboard-category').onchange = e => { const url = new URL(location.href); e.target.value ? url.searchParams.set('category_id',e.target.value) : url.searchParams.delete('category_id'); location.href = url; };
   }
   function bindLocation() { const el = document.getElementById('location-filter'); if (el) el.onchange = () => { const url = new URL(location.href); el.value ? url.searchParams.set('location_id', el.value) : url.searchParams.delete('location_id'); location.href = url; }; }
   async function showMenu() {
@@ -48,16 +51,19 @@
     const category_id = params.get('category_id') || '';
     const classification = params.get('classification') || '';
     const slow_status = params.get('slow_status') || '';
-    const [data, categories, select] = await Promise.all([request('/api/analytics/menu?' + q({location_id,category_id,classification,limit:150})), request('/api/menu/categories'), locationSelect()]);
-    const visible = slow_status ? data.items.filter(item => item.Slow_Moving_Status === slow_status) : data.items;
+    const filters = {location_id,category_id,classification,slow_status};
+    const [data, categories, select] = await Promise.all([request('/api/analytics/menu?' + q({...filters,limit:200})), request('/api/menu/categories'), locationSelect()]);
+    const visible = data.items;
     view.innerHTML = title('Menu Intelligence', data.method) + select +
       `<label for="category-filter">Category</label><select class="form-control col-md-4 mb-3" id="category-filter"><option value="">All</option>${categories.map(row => `<option value="${row.category_id}" ${String(row.category_id) === category_id ? 'selected' : ''}>${esc(row.category_name)}</option>`).join('')}</select>` +
       `<label for="class-filter">Classification</label><select class="form-control col-md-4 mb-3" id="class-filter">${['','Profit Driver','Volume Driver','Hidden Opportunity','Low Performer'].map(x => `<option value="${esc(x)}" ${x === classification ? 'selected' : ''}>${esc(x || 'All')}</option>`).join('')}</select>` +
       `<label for="slow-filter">Slow-moving status</label><select class="form-control col-md-4 mb-3" id="slow-filter">${['','SLOW_MOVER','WATCHLIST','HIDDEN_OPPORTUNITY','SEASONAL_REVIEW','INSUFFICIENT_HISTORY','NO_OBSERVED_SALES','NOT_SLOW'].map(x => `<option value="${esc(x)}" ${x === slow_status ? 'selected' : ''}>${esc(x || 'All')}</option>`).join('')}</select>` +
-      panel(`${visible.length} items`, table([['Item','Item_Name'],['Sales','sales'],['Net revenue','revenue',money],['Contribution','contribution',money],['Profit %','profit_percent'],['Rating','Average_Rating'],['Wastage units','wastage_quantity'],['Class','classification'],['Slow status','Slow_Moving_Status'],['Severity','Severity'],['History','History_Status'],['Reason','Reason'],['Action','Recommended_Action']], visible));
+      `<button class="btn btn-outline-light mb-3 mr-2" data-menu-export="csv">Export selected CSV</button><button class="btn btn-outline-light mb-3" data-menu-export="xlsx">Export selected Excel</button>` +
+      panel(`${data.total} items`, table([['Item','Item_Name'],['Sales','sales'],['Net revenue','revenue',money],['Contribution','contribution',money],['Profit %','profit_percent'],['Rating','Average_Rating'],['Wastage units','wastage_quantity'],['Class','classification'],['Slow status','Slow_Moving_Status'],['Severity','Severity'],['History','History_Status'],['Reason','Reason'],['Action','Recommended_Action']], visible));
     bindLocation(); document.getElementById('class-filter').onchange = e => { const url = new URL(location.href); e.target.value ? url.searchParams.set('classification',e.target.value) : url.searchParams.delete('classification'); location.href = url; };
     document.getElementById('category-filter').onchange = e => { const url = new URL(location.href); e.target.value ? url.searchParams.set('category_id',e.target.value) : url.searchParams.delete('category_id'); location.href = url; };
     document.getElementById('slow-filter').onchange = e => { const url = new URL(location.href); e.target.value ? url.searchParams.set('slow_status',e.target.value) : url.searchParams.delete('slow_status'); location.href = url; };
+    document.querySelectorAll('[data-menu-export]').forEach(button => button.onclick = async () => { const format=button.dataset.menuExport; const response=await fetch('/api/exports/menu?' + q({...filters,format}),{headers:{Authorization:'Bearer ' + token}}); if (!response.ok) { alert('Export unavailable'); return; } const blob=await response.blob(); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='dineiq-menu.'+format; a.click(); URL.revokeObjectURL(a.href); });
   }
   async function showCustomers() {
     const location_id = params.get('location_id') || '';
@@ -125,7 +131,10 @@
     const scoped = !path.endsWith('/basket');
     const [data, select] = await Promise.all([request(path + (scoped ? '?' + q({location_id}) : '')),
       scoped ? locationSelect() : Promise.resolve('')]);
-    view.innerHTML = title(heading, data.method || '') + select + panel(heading, table(columns, data[field]));
+    const rows = field === 'recommendations' ? (data[field] || []).map(row => ({...row,
+      evidence_text: Object.entries(row.evidence || {}).map(([key,value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`).join(' | ')})) : data[field];
+    const displayedColumns = field === 'recommendations' ? [...columns, ['Evidence','evidence_text']] : columns;
+    view.innerHTML = title(heading, data.method || '') + select + panel(heading, table(displayedColumns, rows));
     bindLocation();
   }
   async function showReports() {
@@ -133,7 +142,7 @@
     const select = await locationSelect();
     view.innerHTML = title('Authenticated Reports','Current cleaned analytics in CSV or Excel; exports are audited') + select + panel('Reports', names.map(([label,slug]) => `<div>${esc(label)} <button class="btn btn-outline-light m-1" data-report="${slug}" data-format="csv">CSV</button><button class="btn btn-outline-light m-1" data-report="${slug}" data-format="xlsx">Excel</button></div>`).join(''));
     bindLocation();
-    document.querySelectorAll('[data-report]').forEach(button => button.onclick = async () => { try { const format=button.dataset.format; const scope=q({format,location_id:params.get('location_id') || ''}); const response = await fetch(API + '/api/exports/' + button.dataset.report + '?' + scope,{headers:{Authorization:'Bearer ' + token}}); if (!response.ok) throw new Error('Report unavailable or forbidden'); const blob=await response.blob(); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=button.dataset.report+'.'+format; a.click(); URL.revokeObjectURL(a.href); } catch(error) { alert(error.message); } });
+    document.querySelectorAll('[data-report]').forEach(button => button.onclick = async () => { try { const format=button.dataset.format; const report=button.dataset.report; const scope=q({format,location_id:report === 'basket' ? '' : (params.get('location_id') || ''),...(report === 'menu' ? {category_id:params.get('category_id') || '',classification:params.get('classification') || '',slow_status:params.get('slow_status') || ''} : {})}); const response = await fetch(API + '/api/exports/' + report + '?' + scope,{headers:{Authorization:'Bearer ' + token}}); if (!response.ok) throw new Error('Report unavailable or forbidden'); const blob=await response.blob(); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=report+'.'+format; a.click(); URL.revokeObjectURL(a.href); } catch(error) { alert(error.message); } });
   }
   async function showJobs() {
     const [jobs, models] = await Promise.all([request('/api/jobs'), request('/api/models/versions')]);

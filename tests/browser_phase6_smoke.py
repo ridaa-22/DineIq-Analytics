@@ -1,6 +1,7 @@
 """Real browser smoke test for the grain/horizon controls against a local API."""
 
 import json
+import csv
 import os
 import socket
 import subprocess
@@ -22,7 +23,7 @@ def request(url, payload=None):
         return json.load(response)
 
 
-def run(phase7=False):
+def run(phase7=False, phase9=False):
     with tempfile.TemporaryDirectory() as temporary:
         with socket.socket() as listener:
             listener.bind(("127.0.0.1", 0))
@@ -88,6 +89,24 @@ def run(phase7=False):
                         page.goto(origin + "/app/index.html?view=recommendations")
                         page.get_by_text("slow_moving", exact=True).first.wait_for(timeout=30000)
                         checked.append("recommendations:slow_moving")
+                    if phase9:
+                        page.goto(origin + "/app/Menu-management.html")
+                        page.locator("#category-filter").wait_for(timeout=30000)
+                        page.locator("#category-filter").select_option("1")
+                        page.wait_for_url("**category_id=1", timeout=30000)
+                        page.locator("[data-menu-export=csv]").wait_for(timeout=30000)
+                        names = page.locator(".content-wrapper tbody tr td:first-child").all_inner_texts()
+                        with page.expect_download() as download_info:
+                            page.locator("[data-menu-export=csv]").click()
+                        export_path = download_info.value.path()
+                        with open(export_path, newline="", encoding="utf-8-sig") as source:
+                            exported = list(csv.DictReader(source))
+                        assert sorted(names) == sorted(row["Item_Name"] for row in exported)
+                        assert len(names) == 10
+                        checked.append("menu:category_export_equivalence")
+                        page.goto(origin + "/app/index.html?view=recommendations")
+                        page.get_by_text("Evidence", exact=True).first.wait_for(timeout=30000)
+                        checked.append("recommendations:evidence_visible")
                     print(json.dumps({"browser": "Chromium", "checked": checked, "passed": True}))
                 finally:
                     browser.close()

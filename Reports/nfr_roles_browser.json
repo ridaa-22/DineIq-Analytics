@@ -1,0 +1,64 @@
+{
+  "registration": {
+    "short_password_blocked_before_request": true,
+    "valid_signup_status": 200
+  },
+  "ADMIN": {
+    "login": true,
+    "dashboard": true,
+    "reports_nav": true,
+    "admin_users_status": 200,
+    "manage_category_status": 200,
+    "export_status": 200,
+    "location_2_status": 200,
+    "reports_page": true
+  },
+  "MANAGER": {
+    "login": true,
+    "dashboard": true,
+    "reports_nav": true,
+    "admin_users_status": 403,
+    "manage_category_status": 200,
+    "export_status": 200,
+    "location_2_status": 200,
+    "reports_page": true
+  },
+  "REGIONAL_MANAGER": {
+    "login": true,
+    "dashboard": true,
+    "reports_nav": true,
+    "admin_users_status": 403,
+    "manage_category_status": 403,
+    "export_status": 200,
+    "location_2_status": 403,
+    "reports_page": true
+  },
+  "ANALYST": {
+    "login": true,
+    "dashboard": true,
+    "reports_nav": true,
+    "admin_users_status": 403,
+    "manage_category_status": 403,
+    "export_status": 200,
+    "location_2_status": 200,
+    "reports_page": true
+  },
+  "responsive": {
+    "1366x768": {
+      "login_form_visible": true,
+      "login_horizontal_overflow": false,
+      "dashboard_visible": true,
+      "dashboard_horizontal_overflow": false,
+      "menu_filter_visible": true,
+      "menu_horizontal_overflow": false
+    },
+    "390x844": {
+      "login_form_visible": true,
+      "login_horizontal_overflow": false,
+      "dashboard_visible": true,
+      "dashboard_horizontal_overflow": false,
+      "menu_filter_visible": true,
+      "menu_horizontal_overflow": false
+    }
+  }
+}

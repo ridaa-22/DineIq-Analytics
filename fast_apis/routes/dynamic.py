@@ -13,6 +13,7 @@ from pydantic import BaseModel, Field
 
 from fast_apis import database
 from fast_apis.services import auth_service as auth
+from fast_apis.services.analytics_filters import checked_filters
 from Python_Pipeline.menu_scoring import classify_items
 from Python_Pipeline.slow_moving import analyze_slow_moving
 from Python_Pipeline.train_customer_segments import features as rfm_features
@@ -31,7 +32,10 @@ def frame(name):
     path = DATA / f"{name}.parquet"
     if not path.is_file():
         raise HTTPException(503, f"Processed {name} data unavailable; run build_processed")
-    return pd.read_parquet(path)
+    try:
+        return pd.read_parquet(path)
+    except (OSError, ValueError) as exc:
+        raise HTTPException(503, f"Processed {name} data unavailable") from exc
 
 
 def wastage_frame():
@@ -120,7 +124,8 @@ def scope(user, location_id):
     return [allowed] if allowed is not None else None
 
 
-def sales_for(user, location_id=None, date_from=None, date_to=None):
+def sales_for(user, location_id=None, date_from=None, date_to=None, item_id=None,
+              category_id=None, channel=None, promotion_id=None):
     sales = frame("sales")
     locations = scope(user, location_id)
     if locations is not None:
@@ -132,6 +137,18 @@ def sales_for(user, location_id=None, date_from=None, date_to=None):
             dates = dates.loc[sales.index]
         if date_to:
             sales = sales[dates.le(date.fromisoformat(str(date_to)))]
+    if item_id is not None:
+        sales = sales[sales.Item_ID.eq(item_id)]
+    if category_id is not None:
+        sales = sales[sales.Category_ID.eq(category_id)]
+    if channel is not None:
+        sales = sales[sales.Channel.eq(channel)]
+    if promotion_id is not None:
+        with database.connection() as db:
+            campaign = db.execute("SELECT * FROM promotions WHERE promotion_id=?", (promotion_id,)).fetchone()
+        if campaign is None:
+            raise HTTPException(404, "Promotion not found")
+        sales = get_eligible_sales_for_promotion(sales, dict(campaign), during=True)
     return sales
 
 
@@ -164,9 +181,14 @@ def orders(location_id: int | None = None, date_from: date | None = None, date_t
 
 
 @router.get("/dashboard/executive")
-def executive(location_id: int | None = None, date_from: str | None = None, date_to: str | None = None,
+def executive(location_id: int | None = None, date_from: date | None = None, date_to: date | None = None,
+              item_id: int | None = None, category_id: int | None = None,
+              channel: str | None = None, promotion_id: int | None = None,
               user=Depends(auth.current_user)):
-    sales = sales_for(user, location_id, date_from, date_to)
+    filters = checked_filters("dashboard", location_id=location_id, date_from=date_from,
+        date_to=date_to, item_id=item_id, category_id=category_id, channel=channel,
+        promotion_id=promotion_id)
+    sales = sales_for(user, **filters.model_dump(exclude_none=True))
     if sales.empty:
         return {"dataset_version": "phase1-v1-clean-v3", "orders": 0, "revenue": 0, "contribution": 0}
     order_counts = sales.groupby("Customer_ID").Order_ID.nunique()
@@ -179,6 +201,11 @@ def executive(location_id: int | None = None, date_from: str | None = None, date
         wastage = wastage[wastage.Wastage_Date.ge(pd.Timestamp(date_from))]
     if date_to:
         wastage = wastage[wastage.Wastage_Date.le(pd.Timestamp(date_to))]
+    if item_id is not None:
+        wastage = wastage[wastage.Item_ID.eq(item_id)]
+    if category_id is not None:
+        items = frame("menu_items_validated")
+        wastage = wastage[wastage.Item_ID.isin(items.loc[items.Category_ID.eq(category_id), "Item_ID"])]
     return {"dataset_version": "phase1-v1-clean-v3", "orders": int(orders),
             "revenue": round(float(sales.Net_Revenue.sum()), 2),
             "contribution": round(float(sales.Contribution.sum()), 2),
@@ -191,15 +218,40 @@ def executive(location_id: int | None = None, date_from: str | None = None, date
 
 @router.get("/analytics/menu")
 def menu(location_id: int | None = None, category_id: int | None = None, classification: str | None = None,
+         date_from: date | None = None, date_to: date | None = None, item_id: int | None = None,
+         channel: str | None = None, promotion_id: int | None = None,
+         performance_class: str | None = None, rating: float | None = None,
+         slow_status: str | None = None,
          limit: int = Query(50, ge=1, le=200), offset: int = Query(0, ge=0), user=Depends(auth.current_user)):
-    sales = sales_for(user, location_id)
-    if sales.empty:
-        grouped = classify_items(include_unsold_menu_items(pd.DataFrame()))
-        grouped = add_slow_moving_evidence(grouped, sales, user, location_id)
+    if classification and performance_class and classification != performance_class:
+        raise HTTPException(422, "Conflicting performance classes")
+    filters = checked_filters("menu", location_id=location_id, category_id=category_id,
+        date_from=date_from, date_to=date_to, item_id=item_id, channel=channel,
+        promotion_id=promotion_id, performance_class=performance_class or classification,
+        rating=rating, slow_status=slow_status)
+    sales = sales_for(user, location_id=location_id, date_from=date_from, date_to=date_to,
+        channel=channel, promotion_id=promotion_id)
+    classification = filters.performance_class
+    def selected(grouped):
         if category_id is not None:
             grouped = grouped[grouped.Category_ID.eq(category_id)]
-        if classification and not grouped.empty:
+        if item_id is not None:
+            grouped = grouped[grouped.Item_ID.eq(item_id)]
+        if classification:
             grouped = grouped[grouped.classification.eq(classification)]
+        if rating is not None:
+            grouped = grouped[grouped.Average_Rating.ge(rating)]
+        if slow_status is not None:
+            grouped = grouped[grouped.Slow_Moving_Status.eq(slow_status)]
+        return grouped
+    if sales.empty:
+        grouped = include_unsold_menu_items(pd.DataFrame())
+        if grouped.empty:
+            return {"total": 0, "items": [],
+                    "method": "No observed sales in the selected scope or period"}
+        grouped = classify_items(grouped)
+        grouped = add_slow_moving_evidence(grouped, sales, user, location_id)
+        grouped = selected(grouped)
         return {"total": len(grouped), "items": records(grouped.iloc[offset:offset + limit]),
                 "method": "Multifactor descriptive classes and slow-moving evidence; zero-history items are provisional"}
     grouped = sales.groupby(["Item_ID", "Item_Name", "Category_ID"], as_index=False).agg(
@@ -236,10 +288,7 @@ def menu(location_id: int | None = None, category_id: int | None = None, classif
     grouped = include_unsold_menu_items(grouped.fillna({"wastage_quantity": 0, "wastage_cost": 0}))
     grouped = classify_items(grouped)
     grouped = add_slow_moving_evidence(grouped, sales, user, location_id)
-    if category_id is not None:
-        grouped = grouped[grouped.Category_ID.eq(category_id)]
-    if classification:
-        grouped = grouped[grouped.classification.eq(classification)]
+    grouped = selected(grouped)
     grouped = grouped.sort_values("revenue", ascending=False)
     numeric = grouped.select_dtypes(include="number").columns
     grouped[numeric] = grouped[numeric].fillna(0)
@@ -296,7 +345,10 @@ def customer_segment_artifact():
     path = MODELS / "customer_rfm_kmeans.joblib"
     if not path.is_file():
         raise HTTPException(503, "Clean customer segmentation model unavailable")
-    return joblib.load(path)
+    try:
+        return joblib.load(path)
+    except (OSError, ValueError, EOFError) as exc:
+        raise HTTPException(503, "Clean customer segmentation model unavailable") from exc
 
 
 def scoped_segments(user, location_id=None):
@@ -402,7 +454,10 @@ def forecast(location_id: int | None = None, limit: int = Query(100, ge=1, le=60
         artifact_path = MODELS / f"multigrain_{grain}.joblib"
         if not metrics_path.is_file() or not artifact_path.is_file():
             raise HTTPException(503, "Grain forecasts not generated")
-        artifact = joblib.load(artifact_path)
+        try:
+            artifact = joblib.load(artifact_path)
+        except (OSError, ValueError, EOFError) as exc:
+            raise HTTPException(503, "Grain forecast model unavailable") from exc
         if entity_id not in artifact["last_history"]:
             raise HTTPException(404, "Forecast entity has no trained history")
         metrics = json.loads(metrics_path.read_text(encoding="utf-8"))["grains"][grain]["test"][str(horizon)]
@@ -716,7 +771,10 @@ def python_forecast_artifact():
     path = MODELS / "python_forecast.joblib"
     if not path.is_file():
         raise HTTPException(503, "Python forecast model unavailable")
-    return joblib.load(path)
+    try:
+        return joblib.load(path)
+    except (OSError, ValueError, EOFError) as exc:
+        raise HTTPException(503, "Python forecast model unavailable") from exc
 
 
 @router.post("/models/forecast/predict")

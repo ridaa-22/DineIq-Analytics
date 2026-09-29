@@ -1,6 +1,7 @@
 """Allow-listed, location-scoped exports from current cleaned analytics."""
 
 from io import BytesIO
+from datetime import date
 
 import pandas as pd
 from fastapi import APIRouter, Depends, HTTPException
@@ -9,6 +10,7 @@ from fastapi.responses import StreamingResponse
 from fast_apis import database
 from fast_apis.routes import dynamic
 from fast_apis.services import auth_service as auth
+from fast_apis.services.analytics_filters import checked_filters
 
 router = APIRouter(prefix="/api")
 ALLOWED = {"menu", "slow-moving", "customers", "forecast", "basket", "wastage", "promotions"}
@@ -16,15 +18,33 @@ ALLOWED = {"menu", "slow-moving", "customers", "forecast", "basket", "wastage", 
 
 @router.get("/exports/{report_name}")
 def export(report_name: str, format: str = "csv", location_id: int | None = None,
+           date_from: date | None = None, date_to: date | None = None,
+           item_id: int | None = None, category_id: int | None = None,
+           channel: str | None = None, promotion_id: int | None = None,
+           segment: str | None = None, performance_class: str | None = None,
+           classification: str | None = None, rating: float | None = None,
+           slow_status: str | None = None,
            user=Depends(auth.current_user)):
     if report_name not in ALLOWED or format not in {"csv", "xlsx"}:
         raise HTTPException(404, "Export unavailable")
+    if classification and performance_class and classification != performance_class:
+        raise HTTPException(422, "Conflicting performance classes")
+    selected = checked_filters(report_name, location_id=location_id, date_from=date_from,
+        date_to=date_to, item_id=item_id, category_id=category_id, channel=channel,
+        promotion_id=promotion_id, segment=segment,
+        performance_class=performance_class or classification, rating=rating,
+        slow_status=slow_status)
     if report_name == "menu":
-        data = dynamic.menu(location_id=location_id, limit=200, offset=0, user=user)["items"]
+        data = dynamic.menu(location_id=location_id, date_from=date_from, date_to=date_to,
+            item_id=item_id, category_id=category_id, channel=channel,
+            promotion_id=promotion_id, performance_class=selected.performance_class,
+            rating=rating, slow_status=slow_status, limit=200, offset=0, user=user)["items"]
     elif report_name == "slow-moving":
-        data = dynamic.slow_moving(location_id=location_id, limit=200, offset=0, user=user)["items"]
+        data = dynamic.slow_moving(location_id=location_id, category_id=category_id,
+            limit=200, offset=0, user=user)["items"]
     elif report_name == "customers":
-        data = dynamic.customers(location_id=location_id, limit=100000, offset=0, user=user)["customers"]
+        data = dynamic.customers(location_id=location_id, segment=segment,
+            limit=100000, offset=0, user=user)["customers"]
     elif report_name == "forecast":
         data = dynamic.forecast(location_id=location_id, limit=600, offset=0, user=user)["forecasts"]
     elif report_name == "basket":

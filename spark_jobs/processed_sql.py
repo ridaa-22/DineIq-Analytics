@@ -175,17 +175,18 @@ def validate(spark, quality):
             "missing_promotion": metrics["missing_promotion"], "missing_dimension": metrics["missing_dimension"]}
 
 
-def run():
-    OUT.mkdir(parents=True, exist_ok=True)
+def run(data=DATA, out=OUT):
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
     spark = create_spark("DineIQ-Clean-Multi-Table-SQL")
     try:
-        quality = register_sources(spark)
+        quality = register_sources(spark, data)
         build_views(spark)
         integrated = spark.table("integrated_sales").persist(StorageLevel.MEMORY_AND_DISK)
         integrated.count()
         result = validate(spark, quality)
-        result["outputs"] = {name: write_csv(OUT / name, spark.sql(query)) for name, query in QUERIES.items()}
-        (OUT / "integration_validation.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+        result["outputs"] = {name: write_csv(out / name, spark.sql(query)) for name, query in QUERIES.items()}
+        (out / "integration_validation.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
         print(json.dumps(result, indent=2))
         integrated.unpersist()
     finally:

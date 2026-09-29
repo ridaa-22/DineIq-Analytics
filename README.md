@@ -1,5 +1,7 @@
 # DineIQ Analytics
 
+For the complete local command sequence and a browser/API/artifact check for every SRS functional requirement, use [the local SRS test guide](docs/LOCAL_SRS_TEST_GUIDE.md). Its Phase 11 NFR checks and limitations are recorded in [NFR evidence](docs/NFR_EVIDENCE.md).
+
 FastAPI serves the authenticated restaurant analytics app at `http://127.0.0.1:8000/app/Login.html`. Current analytics read versioned cleaned Parquet; SQLite stores users, roles, business metadata, recommendations, model versions, jobs, and audit events. The 1,000,000-line raw synthetic dataset is retained separately.
 
 ## Start on Windows PowerShell

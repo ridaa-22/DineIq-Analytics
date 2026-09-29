@@ -1,0 +1,162 @@
+{
+  "environment": "temporary local uvicorn process",
+  "start_utc": "2026-09-29T01:41:45.364321+00:00",
+  "end_utc": "2026-09-29T01:42:43.390801+00:00",
+  "elapsed_seconds": 58.02648,
+  "planned_interval_seconds": 2,
+  "checks": 30,
+  "successful_checks": 30,
+  "observations": [
+    {
+      "at_utc": "2026-09-29T01:41:45.367490+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:41:47.370025+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:41:49.369939+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:41:51.371163+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:41:53.372243+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:41:55.372663+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:41:57.377597+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:41:59.375066+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:01.401702+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:03.375197+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:05.397890+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:07.375797+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:09.377095+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:11.385929+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:13.376592+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:15.376877+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:17.378141+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:19.380294+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:21.379147+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:23.379953+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:25.387057+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:27.381952+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:29.383116+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:31.382468+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:33.383449+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:35.384703+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:37.384919+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:39.386155+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:41.386270+00:00",
+      "ok": true,
+      "error_type": null
+    },
+    {
+      "at_utc": "2026-09-29T01:42:43.390781+00:00",
+      "ok": true,
+      "error_type": null
+    }
+  ],
+  "interpretation": "Short health-check sample; 99% service availability remains NOT VERIFIED"
+}

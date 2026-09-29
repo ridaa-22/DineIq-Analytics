@@ -1,12 +1,16 @@
 """Read-only demo API for existing DineIQ analytical artifacts."""
 
 from pathlib import Path
+import logging
+import sqlite3
 
 from fastapi import FastAPI, HTTPException, Query, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 
 from fast_apis.services import analytics_service as analytics
 from fast_apis.services import auth_service as auth
@@ -20,6 +24,54 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 FRONTEND_DIR = PROJECT_ROOT / "DineiqFrantend" / "template"
 
 app = FastAPI(title="DineIQ Demo API")
+logger = logging.getLogger(__name__)
+
+
+@app.exception_handler(HTTPException)
+async def http_error(request, exc):
+    message = str(exc.detail)
+    return JSONResponse(status_code=exc.status_code,
+        content={"detail": message, "error": {"code": exc.status_code, "message": message}})
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_error(request, exc):
+    details = []
+    for error in exc.errors():
+        field = str(error["loc"][-1]) if error.get("loc") else "request"
+        kind = error.get("type", "")
+        if kind == "string_too_short":
+            message = f"{field} must have at least {error.get('ctx', {}).get('min_length')} characters"
+        elif kind == "string_too_long":
+            message = f"{field} must have no more than {error.get('ctx', {}).get('max_length')} characters"
+        elif kind == "missing":
+            message = f"{field} is required"
+        else:
+            message = f"{field} has an invalid value"
+        details.append(message)
+    message = "; ".join(details) or "Invalid request input"
+    return JSONResponse(status_code=422,
+        content={"detail": message, "error": {"code": 422, "message": message}})
+
+
+@app.exception_handler(sqlite3.Error)
+async def database_error(request, exc):
+    logger.exception("Database request failed")
+    return JSONResponse(status_code=503,
+        content={"detail": "Database unavailable", "error": {"code": 503, "message": "Database unavailable"}})
+
+
+@app.exception_handler(OverflowError)
+async def numeric_overflow(request, exc):
+    return JSONResponse(status_code=422,
+        content={"detail": "Numeric value out of range", "error": {"code": 422, "message": "Numeric value out of range"}})
+
+
+@app.exception_handler(Exception)
+async def internal_error(request, exc):
+    logger.exception("Unexpected request failure")
+    return JSONResponse(status_code=500,
+        content={"detail": "Internal server error", "error": {"code": 500, "message": "Internal server error"}})
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

@@ -1,6 +1,8 @@
 """End-to-end API checks against generated cleaned artifacts and isolated app state."""
 
 import tempfile
+import csv
+import io
 import json
 import unittest
 from pathlib import Path
@@ -44,6 +46,22 @@ class DynamicAppTests(unittest.TestCase):
         header = {"Authorization": "Bearer " + fresh}
         self.assertEqual(self.client.post("/api/auth/logout", headers=header).status_code, 200)
         self.assertEqual(self.client.get("/api/auth/me", headers=header).status_code, 401)
+
+    def test_registration_short_password_explains_rule_and_valid_account_works(self):
+        payload = {"username": "New Analyst", "email": "new-analyst@nfr.local", "password": "123456"}
+        with database.connection() as db:
+            before = db.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+        invalid = self.client.post("/api/register", json=payload)
+        self.assertEqual(invalid.status_code, 422)
+        self.assertIn("password must have at least 8 characters", invalid.json()["detail"])
+        self.assertNotIn("Traceback", invalid.text)
+        with database.connection() as db:
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM users").fetchone()[0], before)
+        payload["password"] = "long-enough-password"
+        valid = self.client.post("/api/register", json=payload)
+        self.assertEqual(valid.status_code, 200, valid.text)
+        self.assertIn("ANALYST", valid.json()["user"]["roles"])
+        self.assertEqual(self.client.post("/api/register", json=payload).status_code, 409)
 
     def test_region_scope(self):
         whole = self.client.get("/api/dashboard/executive", headers=self.admin).json()
@@ -162,6 +180,58 @@ class DynamicAppTests(unittest.TestCase):
         self.assertEqual(self.client.get("/api/exports/basket", headers=self.regional_manager).status_code, 403)
         logs = self.client.get("/api/audit-logs", headers=self.admin).json()
         self.assertTrue(any(row["action"] == "report_export" for row in logs))
+
+    def test_bug_07_filtered_menu_exports_match_api(self):
+        for filters in ("category_id=1", "category_id=2&location_id=1",
+                        "classification=Profit+Driver", "category_id=1&slow_status=NOT_SLOW"):
+            api = self.client.get(f"/api/analytics/menu?{filters}&limit=200", headers=self.analyst)
+            self.assertEqual(api.status_code, 200, api.text)
+            expected = {str(row["Item_ID"]) for row in api.json()["items"]}
+            self.assertEqual(api.json()["total"], len(expected))
+            csv_response = self.client.get(f"/api/exports/menu?{filters}&format=csv", headers=self.analyst)
+            self.assertEqual(csv_response.status_code, 200, csv_response.text)
+            csv_rows = list(csv.DictReader(io.StringIO(csv_response.text)))
+            self.assertEqual(expected, {row["Item_ID"] for row in csv_rows})
+            xlsx_response = self.client.get(f"/api/exports/menu?{filters}&format=xlsx", headers=self.analyst)
+            self.assertEqual(xlsx_response.status_code, 200, xlsx_response.text)
+            import pandas as pd
+            xlsx_rows = pd.read_excel(io.BytesIO(xlsx_response.content))
+            self.assertEqual(expected, set(xlsx_rows.Item_ID.astype(str)))
+
+    def test_bug_08_safe_filter_errors_and_bounds(self):
+        for path in ("/api/dashboard/executive?date_from=not-a-date",
+                     "/api/dashboard/executive?date_from=2025-02-01&date_to=2025-01-01",
+                     "/api/analytics/menu?category_id=999999999999999999999999999999",
+                     "/api/exports/menu?channel=unknown",
+                     "/api/exports/basket?category_id=1",
+                     "/api/analytics/menu?promotion_id=999999"):
+            response = self.client.get(path, headers=self.analyst)
+            self.assertIn(response.status_code, {404, 422}, (path, response.text))
+            self.assertNotIn("Traceback", response.text)
+        self.assertEqual(self.client.get("/api/dashboard/executive", headers=self.analyst).status_code, 200)
+        empty = self.client.get("/api/analytics/menu?date_from=2030-01-01", headers=self.analyst)
+        self.assertEqual((empty.status_code, empty.json()["total"]), (200, 0))
+        with patch("fast_apis.routes.dynamic.DATA", Path(self.temp.name) / "missing"):
+            from fast_apis.routes.dynamic import frame
+            frame.cache_clear()
+            missing = self.client.get("/api/dashboard/executive", headers=self.analyst)
+            self.assertEqual(missing.status_code, 503)
+            self.assertNotIn("Traceback", missing.text)
+            frame.cache_clear()
+        with patch.object(database, "DB_PATH", Path(self.temp.name)):
+            unavailable = self.client.get("/api/auth/me", headers=self.analyst)
+            self.assertEqual(unavailable.status_code, 503)
+            self.assertNotIn("Traceback", unavailable.text)
+        with patch("fast_apis.routes.dynamic.MODELS", Path(self.temp.name) / "missing"):
+            from fast_apis.routes.dynamic import python_forecast_artifact
+            python_forecast_artifact.cache_clear()
+            missing_model = self.client.post("/api/models/forecast/predict?location_id=1", headers=self.analyst)
+            self.assertEqual(missing_model.status_code, 503)
+            self.assertNotIn("Traceback", missing_model.text)
+            python_forecast_artifact.cache_clear()
+        self.assertEqual(self.client.get("/api/analytics/menu/999999", headers=self.analyst).status_code, 404)
+        self.assertIn(self.client.post("/api/models/forecast/predict?location_id=999999",
+                                       headers=self.analyst).status_code, {404, 422})
 
     def test_live_modules(self):
         for path in ("/api/analytics/menu", "/api/analytics/customers", "/api/analytics/wastage",
